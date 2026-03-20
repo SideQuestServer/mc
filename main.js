@@ -53,3 +53,45 @@ function nowStr() {
   const n = new Date();
   return `${pad(n.getHours())}:${pad(n.getMinutes())}:${pad(n.getSeconds())} Uhr`;
 }
+
+// ── Scroll progress bar ────────────────────────
+(function initScrollProgress() {
+  const bar = document.createElement('div');
+  bar.id = 'scroll-progress';
+  document.body.prepend(bar);
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+  }, { passive: true });
+})();
+
+// ── Parallax hero background ───────────────────
+(function initParallax() {
+  window.addEventListener('scroll', () => {
+    const hero = document.querySelector('.hero, .page-hero');
+    if (!hero) return;
+    const y = window.scrollY;
+    const pseudo = hero.style;
+    // Move the grid background at half scroll speed
+    hero.style.setProperty('--parallax-y', (y * 0.3).toFixed(1) + 'px');
+  }, { passive: true });
+})();
+
+// ── Scroll reveal (Intersection Observer) ──────
+document.addEventListener('DOMContentLoaded', () => {
+  const targets = document.querySelectorAll(
+    '.sq-card, .part-card, .mcard, .cle, .faqitem, .schip, .build-card, .req-cell, .offer-row, .apply-step, .stat-box'
+  );
+  if (!targets.length) return;
+  targets.forEach(el => el.classList.add('reveal'));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  targets.forEach(el => observer.observe(el));
+});

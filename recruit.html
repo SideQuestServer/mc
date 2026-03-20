@@ -34,8 +34,9 @@
 
 .build-showcase { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1px; background:#1e1e1e; }
 .build-card { background:#0a0a0a; padding:20px; text-align:center; }
-.build-icon { font-family:'VT323',monospace; font-size:40px; color:var(--cc-orange); line-height:1; }
-.build-name { font-family:'VT323',monospace; font-size:18px; color:var(--cc-white); margin:8px 0 4px; }
+.build-img { width:48px; height:48px; margin:0 auto 8px; object-fit:contain; image-rendering:pixelated; }
+.build-img-placeholder { font-family:'VT323',monospace; font-size:40px; color:var(--cc-orange); line-height:1; margin-bottom:8px; }
+.build-name { font-family:'VT323',monospace; font-size:18px; color:var(--cc-white); margin:0 0 4px; }
 .build-status { font-size:11px; letter-spacing:1px; padding:2px 8px; display:inline-block; margin-top:4px; }
 .build-status.open   { color:var(--cc-green);  border:1px solid #1a2a1a; background:#0a110a; }
 .build-status.soon   { color:var(--cc-yellow); border:1px solid #2a2200; background:#111100; }
@@ -71,19 +72,19 @@
             <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils ★</a>
           </div>
         </div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon">bald</span></div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon">bald</span></div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon">bald</span></div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
       </div>
     </li>
     <li><a href="server.html" data-i18n="nav_server">Server</a></li>
     <li>
-      <button class="nav-btn" tabindex="0">Mitmachen <span class="nav-chevron">▾</span></button>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_join">Mitmachen</span> <span class="nav-chevron">▾</span></button>
       <div class="nav-dropdown-l1">
-        <a href="recruit.html" class="dd1-item dd1-active"><span class="dd1-icon">🔨</span>Server bauen</a>
-        <a href="community.html" class="dd1-item"><span class="dd1-icon">💬</span>Community & Kontakt</a>
-        <a href="impressum.html" class="dd1-item"><span class="dd1-icon">ℹ</span>Impressum & About</a>
+        <a href="recruit.html" class="dd1-item dd1-active"><span class="dd1-icon">▶</span><span data-i18n="nav_join_build">Server bauen</span></a>
+        <a href="community.html" class="dd1-item"><span class="dd1-icon">▶</span><span data-i18n="nav_join_comm">Community & Kontakt</span></a>
+        <a href="impressum.html" class="dd1-item"><span class="dd1-icon">▶</span><span data-i18n="nav_join_imp">Impressum & About</span></a>
       </div>
     </li>
   </ul>
@@ -110,10 +111,10 @@
   <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
   <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
   <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils ★</a>
-  <div class="mob-sec">MITMACHEN</div>
-  <a href="recruit.html" style="color:var(--cc-orange)">🔨 Server bauen</a>
-  <a href="community.html">💬 Community & Kontakt</a>
-  <a href="impressum.html">ℹ Impressum & About</a>
+  <div class="mob-sec" data-i18n="nav_join">MITMACHEN</div>
+  <a href="recruit.html" style="color:var(--cc-orange)" data-i18n="nav_join_build">Server bauen</a>
+  <a href="community.html" data-i18n="nav_join_comm">Community & Kontakt</a>
+  <a href="impressum.html" data-i18n="nav_join_imp">Impressum & About</a>
   <div class="mob-sec">SOCIAL</div>
   <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
   <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
@@ -122,144 +123,150 @@
 
 <div class="page-hero" style="background:linear-gradient(180deg,#100a00 0%,var(--cc-bg) 100%)">
   <div class="ph-inner">
-    <div class="ph-bread"><a href="index.html">Home</a> › Server bauen</div>
-    <div class="ph-title yellow">🔨 Wir suchen Builder!</div>
-    <p class="ph-desc">Unser ATM10 Server entsteht gerade – und wir brauchen kreative Köpfe die mitbauen wollen. Deutschsprachig, aktiv und Bock auf Minecraft? Dann bist du dabei.</p>
+    <div class="ph-bread"><a href="index.html">Home</a> › <span data-i18n="nav_join_build">Server bauen</span></div>
+    <div class="ph-title yellow" data-i18n="rec_hero_title">Wir suchen Builder!</div>
+    <p class="ph-desc" data-i18n="rec_hero_desc">Unser ATM10 Server entsteht gerade – und wir brauchen kreative Köpfe die mitbauen wollen. Deutschsprachig, aktiv und Bock auf Minecraft? Dann bist du dabei.</p>
   </div>
 </div>
 
 <div class="container">
 
   <div class="sq-card border-yellow">
-    <div class="card-head"><h2>Was wir bauen</h2></div>
+    <div class="card-head"><h2 data-i18n="rec_build_h">Was wir bauen</h2></div>
     <div class="build-showcase">
       <div class="build-card">
-        <div class="build-icon">🏰</div>
-        <div class="build-name">Spawn-Area</div>
-        <div style="font-size:11px;color:#555;margin:4px 0 6px">Zentrale Hub für alle Spieler</div>
-        <span class="build-status open">OFFEN</span>
+        <img src="assets/icons/build-spawn.png" alt="" class="build-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="build-img-placeholder" style="display:none">🏰</div>
+        <div class="build-name" data-i18n="rec_spawn_name">Spawn-Area</div>
+        <div style="font-size:11px;color:#555;margin:4px 0 6px" data-i18n="rec_spawn_desc">Zentrale Hub für alle Spieler</div>
+        <span class="build-status open" data-i18n="rec_status_open">OFFEN</span>
       </div>
       <div class="build-card">
-        <div class="build-icon">🏪</div>
-        <div class="build-name">Marktplatz</div>
-        <div style="font-size:11px;color:#555;margin:4px 0 6px">Shop- & Handelsbereich</div>
-        <span class="build-status open">OFFEN</span>
+        <img src="assets/icons/build-market.png" alt="" class="build-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="build-img-placeholder" style="display:none">🏪</div>
+        <div class="build-name" data-i18n="rec_market_name">Marktplatz</div>
+        <div style="font-size:11px;color:#555;margin:4px 0 6px" data-i18n="rec_market_desc">Shop- & Handelsbereich</div>
+        <span class="build-status open" data-i18n="rec_status_open">OFFEN</span>
       </div>
       <div class="build-card">
-        <div class="build-icon">🗺️</div>
-        <div class="build-name">Welt-Lobby</div>
-        <div style="font-size:11px;color:#555;margin:4px 0 6px">Übergang zwischen Dimensionen</div>
-        <span class="build-status soon">GEPLANT</span>
+        <img src="assets/icons/build-lobby.png" alt="" class="build-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="build-img-placeholder" style="display:none">🗺️</div>
+        <div class="build-name" data-i18n="rec_lobby_name">Welt-Lobby</div>
+        <div style="font-size:11px;color:#555;margin:4px 0 6px" data-i18n="rec_lobby_desc">Übergang zwischen Dimensionen</div>
+        <span class="build-status soon" data-i18n="rec_status_soon">GEPLANT</span>
       </div>
       <div class="build-card">
-        <div class="build-icon">🏗️</div>
-        <div class="build-name">Showcase-Area</div>
-        <div style="font-size:11px;color:#555;margin:4px 0 6px">Vorzeige-Builds der Community</div>
-        <span class="build-status soon">GEPLANT</span>
+        <img src="assets/icons/build-showcase.png" alt="" class="build-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="build-img-placeholder" style="display:none">🏗️</div>
+        <div class="build-name" data-i18n="rec_showcase_name">Showcase-Area</div>
+        <div style="font-size:11px;color:#555;margin:4px 0 6px" data-i18n="rec_showcase_desc">Vorzeige-Builds der Community</div>
+        <span class="build-status soon" data-i18n="rec_status_soon">GEPLANT</span>
       </div>
       <div class="build-card">
-        <div class="build-icon">⚙️</div>
-        <div class="build-name">Tech-Deko</div>
-        <div style="font-size:11px;color:#555;margin:4px 0 6px">Create & AE2 Dekoration</div>
-        <span class="build-status open">OFFEN</span>
+        <img src="assets/icons/build-tech.png" alt="" class="build-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="build-img-placeholder" style="display:none">⚙️</div>
+        <div class="build-name" data-i18n="rec_tech_name">Tech-Deko</div>
+        <div style="font-size:11px;color:#555;margin:4px 0 6px" data-i18n="rec_tech_desc">Create & AE2 Dekoration</div>
+        <span class="build-status open" data-i18n="rec_status_open">OFFEN</span>
       </div>
       <div class="build-card">
-        <div class="build-icon">🌳</div>
-        <div class="build-name">Natur-Bauten</div>
-        <div style="font-size:11px;color:#555;margin:4px 0 6px">Terraforming & organische Builds</div>
-        <span class="build-status open">OFFEN</span>
+        <img src="assets/icons/build-nature.png" alt="" class="build-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="build-img-placeholder" style="display:none">🌳</div>
+        <div class="build-name" data-i18n="rec_nature_name">Natur-Bauten</div>
+        <div style="font-size:11px;color:#555;margin:4px 0 6px" data-i18n="rec_nature_desc">Terraforming & organische Builds</div>
+        <span class="build-status open" data-i18n="rec_status_open">OFFEN</span>
       </div>
     </div>
   </div>
 
   <div class="sq-card border-orange" style="border-top:3px solid var(--cc-orange)">
-    <div class="card-head"><h2>Was wir suchen</h2></div>
+    <div class="card-head"><h2 data-i18n="rec_req_h">Was wir suchen</h2></div>
     <div class="card-body">
       <div class="req-grid" style="margin:-22px">
         <div class="req-cell">
-          <div class="req-icon">🇩🇪</div>
-          <div class="req-title">Deutschsprachig</div>
-          <div class="req-desc">Unsere Community kommuniziert auf Deutsch. Grundlegende Deutschkenntnisse sind Pflicht.</div>
+          <img src="assets/icons/req-language.png" alt="" class="req-icon" style="width:32px;height:32px;object-fit:contain;image-rendering:pixelated" onerror="this.outerHTML='<div class=\'req-icon\'>🇩🇪</div>'">
+          <div class="req-title" data-i18n="rec_req_de_title">Deutschsprachig</div>
+          <div class="req-desc" data-i18n="rec_req_de_desc">Unsere Community kommuniziert auf Deutsch. Grundlegende Deutschkenntnisse sind Pflicht.</div>
         </div>
         <div class="req-cell">
-          <div class="req-icon">🎨</div>
-          <div class="req-title">Kreativ & stilsicher</div>
-          <div class="req-desc">Du hast ein Gefühl für Architektur, Deko und Detailarbeit. Ein paar Screenshots deiner Builds wären super.</div>
+          <img src="assets/icons/req-art.png" alt="" class="req-icon" style="width:32px;height:32px;object-fit:contain;image-rendering:pixelated" onerror="this.outerHTML='<div class=\'req-icon\'>🎨</div>'">
+          <div class="req-title" data-i18n="rec_req_art_title">Kreativ & stilsicher</div>
+          <div class="req-desc" data-i18n="rec_req_art_desc">Du hast ein Gefühl für Architektur, Deko und Detailarbeit. Ein paar Screenshots deiner Builds wären super.</div>
         </div>
         <div class="req-cell">
-          <div class="req-icon">💬</div>
-          <div class="req-title">Aktiv im Discord</div>
-          <div class="req-desc">Absprachen laufen über Discord. Du bist regelmäßig online und kannst mit dem Team kommunizieren.</div>
+          <img src="assets/icons/req-discord.png" alt="" class="req-icon" style="width:32px;height:32px;object-fit:contain;image-rendering:pixelated" onerror="this.outerHTML='<div class=\'req-icon\'>💬</div>'">
+          <div class="req-title" data-i18n="rec_req_dc_title">Aktiv im Discord</div>
+          <div class="req-desc" data-i18n="rec_req_dc_desc">Absprachen laufen über Discord. Du bist regelmäßig online und kannst mit dem Team kommunizieren.</div>
         </div>
         <div class="req-cell">
-          <div class="req-icon">⏱️</div>
-          <div class="req-title">Zuverlässig</div>
-          <div class="req-desc">Kein 24/7-Job – aber wenn du anfängst, ziehst du es auch durch. Verlässlichkeit ist uns wichtig.</div>
+          <img src="assets/icons/req-reliable.png" alt="" class="req-icon" style="width:32px;height:32px;object-fit:contain;image-rendering:pixelated" onerror="this.outerHTML='<div class=\'req-icon\'>⏱️</div>'">
+          <div class="req-title" data-i18n="rec_req_rel_title">Zuverlässig</div>
+          <div class="req-desc" data-i18n="rec_req_rel_desc">Kein 24/7-Job – aber wenn du anfängst, ziehst du es auch durch. Verlässlichkeit ist uns wichtig.</div>
         </div>
         <div class="req-cell">
-          <div class="req-icon">🧱</div>
-          <div class="req-title">ATM10 Kenntnisse</div>
-          <div class="req-desc">Grundkenntnisse in All the Mods 10 oder ähnlichen Modpacks sind hilfreich, aber kein Muss.</div>
+          <img src="assets/icons/req-minecraft.png" alt="" class="req-icon" style="width:32px;height:32px;object-fit:contain;image-rendering:pixelated" onerror="this.outerHTML='<div class=\'req-icon\'>🧱</div>'">
+          <div class="req-title" data-i18n="rec_req_mc_title">ATM10 Kenntnisse</div>
+          <div class="req-desc" data-i18n="rec_req_mc_desc">Grundkenntnisse in All the Mods 10 oder ähnlichen Modpacks sind hilfreich, aber kein Muss.</div>
         </div>
         <div class="req-cell">
-          <div class="req-icon">🤝</div>
-          <div class="req-title">Teamplayer</div>
-          <div class="req-desc">Du arbeitest gerne mit anderen zusammen und bist offen für Feedback und Absprachen.</div>
+          <img src="assets/icons/req-team.png" alt="" class="req-icon" style="width:32px;height:32px;object-fit:contain;image-rendering:pixelated" onerror="this.outerHTML='<div class=\'req-icon\'>🤝</div>'">
+          <div class="req-title" data-i18n="rec_req_team_title">Teamplayer</div>
+          <div class="req-desc" data-i18n="rec_req_team_desc">Du arbeitest gerne mit anderen zusammen und bist offen für Feedback und Absprachen.</div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="sq-card border-cyan">
-    <div class="card-head"><h2>Was wir bieten</h2></div>
+    <div class="card-head"><h2 data-i18n="rec_offer_h">Was wir bieten</h2></div>
     <div class="card-body">
       <div class="offer-list">
         <div class="offer-row">
           <div class="offer-check">✔</div>
-          <div class="offer-text"><strong>Kostenloser Server-Zugang</strong> – Als Builder bist du natürlich auf dem Server dabei, sobald er öffnet.</div>
+          <div class="offer-text" data-i18n-html="rec_offer_1"><strong>Kostenloser Server-Zugang</strong> – Als Builder bist du natürlich auf dem Server dabei, sobald er öffnet.</div>
         </div>
         <div class="offer-row">
           <div class="offer-check">✔</div>
-          <div class="offer-text"><strong>Builder-Rang im Discord</strong> – Erkennbarer Rang + eigener Builder-Channel für Absprachen.</div>
+          <div class="offer-text" data-i18n-html="rec_offer_2"><strong>Builder-Rang im Discord</strong> – Erkennbarer Rang + eigener Builder-Channel für Absprachen.</div>
         </div>
         <div class="offer-row">
           <div class="offer-check">✔</div>
-          <div class="offer-text"><strong>Kreativfreiheit</strong> – Innerhalb des Konzepts kannst du deinen eigenen Stil einbringen. Kein Copy-Paste.</div>
+          <div class="offer-text" data-i18n-html="rec_offer_3"><strong>Kreativfreiheit</strong> – Innerhalb des Konzepts kannst du deinen eigenen Stil einbringen. Kein Copy-Paste.</div>
         </div>
         <div class="offer-row">
           <div class="offer-check">✔</div>
-          <div class="offer-text"><strong>Credit auf der Website</strong> – Deine Builds und dein Name werden hier auf der Community-Seite genannt.</div>
+          <div class="offer-text" data-i18n-html="rec_offer_4"><strong>Credit auf der Website</strong> – Deine Builds und dein Name werden hier auf der Community-Seite genannt.</div>
         </div>
         <div class="offer-row">
           <div class="offer-check">✔</div>
-          <div class="offer-text"><strong>Spaß & Community</strong> – Du baust nicht alleine. Wir sind eine entspannte Gruppe, die gerne gemeinsam spielt.</div>
+          <div class="offer-text" data-i18n-html="rec_offer_5"><strong>Spaß & Community</strong> – Du baust nicht alleine. Wir sind eine entspannte Gruppe, die gerne gemeinsam spielt.</div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="apply-box">
-    <div class="apply-title">🔨 Jetzt bewerben</div>
-    <div class="apply-desc">Die Bewerbung läuft über Discord – einfach beitreten, Builds zeigen und vorstellen. Wir melden uns schnell!</div>
+    <div class="apply-title" data-i18n="rec_apply_title">Jetzt bewerben</div>
+    <div class="apply-desc" data-i18n="rec_apply_desc">Die Bewerbung läuft über Discord – einfach beitreten, Builds zeigen und vorstellen. Wir melden uns schnell!</div>
     <div class="apply-steps">
       <div class="apply-step">
         <div class="apply-step-num">1</div>
-        <div class="apply-step-lbl">DISCORD BEITRETEN</div>
+        <div class="apply-step-lbl" data-i18n="rec_step1_lbl">DISCORD BEITRETEN</div>
       </div>
       <div class="apply-step">
         <div class="apply-step-num">2</div>
-        <div class="apply-step-lbl">#BUILDER-BEWERBUNG</div>
+        <div class="apply-step-lbl" data-i18n="rec_step2_lbl">#BUILDER-BEWERBUNG</div>
       </div>
       <div class="apply-step">
         <div class="apply-step-num">3</div>
-        <div class="apply-step-lbl">BUILDS ZEIGEN</div>
+        <div class="apply-step-lbl" data-i18n="rec_step3_lbl">BUILDS ZEIGEN</div>
       </div>
       <div class="apply-step">
         <div class="apply-step-num">4</div>
-        <div class="apply-step-lbl">FERTIG ✔</div>
+        <div class="apply-step-lbl" data-i18n="rec_step4_lbl">FERTIG ✔</div>
       </div>
     </div>
-    <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn green" style="font-size:18px;padding:8px 28px">💬 Discord beitreten & bewerben</a>
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn green" style="font-size:18px;padding:8px 28px" data-i18n="rec_apply_btn">💬 Discord beitreten & bewerben</a>
   </div>
 
 </div>
@@ -274,6 +281,6 @@
 </footer>
 
 <script src="main.js"></script>
-<script src="i18n.js"></script>
+<script src="i18n.js?v=4"></script>
 </body>
 </html>

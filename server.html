@@ -100,11 +100,11 @@
     </li>
     <li><a href="server.html" class="nav-active" data-i18n="nav_server">Server</a></li>
     <li>
-      <button class="nav-btn" tabindex="0">Mitmachen <span class="nav-chevron">▾</span></button>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_join">Mitmachen</span> <span class="nav-chevron">▾</span></button>
       <div class="nav-dropdown-l1">
-        <a href="recruit.html" class="dd1-item"><span class="dd1-icon">🔨</span>Server bauen</a>
-        <a href="community.html" class="dd1-item"><span class="dd1-icon">💬</span>Community & Kontakt</a>
-        <a href="impressum.html" class="dd1-item"><span class="dd1-icon">ℹ</span>Impressum & About</a>
+        <a href="recruit.html" class="dd1-item"><span class="dd1-icon">▶</span><span data-i18n="nav_join_build">Server bauen</span></a>
+        <a href="community.html" class="dd1-item"><span class="dd1-icon">▶</span><span data-i18n="nav_join_comm">Community & Kontakt</span></a>
+        <a href="impressum.html" class="dd1-item"><span class="dd1-icon">▶</span><span data-i18n="nav_join_imp">Impressum & About</span></a>
       </div>
     </li>
   </ul>
@@ -153,10 +153,10 @@
 
   <!-- Coming Soon Banner -->
   <div style="border:2px solid var(--cc-green);background:#060f06;padding:32px;text-align:center;">
-    <div style="font-family:'VT323',monospace;font-size:14px;color:var(--cc-green);letter-spacing:3px;margin-bottom:10px">▶ SERVER STATUS</div>
-    <div style="font-family:'VT323',monospace;font-size:42px;color:var(--cc-green);text-shadow:0 0 20px rgba(87,166,78,.4);margin-bottom:10px">SERVER ÖFFNET BALD</div>
-    <p style="font-size:13px;color:#555;max-width:480px;margin:0 auto 20px;line-height:1.7">Wir bauen noch – der Server ist fast fertig! Tritt unserem Discord bei um als Erstes informiert zu werden wenn wir öffnen.</p>
-    <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn green" style="font-size:17px;padding:8px 28px">💬 Discord – Als Erstes dabei sein</a>
+    <div style="font-family:'VT323',monospace;font-size:14px;color:var(--cc-green);letter-spacing:3px;margin-bottom:10px" data-i18n="srv_cs_status">▶ SERVER STATUS</div>
+    <div style="font-family:'VT323',monospace;font-size:42px;color:var(--cc-green);text-shadow:0 0 20px rgba(87,166,78,.4);margin-bottom:10px" data-i18n="srv_cs_h">SERVER ÖFFNET BALD</div>
+    <p style="font-size:13px;color:#555;max-width:480px;margin:0 auto 20px;line-height:1.7" data-i18n="srv_cs_desc">Wir bauen noch – der Server ist fast fertig! Tritt unserem Discord bei um als Erstes informiert zu werden wenn wir öffnen.</p>
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn green" style="font-size:17px;padding:8px 28px" data-i18n="srv_cs_btn">💬 Discord – Als Erstes dabei sein</a>
   </div>
 
   <div class="refresh-row">
@@ -177,7 +177,7 @@
       <span class="ip-val" style="filter:blur(6px);user-select:none;pointer-events:none">SideQuest.serv.cx</span>
       <span style="font-family:'VT323',monospace;font-size:14px;color:#2a2a2a;padding:4px 12px;border:1px solid #1e1e1e">Wird bekannt gegeben</span>
     </div>
-    <div class="motd-row" id="motd-row">▶ Server startet bald – stay tuned!</div>
+    <div class="motd-row" id="motd-row" data-i18n="srv_motd_soon">▶ Server startet bald – stay tuned!</div>
     <div class="stat-grid">
       <div class="stat-cell"><div class="sc-val dim" id="s-players">–</div><div class="sc-lbl" data-i18n="srv_stat_players">SPIELER ONLINE</div></div>
       <div class="stat-cell"><div class="sc-val dim" id="s-max">–</div><div class="sc-lbl">MAX SLOTS</div></div>
@@ -190,7 +190,7 @@
   <!-- UPTIME + TPS -->
   <div class="sq-card" style="border-top:3px solid var(--cc-orange);overflow:hidden">
     <div class="card-head">
-      <h2>Performance</h2>
+      <h2 data-i18n="srv_perf_h">Performance</h2>
       <span id="tps-badge" style="margin-left:auto;font-family:'VT323',monospace;font-size:15px;padding:2px 10px;border:1px solid #2a2a2a;color:#444">TPS –</span>
     </div>
     <div class="stat-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
@@ -313,7 +313,7 @@
 </footer>
 
 <script src="main.js"></script>
-<script src="i18n.js"></script>
+<script src="i18n.js?v=4"></script>
 <script src="server.js"></script>
 </body>
 </html>

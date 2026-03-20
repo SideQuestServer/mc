@@ -76,19 +76,19 @@
             <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils ★</a>
           </div>
         </div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon">bald</span></div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon">bald</span></div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon">bald</span></div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
       </div>
     </li>
     <li><a href="server.html" data-i18n="nav_server">Server</a></li>
     <li>
-      <button class="nav-btn" tabindex="0">Mitmachen <span class="nav-chevron">▾</span></button>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_join">Mitmachen</span> <span class="nav-chevron">▾</span></button>
       <div class="nav-dropdown-l1">
-        <a href="recruit.html" class="dd1-item"><span class="dd1-icon">🔨</span>Server bauen</a>
-        <a href="community.html" class="dd1-item dd1-active"><span class="dd1-icon">💬</span>Community & Kontakt</a>
-        <a href="impressum.html" class="dd1-item"><span class="dd1-icon">ℹ</span>Impressum & About</a>
+        <a href="recruit.html" class="dd1-item"><span class="dd1-icon">▶</span><span data-i18n="nav_join_build">Server bauen</span></a>
+        <a href="community.html" class="dd1-item dd1-active"><span class="dd1-icon">▶</span><span data-i18n="nav_join_comm">Community & Kontakt</span></a>
+        <a href="impressum.html" class="dd1-item"><span class="dd1-icon">▶</span><span data-i18n="nav_join_imp">Impressum & About</span></a>
       </div>
     </li>
   </ul>
@@ -115,10 +115,10 @@
   <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
   <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
   <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils ★</a>
-  <div class="mob-sec">MITMACHEN</div>
-  <a href="recruit.html">🔨 Server bauen</a>
-  <a href="community.html" style="color:var(--cc-cyan)">💬 Community & Kontakt</a>
-  <a href="impressum.html">ℹ Impressum & About</a>
+  <div class="mob-sec" data-i18n="nav_join">MITMACHEN</div>
+  <a href="recruit.html" data-i18n="nav_join_build">Server bauen</a>
+  <a href="community.html" style="color:var(--cc-cyan)" data-i18n="nav_join_comm">Community & Kontakt</a>
+  <a href="impressum.html" data-i18n="nav_join_imp">Impressum & About</a>
   <div class="mob-sec">SOCIAL</div>
   <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
   <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
@@ -127,9 +127,9 @@
 
 <div class="page-hero" style="background:linear-gradient(180deg,#001014 0%,var(--cc-bg) 100%)">
   <div class="ph-inner">
-    <div class="ph-bread"><a href="index.html">Home</a> › Community & Kontakt</div>
-    <div class="ph-title" style="color:var(--cc-cyan);text-shadow:3px 3px 0 #1a4a5a">💬 Community & Kontakt</div>
-    <p class="ph-desc">Stell Fragen, gib Feedback oder melde dich einfach kurz. Wir sind auch auf Discord immer erreichbar.</p>
+    <div class="ph-bread"><a href="index.html">Home</a> › <span data-i18n="nav_join_comm">Community & Kontakt</span></div>
+    <div class="ph-title" style="color:var(--cc-cyan);text-shadow:3px 3px 0 #1a4a5a" data-i18n="com_hero_title">Community & Kontakt</div>
+    <p class="ph-desc" data-i18n="com_hero_desc">Stell Fragen, gib Feedback oder melde dich einfach kurz. Wir sind auch auf Discord immer erreichbar.</p>
   </div>
 </div>
 
@@ -137,42 +137,42 @@
 
   <!-- Kontaktformular -->
   <div class="sq-card border-yellow">
-    <div class="card-head"><h2>Kontaktformular</h2></div>
+    <div class="card-head"><h2 data-i18n="com_cf_h">Kontaktformular</h2></div>
     <div class="card-body">
       <form class="cf-form" id="contact-form" onsubmit="sendMail(event)">
         <div class="cf-row">
           <div>
-            <label class="cf-label" for="cf-name">NAME</label>
-            <input class="cf-input" id="cf-name" type="text" placeholder="Dein Name oder Minecraft-Name" required>
+            <label class="cf-label" for="cf-name" data-i18n="com_cf_name_lbl">NAME</label>
+            <input class="cf-input" id="cf-name" type="text" data-i18n="com_cf_name_ph" placeholder="Dein Name oder Minecraft-Name" required>
           </div>
           <div>
-            <label class="cf-label" for="cf-subject">BETREFF</label>
-            <input class="cf-input" id="cf-subject" type="text" placeholder="Worum geht es?" required>
+            <label class="cf-label" for="cf-subject" data-i18n="com_cf_subject_lbl">BETREFF</label>
+            <input class="cf-input" id="cf-subject" type="text" data-i18n="com_cf_subject_ph" placeholder="Worum geht es?" required>
           </div>
         </div>
         <div>
-          <label class="cf-label" for="cf-msg">NACHRICHT</label>
-          <textarea class="cf-textarea" id="cf-msg" placeholder="Schreib uns alles was du loswerden möchtest..." required></textarea>
+          <label class="cf-label" for="cf-msg" data-i18n="com_cf_msg_lbl">NACHRICHT</label>
+          <textarea class="cf-textarea" id="cf-msg" data-i18n="com_cf_msg_ph" placeholder="Schreib uns alles was du loswerden möchtest..." required></textarea>
         </div>
         <div class="cf-actions">
-          <button type="submit" class="sqc-btn" style="font-size:16px;padding:7px 22px">📨 Nachricht senden</button>
-          <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn discord" style="font-size:16px;padding:7px 22px">💬 Direkt via Discord</a>
-          <span class="cf-note">Öffnet dein E-Mail-Programm mit den Angaben vorausgefüllt.</span>
+          <button type="submit" class="sqc-btn" style="font-size:16px;padding:7px 22px" data-i18n="com_cf_send_btn">📨 Nachricht senden</button>
+          <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn discord" style="font-size:16px;padding:7px 22px" data-i18n="com_cf_dc_btn">💬 Direkt via Discord</a>
+          <span class="cf-note" data-i18n="com_cf_note">Öffnet dein E-Mail-Programm mit den Angaben vorausgefüllt.</span>
         </div>
-        <div class="cf-success" id="cf-success">✔ E-Mail-Client geöffnet! Bitte noch absenden.</div>
+        <div class="cf-success" id="cf-success" data-i18n="com_cf_success">✔ E-Mail-Client geöffnet! Bitte noch absenden.</div>
       </form>
     </div>
   </div>
 
   <!-- Discord -->
   <div class="sq-card border-discord">
-    <div class="card-head"><h2>Discord Community</h2></div>
+    <div class="card-head"><h2 data-i18n="com_dc_h">Discord Community</h2></div>
     <div class="card-body" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
       <div style="font-size:56px;color:#5865F2;font-family:'VT323',monospace;flex-shrink:0">DC</div>
       <div style="flex:1;min-width:200px">
-        <div style="font-family:'VT323',monospace;font-size:26px;color:var(--cc-white);margin-bottom:6px">SideQuestCommunity</div>
-        <div style="font-size:12px;color:#555;line-height:1.7;margin-bottom:16px">Der schnellste Weg uns zu erreichen. Builder-Bewerbungen, Server-Support, Modpack-Hilfe und Community-Chat – alles in einem.</div>
-        <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn discord">Discord beitreten ↗</a>
+        <div style="font-family:'VT323',monospace;font-size:26px;color:var(--cc-white);margin-bottom:6px" data-i18n="com_dc_name">SideQuestCommunity</div>
+        <div style="font-size:12px;color:#555;line-height:1.7;margin-bottom:16px" data-i18n="com_dc_desc">Der schnellste Weg uns zu erreichen. Builder-Bewerbungen, Server-Support, Modpack-Hilfe und Community-Chat – alles in einem.</div>
+        <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn discord" data-i18n="com_dc_btn">Discord beitreten ↗</a>
       </div>
     </div>
   </div>
@@ -180,47 +180,44 @@
   <!-- Umfragen -->
   <div class="sq-card border-cyan">
     <div class="card-head">
-      <h2>Community-Umfragen</h2>
-      <span class="ch-sub" style="margin-left:auto">Deine Meinung zählt</span>
+      <h2 data-i18n="com_poll_h">Community-Umfragen</h2>
+      <span class="ch-sub" style="margin-left:auto" data-i18n="com_poll_sub">Deine Meinung zählt</span>
     </div>
     <div class="card-body">
       <div class="poll-grid">
 
-        <!-- Aktive Umfrage 1 -->
         <div class="poll-card">
-          <div class="poll-q">Welchen Spielstil spielst du hauptsächlich auf Modded-Servern?</div>
+          <div class="poll-q" data-i18n="com_poll1_q">Welchen Spielstil spielst du hauptsächlich auf Modded-Servern?</div>
           <div class="poll-options" id="poll1-opts">
-            <label class="poll-opt"><input type="radio" name="poll1" value="tech"> <span class="poll-opt-label">⚙️ Tech & Automatisierung</span></label>
-            <label class="poll-opt"><input type="radio" name="poll1" value="magic"> <span class="poll-opt-label">✨ Magie & Exploration</span></label>
-            <label class="poll-opt"><input type="radio" name="poll1" value="build"> <span class="poll-opt-label">🏗️ Bauen & Deko</span></label>
-            <label class="poll-opt"><input type="radio" name="poll1" value="all"> <span class="poll-opt-label">🎮 Alles ein bisschen</span></label>
+            <label class="poll-opt"><input type="radio" name="poll1" value="tech"> <span class="poll-opt-label" data-i18n="com_poll1_tech">Tech & Automatisierung</span></label>
+            <label class="poll-opt"><input type="radio" name="poll1" value="magic"> <span class="poll-opt-label" data-i18n="com_poll1_magic">Magie & Exploration</span></label>
+            <label class="poll-opt"><input type="radio" name="poll1" value="build"> <span class="poll-opt-label" data-i18n="com_poll1_build">Bauen & Deko</span></label>
+            <label class="poll-opt"><input type="radio" name="poll1" value="all"> <span class="poll-opt-label" data-i18n="com_poll1_all">Alles ein bisschen</span></label>
           </div>
           <div class="poll-submit">
-            <button class="sqc-btn" style="font-size:15px;padding:5px 18px" onclick="submitPoll(1)">Abstimmen</button>
+            <button class="sqc-btn" style="font-size:15px;padding:5px 18px" onclick="submitPoll(1)" data-i18n="com_poll_vote">Abstimmen</button>
           </div>
           <div class="poll-meta" id="poll1-meta"></div>
         </div>
 
-        <!-- Aktive Umfrage 2 -->
         <div class="poll-card">
-          <div class="poll-q">Was ist dir auf einem Community-Server am wichtigsten?</div>
+          <div class="poll-q" data-i18n="com_poll2_q">Was ist dir auf einem Community-Server am wichtigsten?</div>
           <div class="poll-options" id="poll2-opts">
-            <label class="poll-opt"><input type="radio" name="poll2" value="lag"> <span class="poll-opt-label">🚀 Lag-freies Spielen</span></label>
-            <label class="poll-opt"><input type="radio" name="poll2" value="community"> <span class="poll-opt-label">🤝 Nette Community</span></label>
-            <label class="poll-opt"><input type="radio" name="poll2" value="events"> <span class="poll-opt-label">🎉 Gemeinsame Events</span></label>
-            <label class="poll-opt"><input type="radio" name="poll2" value="freedom"> <span class="poll-opt-label">🗺️ Freiheit beim Spielen</span></label>
+            <label class="poll-opt"><input type="radio" name="poll2" value="lag"> <span class="poll-opt-label" data-i18n="com_poll2_lag">Lag-freies Spielen</span></label>
+            <label class="poll-opt"><input type="radio" name="poll2" value="community"> <span class="poll-opt-label" data-i18n="com_poll2_comm">Nette Community</span></label>
+            <label class="poll-opt"><input type="radio" name="poll2" value="events"> <span class="poll-opt-label" data-i18n="com_poll2_events">Gemeinsame Events</span></label>
+            <label class="poll-opt"><input type="radio" name="poll2" value="freedom"> <span class="poll-opt-label" data-i18n="com_poll2_free">Freiheit beim Spielen</span></label>
           </div>
           <div class="poll-submit">
-            <button class="sqc-btn" style="font-size:15px;padding:5px 18px" onclick="submitPoll(2)">Abstimmen</button>
+            <button class="sqc-btn" style="font-size:15px;padding:5px 18px" onclick="submitPoll(2)" data-i18n="com_poll_vote">Abstimmen</button>
           </div>
           <div class="poll-meta" id="poll2-meta"></div>
         </div>
 
-        <!-- Platzhalter für weitere Umfragen -->
         <div class="poll-coming">
           <div class="poll-coming-icon">📊</div>
-          <div class="poll-coming-text">Weitere Umfragen folgen</div>
-          <div class="poll-coming-sub">Neue Fragen erscheinen regelmäßig – schau wieder vorbei!</div>
+          <div class="poll-coming-text" data-i18n="com_poll_coming">Weitere Umfragen folgen</div>
+          <div class="poll-coming-sub" data-i18n="com_poll_coming_sub">Neue Fragen erscheinen regelmäßig – schau wieder vorbei!</div>
         </div>
 
       </div>
@@ -239,26 +236,33 @@
 </footer>
 
 <script src="main.js"></script>
-<script src="i18n.js"></script>
+<script src="i18n.js?v=4"></script>
 <script>
 function sendMail(e) {
   e.preventDefault();
-  const name    = document.getElementById('cf-name').value.trim();
-  const subject = document.getElementById('cf-subject').value.trim();
-  const msg     = document.getElementById('cf-msg').value.trim();
-  const body    = `Name: ${name}\n\nNachricht:\n${msg}`;
-  window.location.href = `mailto:SideQuestServer@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  var lang = localStorage.getItem('sqc_lang') || 'de';
+  var name    = document.getElementById('cf-name').value.trim();
+  var subject = document.getElementById('cf-subject').value.trim();
+  var msg     = document.getElementById('cf-msg').value.trim();
+  var body    = 'Name: ' + name + '\n\nNachricht:\n' + msg;
+  window.location.href = 'mailto:SideQuestServer@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   document.getElementById('cf-success').style.display = 'block';
 }
 
 function submitPoll(id) {
-  const selected = document.querySelector(`input[name="poll${id}"]:checked`);
-  if (!selected) { alert('Bitte wähle eine Antwort aus!'); return; }
-  const meta = document.getElementById(`poll${id}-meta`);
-  meta.textContent = '✔ Danke für deine Stimme! Ergebnisse werden demnächst angezeigt.';
+  var selected = document.querySelector('input[name="poll' + id + '"]:checked');
+  var lang = localStorage.getItem('sqc_lang') || 'de';
+  if (!selected) {
+    var alertMsg = (lang === 'en') ? 'Please select an answer!' : 'Bitte wähle eine Antwort aus!';
+    alert(alertMsg);
+    return;
+  }
+  var meta = document.getElementById('poll' + id + '-meta');
+  var thanksMsg = (lang === 'en') ? '✔ Thanks for voting! Results will be shown soon.' : '✔ Danke für deine Stimme! Ergebnisse werden demnächst angezeigt.';
+  meta.textContent = thanksMsg;
   meta.style.color = 'var(--cc-green)';
-  document.querySelectorAll(`#poll${id}-opts input`).forEach(i => i.disabled = true);
-  document.querySelector(`#poll${id}-opts`).closest('.poll-card').querySelector('.poll-submit').style.display = 'none';
+  document.querySelectorAll('#poll' + id + '-opts input').forEach(function(i){ i.disabled = true; });
+  document.querySelector('#poll' + id + '-opts').closest('.poll-card').querySelector('.poll-submit').style.display = 'none';
 }
 </script>
 </body>

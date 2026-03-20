@@ -305,3 +305,204 @@ footer a:hover { color: var(--cc-yellow); }
 .lang-btn:hover { color:var(--cc-yellow); border-color:var(--cc-yellow); }
 .lang-btn.lang-active { color:var(--cc-yellow); border-color:var(--cc-yellow); background:#0f0f00; }
 .lang-sep { color:#2a2a2a; font-size:14px; }
+
+/* ══════════════════════════════════════════
+   MODERN ENHANCEMENTS
+   ══════════════════════════════════════════ */
+
+/* ── Scroll-reveal animation ─────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Parallax hero background ────────────── */
+.hero::before,
+.page-hero::before {
+  will-change: background-position;
+  background-position: 0 var(--parallax-y, 0px);
+}
+
+/* ── Card hover glow ─────────────────────── */
+.sq-card {
+  transition: box-shadow .2s, border-color .2s, transform .2s;
+}
+.sq-card:hover {
+  box-shadow: 0 0 0 1px #2a2a2a, 0 8px 32px rgba(0,0,0,.5);
+}
+.sq-card.border-yellow:hover { box-shadow: 0 0 0 1px rgba(242,178,51,.15), 0 0 24px rgba(242,178,51,.08), 0 8px 32px rgba(0,0,0,.5); }
+.sq-card.border-green:hover  { box-shadow: 0 0 0 1px rgba(87,166,78,.15),  0 0 24px rgba(87,166,78,.08),  0 8px 32px rgba(0,0,0,.5); }
+.sq-card.border-cyan:hover   { box-shadow: 0 0 0 1px rgba(79,195,247,.15), 0 0 24px rgba(79,195,247,.08), 0 8px 32px rgba(0,0,0,.5); }
+.sq-card.border-purple:hover { box-shadow: 0 0 0 1px rgba(199,146,234,.15),0 0 24px rgba(199,146,234,.08),0 8px 32px rgba(0,0,0,.5); }
+.sq-card.border-discord:hover{ box-shadow: 0 0 0 1px rgba(88,101,242,.15), 0 0 24px rgba(88,101,242,.08), 0 8px 32px rgba(0,0,0,.5); }
+
+/* ── Part card hover (tutorials) ────────── */
+.part-card {
+  transition: transform .2s, border-top-color .2s, box-shadow .2s;
+}
+.part-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px rgba(242,178,51,.1), 0 12px 40px rgba(0,0,0,.6);
+}
+
+/* ── Mod card pixel hover ────────────────── */
+.mcard {
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+  position: relative;
+}
+.mcard::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid transparent;
+  transition: border-color .2s;
+  pointer-events: none;
+}
+.mcard:hover::after {
+  border-color: var(--mc, var(--cc-yellow));
+}
+.mcard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0,0,0,.5);
+}
+
+/* ── Button active press ─────────────────── */
+.sqc-btn:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 1px 1px 0 var(--cc-orange) !important;
+}
+.sqc-btn.green:active  { box-shadow: 1px 1px 0 #2d5228 !important; }
+.sqc-btn.discord:active{ box-shadow: 1px 1px 0 #3b4bb5 !important; }
+
+/* ── Page hero accent line ───────────────── */
+.page-hero {
+  border-bottom: 1px solid #1a1a1a;
+}
+.page-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cc-yellow) 30%, var(--cc-orange) 70%, transparent);
+  opacity: .25;
+}
+
+/* ── Pixel corner accent on cards ────────── */
+.sq-card.border-yellow .card-head::before,
+.sq-card.border-green  .card-head::before,
+.sq-card.border-cyan   .card-head::before {
+  content: '▶';
+  font-family: 'VT323', monospace;
+  font-size: 13px;
+  margin-right: 8px;
+  opacity: .4;
+}
+.sq-card.border-yellow .card-head::before { color: var(--cc-yellow); }
+.sq-card.border-green  .card-head::before { color: var(--cc-green); }
+.sq-card.border-cyan   .card-head::before { color: var(--cc-cyan); }
+
+/* ── Scroll progress bar ─────────────────── */
+#scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; width: 0%;
+  background: linear-gradient(90deg, var(--cc-yellow), var(--cc-orange));
+  z-index: 10000;
+  transition: width .05s linear;
+}
+
+/* ── Nav logo hover pixel shift ─────────── */
+.nav-logo:hover .logo-px {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--cc-orange);
+  transition: all .15s;
+}
+.logo-px { transition: all .15s; }
+
+/* ── Changelog entry hover ───────────────── */
+.cle {
+  transition: padding-left .15s;
+}
+.cle:hover {
+  padding-left: 34px;
+}
+
+/* ── FAQ item hover ──────────────────────── */
+.faqitem {
+  transition: border-color .15s;
+}
+.faqitem:hover {
+  border-color: #2a2a2a;
+}
+
+/* ── Stat chip hover (about section) ────── */
+.schip {
+  transition: border-left-color .2s, background .2s;
+}
+.schip:hover {
+  background: #111;
+}
+
+/* ── Footer social hover ─────────────────── */
+.footer-social a {
+  transition: all .15s;
+  position: relative;
+}
+.footer-social a:hover {
+  color: var(--cc-yellow);
+  border-color: var(--cc-yellow);
+  transform: translateY(-2px);
+}
+
+/* ── Image placeholders ──────────────────── */
+.img-placeholder {
+  background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'VT323', monospace; font-size: 14px;
+  color: #2a2a2a; letter-spacing: 2px;
+  border: 1px dashed #222;
+}
+
+/* ── Minecraft block texture accent ─────── */
+.mc-block-accent {
+  position: relative;
+}
+.mc-block-accent::before {
+  content: '';
+  position: absolute;
+  top: -3px; right: 12px;
+  width: 6px; height: 6px;
+  background: var(--cc-yellow);
+  box-shadow: 6px 0 0 var(--cc-yellow), 0 6px 0 var(--cc-orange), 6px 6px 0 var(--cc-orange);
+  opacity: .4;
+}
+
+/* ── Hover underline for text links ──────── */
+.nav-right a {
+  position: relative;
+}
+.nav-right a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 50%; right: 50%;
+  height: 1px;
+  background: var(--cc-yellow);
+  transition: left .15s, right .15s;
+}
+.nav-right a:hover::after {
+  left: 0; right: 0;
+}
+
+/* ── Pixelated avatar border pulse ───────── */
+.logo-px:hover {
+  animation: pixelPulse .4s steps(2) infinite;
+}
+@keyframes pixelPulse {
+  0%   { box-shadow: 2px 2px 0 var(--cc-orange); }
+  50%  { box-shadow: 3px 3px 0 var(--cc-yellow); }
+  100% { box-shadow: 2px 2px 0 var(--cc-orange); }
+}

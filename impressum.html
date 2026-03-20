@@ -20,7 +20,9 @@
 
 .about-grid { display:grid; grid-template-columns:1fr 2fr; gap:28px; }
 @media(max-width:600px){ .about-grid { grid-template-columns:1fr; } }
-.about-avatar { aspect-ratio:1; background:linear-gradient(135deg,#1a1a1a,#111); border:2px solid #2a2a2a; display:flex; align-items:center; justify-content:center; font-family:'VT323',monospace; font-size:64px; color:#333; }
+.about-avatar { aspect-ratio:1; background:linear-gradient(135deg,#1a1a1a,#111); border:2px solid #2a2a2a; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.about-avatar img { width:100%; height:100%; object-fit:cover; image-rendering:pixelated; }
+.about-avatar-placeholder { font-family:'VT323',monospace; font-size:64px; color:#333; }
 .about-name { font-family:'VT323',monospace; font-size:36px; color:var(--cc-white); margin-bottom:4px; }
 .about-tag { font-size:12px; color:var(--cc-orange); letter-spacing:2px; margin-bottom:14px; }
 .about-bio { font-size:13px; color:#888; line-height:1.8; margin-bottom:16px; }
@@ -61,19 +63,19 @@
             <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils ★</a>
           </div>
         </div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon">bald</span></div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon">bald</span></div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon">bald</span></div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
       </div>
     </li>
     <li><a href="server.html" data-i18n="nav_server">Server</a></li>
     <li>
-      <button class="nav-btn" tabindex="0">Mitmachen <span class="nav-chevron">▾</span></button>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_join">Mitmachen</span> <span class="nav-chevron">▾</span></button>
       <div class="nav-dropdown-l1">
-        <a href="recruit.html" class="dd1-item"><span class="dd1-icon">🔨</span>Server bauen</a>
-        <a href="community.html" class="dd1-item"><span class="dd1-icon">💬</span>Community & Kontakt</a>
-        <a href="impressum.html" class="dd1-item dd1-active"><span class="dd1-icon">ℹ</span>Impressum & About</a>
+        <a href="recruit.html" class="dd1-item"><span class="dd1-icon">▶</span><span data-i18n="nav_join_build">Server bauen</span></a>
+        <a href="community.html" class="dd1-item"><span class="dd1-icon">▶</span><span data-i18n="nav_join_comm">Community & Kontakt</span></a>
+        <a href="impressum.html" class="dd1-item dd1-active"><span class="dd1-icon">▶</span><span data-i18n="nav_join_imp">Impressum & About</span></a>
       </div>
     </li>
   </ul>
@@ -100,10 +102,10 @@
   <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
   <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
   <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils ★</a>
-  <div class="mob-sec">MITMACHEN</div>
-  <a href="recruit.html">🔨 Server bauen</a>
-  <a href="community.html">💬 Community & Kontakt</a>
-  <a href="impressum.html" style="color:var(--cc-yellow)">ℹ Impressum & About</a>
+  <div class="mob-sec" data-i18n="nav_join">MITMACHEN</div>
+  <a href="recruit.html" data-i18n="nav_join_build">Server bauen</a>
+  <a href="community.html" data-i18n="nav_join_comm">Community & Kontakt</a>
+  <a href="impressum.html" style="color:var(--cc-yellow)" data-i18n="nav_join_imp">Impressum & About</a>
   <div class="mob-sec">SOCIAL</div>
   <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
   <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
@@ -112,9 +114,9 @@
 
 <div class="page-hero" style="background:linear-gradient(180deg,#0a0a0a 0%,var(--cc-bg) 100%)">
   <div class="ph-inner">
-    <div class="ph-bread"><a href="index.html">Home</a> › Impressum & About</div>
-    <div class="ph-title yellow">Impressum & About</div>
-    <p class="ph-desc">Rechtliche Angaben und ein bisschen mehr über den Menschen hinter SideQuestCommunity.</p>
+    <div class="ph-bread"><a href="index.html">Home</a> › <span data-i18n="nav_join_imp">Impressum & About</span></div>
+    <div class="ph-title yellow" data-i18n="imp_hero_title">Impressum & About</div>
+    <p class="ph-desc" data-i18n="imp_hero_desc">Rechtliche Angaben und ein bisschen mehr über den Menschen hinter SideQuestCommunity.</p>
   </div>
 </div>
 
@@ -122,18 +124,21 @@
 
   <!-- About Me -->
   <div class="sq-card border-yellow">
-    <div class="card-head"><h2>About – SideQuestChris</h2></div>
+    <div class="card-head"><h2 data-i18n="imp_about_h">About – SideQuestChris</h2></div>
     <div class="card-body">
       <div class="about-grid">
-        <div class="about-avatar">SQ</div>
+        <div class="about-avatar">
+          <img src="assets/images/avatar-sidequestchris.png" alt="SideQuestChris" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="about-avatar-placeholder" style="display:none">SQ</div>
+        </div>
         <div>
           <div class="about-name">SideQuestChris</div>
-          <div class="about-tag">▶ CONTENT CREATOR · MINECRAFT MODDED</div>
-          <p class="about-bio">
+          <div class="about-tag" data-i18n="imp_about_tag">▶ CONTENT CREATOR · MINECRAFT MODDED</div>
+          <p class="about-bio" data-i18n="imp_about_bio1">
             Hey! Ich bin Chris – Minecraft-Enthusiast, Modpack-Nerd und Content Creator aus Deutschland.
             Ich betreibe diese Community-Seite, einen ATM10-Server und erstelle Tutorials rund um Minecraft Mods.
           </p>
-          <p class="about-bio">
+          <p class="about-bio" data-i18n="imp_about_bio2">
             Mein Schwerpunkt liegt auf technischen Mods wie CC: Tweaked, Create und AE2. Ich liebe es,
             komplexe Systeme zu erklären und Einsteigern den Einstieg zu erleichtern.
             Auf YouTube und TikTok teile ich Guides, Showcases und Server-Content.
@@ -148,7 +153,7 @@
       </div>
       <div class="stat-row">
         <div class="stat-box"><div class="stat-val">10</div><div class="stat-lbl">TUTORIALS</div></div>
-        <div class="stat-box"><div class="stat-val">~25</div><div class="stat-lbl">SERVER SPIELER</div></div>
+        <div class="stat-box"><div class="stat-val">~25</div><div class="stat-lbl" data-i18n="imp_stat_srv">SERVER SPIELER</div></div>
         <div class="stat-box"><div class="stat-val" style="font-size:22px">ATM10</div><div class="stat-lbl">MODPACK</div></div>
         <div class="stat-box"><div class="stat-val" style="font-size:22px;color:#5865f2">DC</div><div class="stat-lbl">COMMUNITY</div></div>
       </div>
@@ -157,11 +162,11 @@
 
   <!-- Impressum -->
   <div class="sq-card" style="border-top:3px solid #333">
-    <div class="card-head"><h2>Impressum</h2><span class="ch-sub" style="margin-left:auto">§ 5 TMG</span></div>
+    <div class="card-head"><h2 data-i18n="imp_imp_h">Impressum</h2><span class="ch-sub" style="margin-left:auto" data-i18n="imp_imp_tmg">§ 5 TMG</span></div>
     <div class="card-body">
 
       <div class="imp-section">
-        <div class="imp-h">ANGABEN GEMÄß § 5 TMG</div>
+        <div class="imp-h" data-i18n="imp_h_tmg">ANGABEN GEMÄß § 5 TMG</div>
         <div class="imp-val">
           <span class="imp-placeholder">[Vorname Nachname]</span><br>
           <span class="imp-placeholder">[Straße Hausnummer]</span><br>
@@ -171,7 +176,7 @@
       </div>
 
       <div class="imp-section">
-        <div class="imp-h">KONTAKT</div>
+        <div class="imp-h" data-i18n="imp_h_contact">KONTAKT</div>
         <div class="imp-val">
           E-Mail: <a href="mailto:SideQuestServer@gmail.com">SideQuestServer@gmail.com</a><br>
           Discord: <a href="https://discord.gg/j46UA5ESwN" target="_blank">discord.gg/j46UA5ESwN</a>
@@ -179,7 +184,7 @@
       </div>
 
       <div class="imp-section">
-        <div class="imp-h">VERANTWORTLICH FÜR DEN INHALT (§ 18 ABS. 2 MSTV)</div>
+        <div class="imp-h" data-i18n="imp_h_resp">VERANTWORTLICH FÜR DEN INHALT (§ 18 ABS. 2 MSTV)</div>
         <div class="imp-val">
           <span class="imp-placeholder">[Vorname Nachname]</span><br>
           <span class="imp-placeholder">[Adresse wie oben]</span>
@@ -187,8 +192,8 @@
       </div>
 
       <div class="imp-section">
-        <div class="imp-h">HAFTUNGSAUSSCHLUSS</div>
-        <div class="imp-val">
+        <div class="imp-h" data-i18n="imp_h_liability">HAFTUNGSAUSSCHLUSS</div>
+        <div class="imp-val" data-i18n="imp_liability_txt">
           Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit,
           Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden.
           Diese Website enthält Links zu externen Websites (YouTube, TikTok, Discord, CurseForge).
@@ -197,8 +202,8 @@
       </div>
 
       <div class="imp-section">
-        <div class="imp-h">URHEBERRECHT</div>
-        <div class="imp-val">
+        <div class="imp-h" data-i18n="imp_h_copyright">URHEBERRECHT</div>
+        <div class="imp-val" data-i18n="imp_copyright_txt">
           Die auf dieser Website erstellten Inhalte und Werke unterliegen dem deutschen Urheberrecht.
           Minecraft ist ein eingetragenes Markenzeichen von Mojang AB. Diese Website steht in keiner
           offiziellen Verbindung mit Mojang AB oder Microsoft.
@@ -216,25 +221,25 @@
     </div>
   </div>
 
-  <!-- Datenschutz-Hinweis -->
+  <!-- Datenschutz -->
   <div class="sq-card" style="border-top:3px solid #2a2a2a">
-    <div class="card-head"><h2>Datenschutz-Hinweis</h2></div>
+    <div class="card-head"><h2 data-i18n="imp_privacy_h">Datenschutz-Hinweis</h2></div>
     <div class="card-body">
       <div class="imp-val">
-        <p style="margin-bottom:12px">
+        <p style="margin-bottom:12px" data-i18n="imp_privacy_txt1">
           Diese Website verwendet keine Tracking-Cookies und keine Analytics-Dienste.
           Es werden keine personenbezogenen Daten automatisch erhoben.
         </p>
         <p style="margin-bottom:12px">
-          <strong style="color:var(--cc-white)">Kontaktformular:</strong>
-          Wenn du das Kontaktformular verwendest, werden deine Angaben ausschließlich zur Bearbeitung
+          <strong style="color:var(--cc-white)" data-i18n="imp_privacy_cf">Kontaktformular:</strong>
+          <span data-i18n="imp_privacy_txt2"> Wenn du das Kontaktformular verwendest, werden deine Angaben ausschließlich zur Bearbeitung
           deiner Anfrage genutzt und nicht an Dritte weitergegeben. Die Übertragung erfolgt über dein
-          lokales E-Mail-Programm direkt an uns.
+          lokales E-Mail-Programm direkt an uns.</span>
         </p>
         <p>
-          <strong style="color:var(--cc-white)">Externe Dienste:</strong>
-          Wir verlinken auf Discord, YouTube und TikTok. Beim Aufrufen dieser Seiten gelten deren jeweilige
-          Datenschutzrichtlinien.
+          <strong style="color:var(--cc-white)" data-i18n="imp_privacy_ext">Externe Dienste:</strong>
+          <span data-i18n="imp_privacy_txt3"> Wir verlinken auf Discord, YouTube und TikTok. Beim Aufrufen dieser Seiten gelten deren jeweilige
+          Datenschutzrichtlinien.</span>
         </p>
       </div>
     </div>
@@ -252,6 +257,6 @@
 </footer>
 
 <script src="main.js"></script>
-<script src="i18n.js"></script>
+<script src="i18n.js?v=4"></script>
 </body>
 </html>
