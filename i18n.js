@@ -382,7 +382,7 @@ function t(key, lang) {
   lang = lang || getLang();
   return (TRANSLATIONS[key] && TRANSLATIONS[key][lang])
     || (TRANSLATIONS[key] && TRANSLATIONS[key].de)
-    || key;
+    || null;
 }
 
 function applyLang(lang) {
@@ -390,6 +390,7 @@ function applyLang(lang) {
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var key = el.getAttribute('data-i18n');
     var val = t(key, lang);
+    if (val === null) return; // key not found – keep original text
     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
       el.placeholder = val;
     } else {
@@ -399,7 +400,9 @@ function applyLang(lang) {
   // HTML content (for bold/spans inside text)
   document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
     var key = el.getAttribute('data-i18n-html');
-    el.innerHTML = t(key, lang);
+    var val = t(key, lang);
+    if (val === null) return;
+    el.innerHTML = val;
   });
   // data-label attributes on cards
   document.querySelectorAll('[data-label-i18n]').forEach(function(el) {
