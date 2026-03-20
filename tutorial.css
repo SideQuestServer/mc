@@ -212,7 +212,10 @@
   border: 2px solid var(--cc-yellow); padding: 20px 28px;
   display: flex; align-items: center; justify-content: space-between;
   gap: 16px; background: #111;
+  text-decoration: none; color: inherit; cursor: pointer;
+  transition: background .15s, border-color .15s;
 }
+.next-ep:hover { background: #161600; border-color: #ffd060; }
 .next-ep .next-label {
   font-family: 'VT323', monospace; font-size: 13px;
   color: var(--cc-dim); letter-spacing: 2px; margin-bottom: 4px;
