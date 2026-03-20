@@ -298,3 +298,10 @@ footer a:hover { color: var(--cc-yellow); }
 @keyframes blink  { 50%{opacity:0} }
 @keyframes pulseDot { 0%,100%{box-shadow:0 0 6px rgba(87,166,78,.5)} 50%{box-shadow:0 0 16px rgba(87,166,78,.9)} }
 @keyframes gridScroll { 0%{background-position:0 0} 100%{background-position:40px 40px} }
+
+/* ── LANGUAGE SWITCHER ───────────────────── */
+.lang-switcher { display:flex; align-items:center; gap:0; margin-left:8px; }
+.lang-btn { font-family:'VT323',monospace; font-size:17px; background:none; border:1px solid #2a2a2a; color:#555; padding:3px 10px; cursor:pointer; transition:all .15s; }
+.lang-btn:hover { color:var(--cc-yellow); border-color:var(--cc-yellow); }
+.lang-btn.lang-active { color:var(--cc-yellow); border-color:var(--cc-yellow); background:#0f0f00; }
+.lang-sep { color:#2a2a2a; font-size:14px; }

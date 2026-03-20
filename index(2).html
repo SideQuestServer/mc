@@ -41,6 +41,11 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .nav-right{margin-left:auto;display:flex;align-items:center;gap:4px;}
 .nav-right a{font-family:'VT323',monospace;font-size:15px;color:#484848;text-decoration:none;padding:4px 9px;border:1px solid #222;transition:all .15s;}
 .nav-right a:hover{color:var(--yellow);border-color:var(--yellow);}
+.lang-switcher{display:flex;align-items:center;gap:0;margin-left:8px;}
+.lang-btn{font-family:'VT323',monospace;font-size:17px;background:none;border:1px solid #2a2a2a;color:#555;padding:3px 10px;cursor:pointer;transition:all .15s;}
+.lang-btn:hover{color:var(--yellow);border-color:var(--yellow);}
+.lang-btn.lang-active{color:var(--yellow);border-color:var(--yellow);background:#0f0f00;}
+.lang-sep{color:#2a2a2a;font-size:14px;}
 .nav-hamburger{display:none;background:none;border:1px solid #2a2a2a;color:#555;font-family:'VT323',monospace;font-size:22px;padding:3px 10px;cursor:pointer;margin-left:auto;}
 .mob-menu{display:none;flex-direction:column;position:fixed;top:var(--nav-h);left:0;right:0;background:#090909;border-bottom:2px solid #1e1e1e;padding:0;z-index:8999;max-height:calc(100vh - var(--nav-h));overflow-y:auto;}
 .mob-menu.open{display:flex;}
@@ -401,6 +406,8 @@ footer{border-top:1px solid #1a1a1a;padding:40px 24px;text-align:center;font-fam
   SideQuestCommunity · SideQuest.serv.cx · ATM10 · Auf Deutsch
 </footer>
 
+<script src="main.js"></script>
+<script src="i18n.js"></script>
 <script>
 async function heroStatus(){
   try{
