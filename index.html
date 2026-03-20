@@ -165,14 +165,14 @@ footer{border-top:1px solid #1a1a1a;padding:40px 24px;text-align:center;font-fam
 <nav class="sqc-nav">
   <a href="index.html" class="nav-logo"><div class="logo-px">SQ</div><div class="logo-text">SideQuest<span>Community</span></div></a>
   <ul class="nav-items">
-    <li><a href="index.html" class="nav-active">Startseite</a></li>
+    <li><a href="index.html" class="nav-active" data-i18n="nav_startseite">Startseite</a></li>
     <li>
-      <button class="nav-btn" tabindex="0">Tutorials <span class="nav-chevron">▾</span></button>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_tutorials_btn">Tutorials</span> <span class="nav-chevron">▾</span></button>
       <div class="nav-dd1">
         <div class="dd1i" tabindex="0"><span class="di">▶</span>CC: Tweaked<span class="dbadge">10</span><span class="darr">›</span>
           <div class="nav-dd2">
             <div class="dd2h">CC: TWEAKED</div>
-            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="tutorials_cc.html" data-i18n="nav_overview">📋 Übersicht</a>
             <a href="cc_tutorial_part1.html"><span class="d2n">01</span>Hello World</a>
             <a href="cc_tutorial_part2.html"><span class="d2n">02</span>Variablen</a>
             <a href="cc_tutorial_part3.html"><span class="d2n">03</span>Kombinieren</a>
@@ -185,13 +185,13 @@ footer{border-top:1px solid #1a1a1a;padding:40px 24px;text-align:center;font-fam
             <a href="cc_tutorial_part10.html"><span class="d2n">10</span>paintutils ★</a>
           </div>
         </div>
-        <div class="dd1i dis"><span class="di">▷</span>Create Mod<span class="dsoon">bald</span></div>
-        <div class="dd1i dis"><span class="di">▷</span>Mekanism<span class="dsoon">bald</span></div>
-        <div class="dd1i dis"><span class="di">▷</span>Extreme Reactors<span class="dsoon">bald</span></div>
-        <div class="dd1i dis"><span class="di">▷</span>AE2<span class="dsoon">bald</span></div>
+        <div class="dd1i dis"><span class="di">▷</span>Create Mod<span class="dsoon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1i dis"><span class="di">▷</span>Mekanism<span class="dsoon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1i dis"><span class="di">▷</span>Extreme Reactors<span class="dsoon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1i dis"><span class="di">▷</span>AE2<span class="dsoon" data-i18n="dd_soon">bald</span></div>
       </div>
     </li>
-    <li><a href="server.html">Server</a></li>
+    <li><a href="server.html" data-i18n="nav_server">Server</a></li>
   </ul>
   <div class="nav-right">
     <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
@@ -201,8 +201,8 @@ footer{border-top:1px solid #1a1a1a;padding:40px 24px;text-align:center;font-fam
   <button class="nav-hamburger" onclick="document.getElementById('mob').classList.toggle('open')">☰</button>
 </nav>
 <div class="mob-menu" id="mob">
-  <a href="index.html" style="color:var(--yellow)">Startseite</a>
-  <a href="server.html">Server</a>
+  <a href="index.html" style="color:var(--yellow)" data-i18n="nav_startseite">Startseite</a>
+  <a href="server.html" data-i18n="nav_server">Server</a>
   <div class="msec">TUTORIALS › CC: TWEAKED</div>
   <a href="tutorials_cc.html" class="msub">📋 Übersicht</a>
   <a href="cc_tutorial_part1.html" class="msub">01 · Hello World</a>
@@ -223,12 +223,12 @@ footer{border-top:1px solid #1a1a1a;padding:40px 24px;text-align:center;font-fam
 
 <div class="hero">
   <div class="hc">
-    <div class="heye">▶ MINECRAFT MODDED COMMUNITY</div>
+    <div class="heye" data-i18n="idx_hero_eyebrow">▶ MINECRAFT MODDED COMMUNITY</div>
     <h1 class="htitle">SideQuest<br><span class="hl">Community</span></h1>
-    <p class="hsub">Tutorials, Server & Community rund um Minecraft Mods. CC: Tweaked, Create, AE2 und mehr – auf Deutsch, Schritt für Schritt.</p>
+    <p class="hsub" data-i18n="idx_hero_sub">Tutorials, Server & Community rund um Minecraft Mods. CC: Tweaked, Create, AE2 und mehr – auf Deutsch, Schritt für Schritt.</p>
     <div class="hbtns">
       <a href="tutorials_cc.html" class="bp">▶ Tutorials</a>
-      <a href="server.html" class="bg">⬡ Server joinen</a>
+      <a href="server.html" class="bg" data-i18n="idx_hero_btn_srv">⬡ Server joinen</a>
       <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="bs">Discord</a>
     </div>
   </div>
@@ -237,36 +237,36 @@ footer{border-top:1px solid #1a1a1a;padding:40px 24px;text-align:center;font-fam
 <div class="wrap">
 
 <div class="sec" id="server" style="border-top:1px solid #141414;">
-  <div class="seye">▶ UNSER SERVER</div>
-  <div class="stit">ATM10 <span>Server</span></div>
-  <p class="sdesc">Spiel mit der Community auf unserem All the Mods 10 Server. Einfach joinen!</p>
+  <div class="seye" data-i18n="idx_srv_eye">▶ UNSER SERVER</div>
+  <div class="stit" data-i18n-html="idx_srv_tit">ATM10 <span>Server</span></div>
+  <p class="sdesc" data-i18n="idx_srv_desc">Spiel mit der Community auf unserem All the Mods 10 Server. Einfach joinen!</p>
   <a href="server.html" class="srv-prev">
     <div><div class="sp-ip">SideQuest.serv.cx</div><div class="sp-mod">All the Mods 10 · NeoForge 1.21.1</div></div>
-    <div class="sp-stat"><div class="spdot"></div><span id="hs">Verbinde...</span></div>
+    <div class="sp-stat"><div class="spdot"></div><span id="hs" data-i18n="idx_srv_status">Verbinde...</span></div>
     <div class="sparr">▶</div>
   </a>
 </div>
 
 <div class="sec" id="tutorials" style="border-top:1px solid #141414;">
-  <div class="seye">▶ TUTORIALS</div>
-  <div class="stit">Lerne <span>Mods</span></div>
-  <p class="sdesc">Jede Reihe baut aufeinander auf – von den Grundlagen bis zur Automatisierung.</p>
+  <div class="seye" data-i18n="idx_tut_eye">▶ TUTORIALS</div>
+  <div class="stit" data-i18n-html="idx_tut_tit">Lerne <span>Mods</span></div>
+  <p class="sdesc" data-i18n="idx_tut_desc">Jede Reihe baut aufeinander auf – von den Grundlagen bis zur Automatisierung.</p>
   <div class="mgrid">
-    <a href="tutorials_cc.html" class="mcard" style="--mc:var(--yellow)"><div style="font-family:'VT323',monospace;font-size:26px;color:var(--yellow)">CC</div><div class="mcn">CC: Tweaked</div><div class="mcd">Lua-Programmierung, Turtles, rednet – von Hello World bis GUI.</div><div class="mcb">10 TEILE ▶</div></a>
-    <div class="mcard coming" style="--mc:#e8693a"><div style="font-family:'VT323',monospace;font-size:26px;color:#e8693a">CR</div><div class="mcn">Create</div><div class="mcd">Mechanische Automatisierung, Züge, Schiffsgetriebe.</div><div class="mcb">COMING SOON</div></div>
-    <div class="mcard coming" style="--mc:#00c8ff"><div style="font-family:'VT323',monospace;font-size:26px;color:#00c8ff">ME</div><div class="mcn">Mekanism</div><div class="mcd">Fortgeschrittene Energiesysteme und Ore-Processing.</div><div class="mcb">COMING SOON</div></div>
-    <div class="mcard coming" style="--mc:#ff6b35"><div style="font-family:'VT323',monospace;font-size:26px;color:#ff6b35">ER</div><div class="mcn">Extreme Reactors</div><div class="mcd">Multiblock-Reaktoren bauen und automatisieren.</div><div class="mcb">COMING SOON</div></div>
-    <div class="mcard coming" style="--mc:#7fc97f"><div style="font-family:'VT323',monospace;font-size:26px;color:#7fc97f">AE</div><div class="mcn">AE2</div><div class="mcd">Applied Energistics 2 – ME-Netzwerke & Crafting.</div><div class="mcb">COMING SOON</div></div>
+    <a href="tutorials_cc.html" class="mcard" style="--mc:var(--yellow)"><div style="font-family:'VT323',monospace;font-size:26px;color:var(--yellow)">CC</div><div class="mcn">CC: Tweaked</div><div class="mcd" data-i18n="idx_cc_desc">Lua-Programmierung, Turtles, rednet – von Hello World bis GUI.</div><div class="mcb" data-i18n="idx_cc_parts">10 TEILE ▶</div></a>
+    <div class="mcard coming" style="--mc:#e8693a"><div style="font-family:'VT323',monospace;font-size:26px;color:#e8693a">CR</div><div class="mcn">Create</div><div class="mcd" data-i18n="idx_cr_desc">Mechanische Automatisierung, Züge, Schiffsgetriebe.</div><div class="mcb" data-i18n="idx_coming_soon">COMING SOON</div></div>
+    <div class="mcard coming" style="--mc:#00c8ff"><div style="font-family:'VT323',monospace;font-size:26px;color:#00c8ff">ME</div><div class="mcn">Mekanism</div><div class="mcd" data-i18n="idx_me_desc">Fortgeschrittene Energiesysteme und Ore-Processing.</div><div class="mcb" data-i18n="idx_coming_soon">COMING SOON</div></div>
+    <div class="mcard coming" style="--mc:#ff6b35"><div style="font-family:'VT323',monospace;font-size:26px;color:#ff6b35">ER</div><div class="mcn">Extreme Reactors</div><div class="mcd" data-i18n="idx_er_desc">Multiblock-Reaktoren bauen und automatisieren.</div><div class="mcb" data-i18n="idx_coming_soon">COMING SOON</div></div>
+    <div class="mcard coming" style="--mc:#7fc97f"><div style="font-family:'VT323',monospace;font-size:26px;color:#7fc97f">AE</div><div class="mcn">AE2</div><div class="mcd" data-i18n="idx_ae_desc">Applied Energistics 2 – ME-Netzwerke & Crafting.</div><div class="mcb" data-i18n="idx_coming_soon">COMING SOON</div></div>
   </div>
 </div>
 
 <div class="sec" id="about" style="border-top:1px solid #141414;">
   <div class="agrid">
     <div>
-      <div class="atag">▶ DER KERL DAHINTER</div>
+      <div class="atag" data-i18n="idx_about_eye">▶ DER KERL DAHINTER</div>
       <div class="aname">SideQuestChris</div>
-      <p class="atxt">Hey! Ich bin Chris – Minecraft-Enthusiast, Modpack-Nerd und Content Creator. Ich betreibe einen ATM10-Server für ~25 Spieler und erstelle Tutorials für alles rund um Minecraft Mods.</p>
-      <p class="atxt">Mein Fokus liegt auf CC: Tweaked, Automatisierung und technischen Mods. Auf YouTube und TikTok teile ich Guides, Showcases und Server-Content.</p>
+      <p class="atxt" data-i18n="idx_about_txt1">Hey! Ich bin Chris – Minecraft-Enthusiast, Modpack-Nerd und Content Creator. Ich betreibe einen ATM10-Server für ~25 Spieler und erstelle Tutorials für alles rund um Minecraft Mods.</p>
+      <p class="atxt" data-i18n="idx_about_txt2">Mein Fokus liegt auf CC: Tweaked, Automatisierung und technischen Mods. Auf YouTube und TikTok teile ich Guides, Showcases und Server-Content.</p>
       <div class="asocial">
         <a href="https://youtube.com/@SideQuestChrisYT" target="_blank" class="ayt">▶ YouTube</a>
         <a href="https://www.tiktok.com/@sidequestchris4" target="_blank" class="att">♪ TikTok</a>
@@ -275,7 +275,7 @@ footer{border-top:1px solid #1a1a1a;padding:40px 24px;text-align:center;font-fam
     </div>
     <div class="schips">
       <div class="schip" style="--sc:var(--yellow)"><div class="scl">TUTORIALS</div><div class="scv">10</div></div>
-      <div class="schip" style="--sc:var(--green)"><div class="scl">SERVER SPIELER</div><div class="scv">~25</div></div>
+      <div class="schip" style="--sc:var(--green)"><div class="scl" data-i18n="idx_about_stat_srv">SERVER SPIELER</div><div class="scv">~25</div></div>
       <div class="schip" style="--sc:var(--cyan)"><div class="scl">MODPACK</div><div class="scv" style="font-size:22px">ATM10</div></div>
       <div class="schip" style="--sc:#5865f2"><div class="scl">DISCORD</div><div class="scv" style="font-size:22px">JOIN ▶</div></div>
     </div>
@@ -283,9 +283,9 @@ footer{border-top:1px solid #1a1a1a;padding:40px 24px;text-align:center;font-fam
 </div>
 
 <div class="sec" id="youtube" style="border-top:1px solid #141414;">
-  <div class="seye">▶ YOUTUBE</div>
-  <div class="stit">Neueste <span>Videos</span></div>
-  <p class="sdesc">Tutorials, Showcases & Server-Content – abonniere für neue Guides.</p>
+  <div class="seye" data-i18n="idx_yt_eye">▶ YOUTUBE</div>
+  <div class="stit" data-i18n-html="idx_yt_tit">Neueste <span>Videos</span></div>
+  <p class="sdesc" data-i18n="idx_yt_desc">Tutorials, Showcases & Server-Content – abonniere für neue Guides.</p>
   <div class="ytgrid" id="yt-grid">
     <!-- Placeholder cards shown until JS loads -->
     <a href="https://youtube.com/@SideQuestChrisYT" target="_blank" class="ytcard">
@@ -302,17 +302,17 @@ footer{border-top:1px solid #1a1a1a;padding:40px 24px;text-align:center;font-fam
     </a>
   </div>
   <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
-    <a href="https://youtube.com/@SideQuestChrisYT" target="_blank" class="ytmore">Alle Videos auf YouTube ▶</a>
-    <a href="https://www.youtube.com/@SideQuestChrisYT?sub_confirmation=1" target="_blank" class="ytmore" style="background:#cc0000;border-color:#cc0000">▶ Abonnieren</a>
+    <a href="https://youtube.com/@SideQuestChrisYT" target="_blank" class="ytmore" data-i18n="idx_yt_more">Alle Videos auf YouTube ▶</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT?sub_confirmation=1" target="_blank" class="ytmore" style="background:#cc0000;border-color:#cc0000" data-i18n="idx_yt_sub">▶ Abonnieren</a>
   </div>
   <p style="margin-top:10px;font-size:11px;color:#2a2a2a">
     Für echte Live-Daten: YouTube Data API v3 Key in yt-config.js eintragen → Videos werden automatisch geladen.
   </p>
 </div>
 <div class="sec" id="tiktok" style="border-top:1px solid #141414;">
-  <div class="seye">▶ TIKTOK</div>
-  <div class="stit">Kurze <span>Clips</span></div>
-  <p class="sdesc">Schnelle Minecraft-Tipps, Mod-Shortcuts und Server-Content in kurz.</p>
+  <div class="seye" data-i18n="idx_tt_eye">▶ TIKTOK</div>
+  <div class="stit" data-i18n-html="idx_tt_tit">Kurze <span>Clips</span></div>
+  <p class="sdesc" data-i18n="idx_tt_desc">Schnelle Minecraft-Tipps, Mod-Shortcuts und Server-Content in kurz.</p>
   <div class="ttgrid">
     <div class="ttcard">
       <div class="ttthumb">♪</div>
@@ -336,60 +336,60 @@ footer{border-top:1px solid #1a1a1a;padding:40px 24px;text-align:center;font-fam
       </div>
     </div>
   </div>
-  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank" class="ytmore" style="margin-top:16px;display:inline-block;background:#000;border-color:#333;color:#fff">♪ TikTok folgen ↗</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank" class="ytmore" style="margin-top:16px;display:inline-block;background:#000;border-color:#333;color:#fff" data-i18n="idx_tt_follow">♪ TikTok folgen ↗</a>
 </div>
 
 
 
 <div class="sec" id="faq" style="border-top:1px solid #141414;">
-  <div class="seye">▶ FAQ</div>
-  <div class="stit">Häufige <span>Fragen</span></div>
+  <div class="seye" data-i18n="idx_faq_eye">▶ FAQ</div>
+  <div class="stit" data-i18n-html="idx_faq_tit">Häufige <span>Fragen</span></div>
   <div class="faqlist">
     <div class="faqitem">
-      <div class="faqq" onclick="this.parentElement.classList.toggle('open')">Wie kann ich auf dem Server mitspielen? <span class="fqa-arr">▾</span></div>
-      <div class="faqa">Installiere <strong>All the Mods 10</strong> über CurseForge oder ATLauncher, öffne Multiplayer und gib <strong>SideQuest.serv.cx</strong> ein. Details auf der <a href="server.html">Server-Seite</a>.</div>
+      <div class="faqq" onclick="this.parentElement.classList.toggle('open')"><span data-i18n="idx_faq_q1">Wie kann ich auf dem Server mitspielen?</span> <span class="fqa-arr">▾</span></div>
+      <div class="faqa" data-i18n-html="idx_faq_a1">Installiere <strong>All the Mods 10</strong> über CurseForge oder ATLauncher, öffne Multiplayer und gib <strong>SideQuest.serv.cx</strong> ein. Details auf der <a href="server.html">Server-Seite</a>.</div>
     </div>
     <div class="faqitem">
-      <div class="faqq" onclick="this.parentElement.classList.toggle('open')">Gibt es eine Whitelist? <span class="fqa-arr">▾</span></div>
-      <div class="faqa">Der Server ist aktuell offen – einfach joinen! Bei Fragen tritt unserem <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a> bei.</div>
+      <div class="faqq" onclick="this.parentElement.classList.toggle('open')"><span data-i18n="idx_faq_q2">Gibt es eine Whitelist?</span> <span class="fqa-arr">▾</span></div>
+      <div class="faqa" data-i18n-html="idx_faq_a2">Der Server ist aktuell offen – einfach joinen! Bei Fragen tritt unserem <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a> bei.</div>
     </div>
     <div class="faqitem">
-      <div class="faqq" onclick="this.parentElement.classList.toggle('open')">Welche Modpack-Version? <span class="fqa-arr">▾</span></div>
-      <div class="faqa"><strong>All the Mods 10</strong> auf NeoForge für Minecraft 1.21.1. Die genaue Version siehst du immer auf der Server-Seite.</div>
+      <div class="faqq" onclick="this.parentElement.classList.toggle('open')"><span data-i18n="idx_faq_q3">Welche Modpack-Version?</span> <span class="fqa-arr">▾</span></div>
+      <div class="faqa" data-i18n-html="idx_faq_a3"><strong>All the Mods 10</strong> auf NeoForge für Minecraft 1.21.1. Die genaue Version siehst du immer auf der Server-Seite.</div>
     </div>
     <div class="faqitem">
-      <div class="faqq" onclick="this.parentElement.classList.toggle('open')">Für wen sind die Tutorials? <span class="fqa-arr">▾</span></div>
-      <div class="faqa">Für Einsteiger – keine Vorkenntnisse nötig! Jede Serie baut schrittweise auf. Perfekt als Einstieg und als Nachschlagewerk.</div>
+      <div class="faqq" onclick="this.parentElement.classList.toggle('open')"><span data-i18n="idx_faq_q4">Für wen sind die Tutorials?</span> <span class="fqa-arr">▾</span></div>
+      <div class="faqa" data-i18n="idx_faq_a4">Für Einsteiger – keine Vorkenntnisse nötig! Jede Serie baut schrittweise auf. Perfekt als Einstieg und als Nachschlagewerk.</div>
     </div>
     <div class="faqitem">
-      <div class="faqq" onclick="this.parentElement.classList.toggle('open')">Kann ich Themen vorschlagen? <span class="fqa-arr">▾</span></div>
-      <div class="faqa">Sehr gerne! Schreib uns auf <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a> oder kommentiere auf <a href="https://youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>.</div>
+      <div class="faqq" onclick="this.parentElement.classList.toggle('open')"><span data-i18n="idx_faq_q5">Kann ich Themen vorschlagen?</span> <span class="fqa-arr">▾</span></div>
+      <div class="faqa" data-i18n-html="idx_faq_a5">Sehr gerne! Schreib uns auf <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a> oder kommentiere auf <a href="https://youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>.</div>
     </div>
   </div>
 </div>
 
 <div class="sec" id="news" style="border-top:1px solid #141414;">
-  <div class="seye">▶ CHANGELOG</div>
-  <div class="stit">Was ist <span>neu?</span></div>
+  <div class="seye" data-i18n="idx_news_eye">▶ CHANGELOG</div>
+  <div class="stit" data-i18n-html="idx_news_tit">Was ist <span>neu?</span></div>
   <div class="clog">
     <div class="cle" style="--clc:var(--yellow)">
-      <div class="cld">MRZ 2026</div><div class="clti">Website Launch 🎉</div>
-      <div class="clb">SideQuestCommunity Website ist online! Landing Page, Server-Status, CC: Tweaked Tutorial-Serie mit 10 Teilen.</div>
+      <div class="cld">MRZ 2026</div><div class="clti" data-i18n="idx_news_1_ti">Website Launch 🎉</div>
+      <div class="clb" data-i18n="idx_news_1_body">SideQuestCommunity Website ist online! Landing Page, Server-Status, CC: Tweaked Tutorial-Serie mit 10 Teilen.</div>
       <div class="cltags"><span class="cltag" style="color:var(--yellow);border-color:#2a2200;background:#111100">NEU</span><span class="cltag" style="color:var(--green);border-color:#1a2a1a;background:#0a110a">WEBSITE</span></div>
     </div>
     <div class="cle" style="--clc:var(--cyan)">
-      <div class="cld">MRZ 2026</div><div class="clti">CC: Tweaked Serie komplett</div>
-      <div class="clb">Alle 10 Teile der CC: Tweaked Tutorial-Serie sind fertig – von Hello World bis paintutils GUI.</div>
+      <div class="cld">MRZ 2026</div><div class="clti" data-i18n="idx_news_2_ti">CC: Tweaked Serie komplett</div>
+      <div class="clb" data-i18n="idx_news_2_body">Alle 10 Teile der CC: Tweaked Tutorial-Serie sind fertig – von Hello World bis paintutils GUI.</div>
       <div class="cltags"><span class="cltag" style="color:var(--cyan);border-color:#1a2a3a;background:#0a1118">TUTORIAL</span></div>
     </div>
     <div class="cle" style="--clc:var(--green)">
-      <div class="cld">MRZ 2026</div><div class="clti">ATM10 Server läuft stabil</div>
-      <div class="clb">Server auf NeoForge 1.21.1, regelmäßige Modpack-Updates.</div>
+      <div class="cld">MRZ 2026</div><div class="clti" data-i18n="idx_news_3_ti">ATM10 Server läuft stabil</div>
+      <div class="clb" data-i18n="idx_news_3_body">Server auf NeoForge 1.21.1, regelmäßige Modpack-Updates.</div>
       <div class="cltags"><span class="cltag" style="color:var(--green);border-color:#1a2a1a;background:#0a110a">SERVER</span></div>
     </div>
     <div class="cle" style="--clc:#5865f2">
-      <div class="cld">DEMNÄCHST</div><div class="clti">Create Mod Tutorial-Serie</div>
-      <div class="clb">Nächste Tutorial-Reihe in Planung: Create Mod – Mechanische Automatisierung von Grund auf.</div>
+      <div class="cld">DEMNÄCHST</div><div class="clti" data-i18n="idx_news_4_ti">Create Mod Tutorial-Serie</div>
+      <div class="clb" data-i18n="idx_news_4_body">Nächste Tutorial-Reihe in Planung: Create Mod – Mechanische Automatisierung von Grund auf.</div>
       <div class="cltags"><span class="cltag" style="color:#5865f2;border-color:#1a1d4a;background:#0a0c1a">GEPLANT</span></div>
     </div>
   </div>
@@ -403,7 +403,7 @@ footer{border-top:1px solid #1a1a1a;padding:40px 24px;text-align:center;font-fam
     <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
     <a href="https://youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
   </div>
-  SideQuestCommunity · SideQuest.serv.cx · ATM10 · Auf Deutsch
+  <span data-i18n="idx_footer_txt">SideQuestCommunity · SideQuest.serv.cx · ATM10 · Auf Deutsch</span>
 </footer>
 
 <script src="main.js"></script>

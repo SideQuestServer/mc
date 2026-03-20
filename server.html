@@ -71,15 +71,15 @@
     <div class="logo-text">SideQuest<span>Community</span></div>
   </a>
   <ul class="nav-items">
-    <li><a href="index.html">Startseite</a></li>
+    <li><a href="index.html" data-i18n="nav_startseite">Startseite</a></li>
     <li>
-      <button class="nav-btn" tabindex="0">Tutorials <span class="nav-chevron">▾</span></button>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_tutorials_btn">Tutorials</span> <span class="nav-chevron">▾</span></button>
       <div class="nav-dropdown-l1">
         <div class="dd1-item" tabindex="0">
           <span class="dd1-icon">▶</span>CC: Tweaked<span class="dd1-badge">10</span><span class="dd1-arrow">›</span>
           <div class="nav-dropdown-l2">
             <div class="dd2-header">CC: TWEAKED</div>
-            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="tutorials_cc.html" data-i18n="nav_overview">📋 Übersicht</a>
             <a href="cc_tutorial_part1.html"><span class="dd2-num">01</span>Hello World</a>
             <a href="cc_tutorial_part2.html"><span class="dd2-num">02</span>Variablen</a>
             <a href="cc_tutorial_part3.html"><span class="dd2-num">03</span>Kombinieren</a>
@@ -92,13 +92,13 @@
             <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils ★</a>
           </div>
         </div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon">bald</span></div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon">bald</span></div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon">bald</span></div>
-        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
       </div>
     </li>
-    <li><a href="server.html" class="nav-active">Server</a></li>
+    <li><a href="server.html" class="nav-active" data-i18n="nav_server">Server</a></li>
   </ul>
   <div class="nav-right">
     <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
@@ -109,8 +109,8 @@
 </nav>
 
 <div class="nav-mobile-menu" id="sqc-mob">
-  <a href="index.html">Startseite</a>
-  <a href="server.html">Server</a>
+  <a href="index.html" data-i18n="nav_startseite">Startseite</a>
+  <a href="server.html" data-i18n="nav_server">Server</a>
   <div class="mob-sec">TUTORIALS › CC: TWEAKED</div>
   <a class="mob-sub" href="tutorials_cc.html">📋 Übersicht</a>
   <a class="mob-sub" href="cc_tutorial_part1.html">01 · Hello World</a>
@@ -140,26 +140,26 @@
 <div class="container">
 
   <div class="refresh-row">
-    <span class="last-upd" id="last-upd">Lädt...</span>
-    <button class="refresh-btn" onclick="fetchAll()">↻ Aktualisieren</button>
+    <span class="last-upd" id="last-upd" data-i18n="srv_last_upd_init">Lädt...</span>
+    <button class="refresh-btn" onclick="fetchAll()" data-i18n="srv_refresh_btn">↻ Aktualisieren</button>
   </div>
 
   <div class="sq-card border-green">
     <div class="card-head">
-      <h2>Server Status</h2>
+      <h2 data-i18n="srv_h_status">Server Status</h2>
       <span class="status-indicator" style="margin-left:auto">
         <span class="si-dot" id="si-dot"></span>
-        <span class="si-txt loading" id="si-txt">Verbinde...</span>
+        <span class="si-txt loading" id="si-txt" data-i18n="srv_connecting">Verbinde...</span>
       </span>
     </div>
     <div class="ip-row">
       <span class="ip-lbl">IP:</span>
       <span class="ip-val">SideQuest.serv.cx</span>
-      <button class="ip-btn" id="ip-btn" onclick="copyIP()">📋 IP kopieren</button>
+      <button class="ip-btn" id="ip-btn" onclick="copyIP()" data-i18n="srv_ip_copy">📋 IP kopieren</button>
     </div>
-    <div class="motd-row" id="motd-row">▶ Verbinde mit Server...</div>
+    <div class="motd-row" id="motd-row" data-i18n="srv_motd_init">▶ Verbinde mit Server...</div>
     <div class="stat-grid">
-      <div class="stat-cell"><div class="sc-val dim" id="s-players">–</div><div class="sc-lbl">SPIELER ONLINE</div></div>
+      <div class="stat-cell"><div class="sc-val dim" id="s-players">–</div><div class="sc-lbl" data-i18n="srv_stat_players">SPIELER ONLINE</div></div>
       <div class="stat-cell"><div class="sc-val dim" id="s-max">–</div><div class="sc-lbl">MAX SLOTS</div></div>
       <div class="stat-cell"><div class="sc-val dim" id="s-ver">–</div><div class="sc-lbl">MC VERSION</div></div>
       <div class="stat-cell"><div class="sc-val dim" id="s-ping">–</div><div class="sc-lbl">PING ms</div></div>
@@ -175,51 +175,51 @@
     </div>
     <div class="stat-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
       <div class="stat-cell"><div class="sc-val dim" id="s-uptime">–</div><div class="sc-lbl">UPTIME</div></div>
-      <div class="stat-cell"><div class="sc-val dim" id="s-tps">–</div><div class="sc-lbl">TPS (ZIEL 20)</div></div>
+      <div class="stat-cell"><div class="sc-val dim" id="s-tps">–</div><div class="sc-lbl" data-i18n="srv_stat_tps_lbl">TPS (ZIEL 20)</div></div>
       <div class="stat-cell"><div class="sc-val dim" id="s-mspt">–</div><div class="sc-lbl">MSPT</div></div>
       <div class="stat-cell"><div class="sc-val dim" id="s-cpu">–</div><div class="sc-lbl">CPU %</div></div>
     </div>
-    <div style="padding:8px 22px;font-size:11px;color:#2a2a2a;border-top:1px solid #141414">
+    <div style="padding:8px 22px;font-size:11px;color:#2a2a2a;border-top:1px solid #141414" data-i18n="srv_perf_note">
       TPS/MSPT/CPU benötigen ein CC: Tweaked Monitor-Script auf dem Server. Uptime wird über die mcsrvstat API abgerufen.
     </div>
   </div>
 
   <div class="sq-card border-cyan">
     <div class="card-head">
-      <h2>Online Spieler</h2>
+      <h2 data-i18n="srv_h_players">Online Spieler</h2>
       <span id="ps-count" style="margin-left:auto;font-family:'VT323',monospace;font-size:17px;color:var(--cc-cyan)">– / –</span>
     </div>
     <div class="card-body">
-      <div id="ps-body" class="empty-state">Verbinde...</div>
+      <div id="ps-body" class="empty-state" data-i18n="srv_connecting">Verbinde...</div>
     </div>
   </div>
 
   <div class="sq-card border-yellow">
-    <div class="card-head"><h2>Wie joinen?</h2></div>
+    <div class="card-head"><h2 data-i18n="srv_h_join">Wie joinen?</h2></div>
     <div class="card-body">
       <div class="steps">
         <div class="step-row">
           <div class="step-num">1</div>
           <div>
-            <div class="step-title">ATM10 Modpack installieren</div>
-            <div class="step-desc">Lade "All the Mods 10" über CurseForge oder ATLauncher herunter. Die Modpack-Version muss mit dem Server übereinstimmen.</div>
+            <div class="step-title" data-i18n="srv_step1_tit">ATM10 Modpack installieren</div>
+            <div class="step-desc" data-i18n="srv_step1_desc">Lade "All the Mods 10" über CurseForge oder ATLauncher herunter. Die Modpack-Version muss mit dem Server übereinstimmen.</div>
             <a href="https://www.curseforge.com/minecraft/modpacks/all-the-mods-10" target="_blank" class="sqc-btn" style="font-size:16px;padding:5px 16px;margin-top:8px;display:inline-block">CurseForge ↗</a>
           </div>
         </div>
         <div class="step-row">
           <div class="step-num">2</div>
           <div>
-            <div class="step-title">Discord joinen & Whitelist anfragen</div>
-            <div class="step-desc">Tritt dem Discord bei, gehe in den #whitelist Kanal und schreibe deinen Minecraft-Nutzernamen.</div>
-            <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn green" style="font-size:16px;padding:5px 16px;margin-top:8px;display:inline-block">Discord joinen ↗</a>
+            <div class="step-title" data-i18n="srv_step2_tit">Discord joinen & Whitelist anfragen</div>
+            <div class="step-desc" data-i18n="srv_step2_desc">Tritt dem Discord bei, gehe in den #whitelist Kanal und schreibe deinen Minecraft-Nutzernamen.</div>
+            <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn green" style="font-size:16px;padding:5px 16px;margin-top:8px;display:inline-block" data-i18n="srv_step2_btn">Discord joinen ↗</a>
           </div>
         </div>
         <div class="step-row">
           <div class="step-num">3</div>
           <div>
-            <div class="step-title">Verbinden!</div>
-            <div class="step-desc">Minecraft → Multiplayer → Server hinzufügen → IP einfügen → Fertig!</div>
-            <button class="sqc-btn" style="font-size:16px;padding:5px 16px;margin-top:8px" onclick="copyIP()">📋 IP kopieren</button>
+            <div class="step-title" data-i18n="srv_step3_tit">Verbinden!</div>
+            <div class="step-desc" data-i18n="srv_step3_desc">Minecraft → Multiplayer → Server hinzufügen → IP einfügen → Fertig!</div>
+            <button class="sqc-btn" style="font-size:16px;padding:5px 16px;margin-top:8px" onclick="copyIP()" data-i18n="srv_ip_copy">📋 IP kopieren</button>
           </div>
         </div>
       </div>
@@ -228,22 +228,22 @@
 
   <div class="sq-card border-purple">
     <div class="card-head">
-      <h2>ATM10 Mod Highlights</h2>
+      <h2 data-i18n="srv_h_mods">ATM10 Mod Highlights</h2>
       <span class="ch-sub" style="margin-left:auto">250+ Mods</span>
     </div>
     <div class="mod-grid">
-      <div class="mod-cell"><div class="mod-name">CC: Tweaked</div><div class="mod-desc">Lua-Computer & Turtles – unser Tutorial-Thema!</div><span class="mod-tag">Tutorial</span></div>
-      <div class="mod-cell"><div class="mod-name">Create</div><div class="mod-desc">Mechanische Automation mit Zahnrädern & Zügen.</div><span class="mod-tag">Automation</span></div>
-      <div class="mod-cell"><div class="mod-name">Mekanism</div><div class="mod-desc">Energie, Gases, Ore-Processing auf 5 Stufen.</div><span class="mod-tag">Energie</span></div>
-      <div class="mod-cell"><div class="mod-name">Extreme Reactors</div><div class="mod-desc">Multiblock-Reaktoren für massive RF-Power.</div><span class="mod-tag">Energie</span></div>
-      <div class="mod-cell"><div class="mod-name">AE2</div><div class="mod-desc">ME-Netzwerke und vollständige Crafting-Automation.</div><span class="mod-tag">Storage</span></div>
-      <div class="mod-cell"><div class="mod-name">Refined Storage</div><div class="mod-desc">Alternatives Storage-System zu AE2.</div><span class="mod-tag">Storage</span></div>
-      <div class="mod-cell"><div class="mod-name">Botania</div><div class="mod-desc">Magische Blumen & Mana-basierte Automation.</div><span class="mod-tag">Magic</span></div>
-      <div class="mod-cell"><div class="mod-name">Tinkers Construct</div><div class="mod-desc">Werkzeuge aus verschiedenen Materialien schmieden.</div><span class="mod-tag">Tools</span></div>
-      <div class="mod-cell"><div class="mod-name">Occultism</div><div class="mod-desc">Dämonen beschwören & magische Dimensionen.</div><span class="mod-tag">Magic</span></div>
-      <div class="mod-cell"><div class="mod-name">Blood Magic</div><div class="mod-desc">Blut-basierte Magie & Altäre.</div><span class="mod-tag">Magic</span></div>
-      <div class="mod-cell"><div class="mod-name">Thermal Series</div><div class="mod-desc">Maschinen, Energie-Netzwerke & Processing.</div><span class="mod-tag">Automation</span></div>
-      <div class="mod-cell"><div class="mod-name">+ 240 weitere</div><div class="mod-desc">Über 250 Mods insgesamt im ATM10 Paket!</div><span class="mod-tag">Modpack</span></div>
+      <div class="mod-cell"><div class="mod-name">CC: Tweaked</div><div class="mod-desc" data-i18n="srv_cc_desc">Lua-Computer & Turtles – unser Tutorial-Thema!</div><span class="mod-tag">Tutorial</span></div>
+      <div class="mod-cell"><div class="mod-name">Create</div><div class="mod-desc" data-i18n="srv_cr_desc">Mechanische Automation mit Zahnrädern & Zügen.</div><span class="mod-tag">Automation</span></div>
+      <div class="mod-cell"><div class="mod-name">Mekanism</div><div class="mod-desc" data-i18n="srv_me_desc">Energie, Gases, Ore-Processing auf 5 Stufen.</div><span class="mod-tag">Energie</span></div>
+      <div class="mod-cell"><div class="mod-name">Extreme Reactors</div><div class="mod-desc" data-i18n="srv_er_desc">Multiblock-Reaktoren für massive RF-Power.</div><span class="mod-tag">Energie</span></div>
+      <div class="mod-cell"><div class="mod-name">AE2</div><div class="mod-desc" data-i18n="srv_ae_desc">ME-Netzwerke und vollständige Crafting-Automation.</div><span class="mod-tag">Storage</span></div>
+      <div class="mod-cell"><div class="mod-name">Refined Storage</div><div class="mod-desc" data-i18n="srv_rs_desc">Alternatives Storage-System zu AE2.</div><span class="mod-tag">Storage</span></div>
+      <div class="mod-cell"><div class="mod-name">Botania</div><div class="mod-desc" data-i18n="srv_bo_desc">Magische Blumen & Mana-basierte Automation.</div><span class="mod-tag">Magic</span></div>
+      <div class="mod-cell"><div class="mod-name">Tinkers Construct</div><div class="mod-desc" data-i18n="srv_tc_desc">Werkzeuge aus verschiedenen Materialien schmieden.</div><span class="mod-tag">Tools</span></div>
+      <div class="mod-cell"><div class="mod-name">Occultism</div><div class="mod-desc" data-i18n="srv_oc_desc">Dämonen beschwören & magische Dimensionen.</div><span class="mod-tag">Magic</span></div>
+      <div class="mod-cell"><div class="mod-name">Blood Magic</div><div class="mod-desc" data-i18n="srv_bm_desc">Blut-basierte Magie & Altäre.</div><span class="mod-tag">Magic</span></div>
+      <div class="mod-cell"><div class="mod-name">Thermal Series</div><div class="mod-desc" data-i18n="srv_ts_desc">Maschinen, Energie-Netzwerke & Processing.</div><span class="mod-tag">Automation</span></div>
+      <div class="mod-cell"><div class="mod-name">+ 240 weitere</div><div class="mod-desc" data-i18n="srv_more_desc">Über 250 Mods insgesamt im ATM10 Paket!</div><span class="mod-tag">Modpack</span></div>
     </div>
   </div>
 
@@ -257,8 +257,8 @@
       <div style="font-size:52px;flex-shrink:0">♪</div>
       <div style="flex:1;min-width:200px">
         <div style="font-family:'VT323',monospace;font-size:22px;color:var(--cc-white);margin-bottom:6px">SideQuestChris auf TikTok</div>
-        <div style="font-size:12px;color:#555;line-height:1.7;margin-bottom:14px">Kurze Minecraft-Clips, Mod-Tipps und Server-Content. Schau vorbei!</div>
-        <a href="https://www.tiktok.com/@sidequestchris4" target="_blank" class="sqc-btn" style="background:#000;color:#fff;box-shadow:3px 3px 0 #333">♪ TikTok folgen ↗</a>
+        <div style="font-size:12px;color:#555;line-height:1.7;margin-bottom:14px" data-i18n="srv_tt_desc">Kurze Minecraft-Clips, Mod-Tipps und Server-Content. Schau vorbei!</div>
+        <a href="https://www.tiktok.com/@sidequestchris4" target="_blank" class="sqc-btn" style="background:#000;color:#fff;box-shadow:3px 3px 0 #333" data-i18n="srv_tt_follow">♪ TikTok folgen ↗</a>
       </div>
     </div>
   </div>
@@ -270,12 +270,12 @@
         <div class="dc-logo-big">DC</div>
         <div class="dc-info">
           <div class="dc-name">SideQuestCommunity</div>
-          <div class="dc-desc">Whitelist-Anfragen, Server-Support, Modpack-Hilfe, Community-Events und alles rund um ATM10 und unsere Tutorial-Reihen.</div>
+          <div class="dc-desc" data-i18n="srv_dc_desc">Whitelist-Anfragen, Server-Support, Modpack-Hilfe, Community-Events und alles rund um ATM10 und unsere Tutorial-Reihen.</div>
           <div class="dc-stats">
             <div><div class="dcs-num" id="dc-online">–</div><div class="dcs-lbl">ONLINE</div></div>
-            <div><div class="dcs-num" id="dc-total">–</div><div class="dcs-lbl">MITGLIEDER</div></div>
+            <div><div class="dcs-num" id="dc-total">–</div><div class="dcs-lbl" data-i18n="srv_dc_members">MITGLIEDER</div></div>
           </div>
-          <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn discord">Discord beitreten ↗</a>
+          <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn discord" data-i18n="srv_dc_join">Discord beitreten ↗</a>
         </div>
       </div>
     </div>
@@ -289,7 +289,7 @@
     <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
     <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
   </div>
-  SideQuestCommunity · SideQuest.serv.cx · ATM10
+  <span data-i18n="srv_footer_txt">SideQuestCommunity · SideQuest.serv.cx · ATM10</span>
 </footer>
 
 <script src="main.js"></script>
