@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC: Tweaked Tutorial #2 – Variablen · SideQuestCommunity</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+
+<nav class="sqc-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-px">SQ</div>
+    <div class="logo-text">SideQuest<span>Community</span></div>
+  </a>
+  <ul class="nav-items">
+    <li><a href="index.html" data-i18n="nav_startseite">Startseite</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_tutorials_btn">Tutorials</span> <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <div class="dd1-item dd1-active" tabindex="0">
+          <span class="dd1-icon">▶</span>CC: Tweaked<span class="dd1-badge">10</span><span class="dd1-arrow">›</span>
+          <div class="nav-dropdown-l2">
+            <div class="dd2-header">CC: TWEAKED</div>
+            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="cc_tutorial_part1.html"><span class="dd2-num">01</span>Hello, World!</a>
+            <a href="cc_tutorial_part2.html" class="dd2-active"><span class="dd2-num">02</span>Variablen</a>
+            <a href="cc_tutorial_part3.html"><span class="dd2-num">03</span>Variablen kombinieren</a>
+            <a href="cc_tutorial_part4.html"><span class="dd2-num">04</span>if / else</a>
+            <a href="cc_tutorial_part5.html"><span class="dd2-num">05</span>elseif · and · or · not</a>
+            <a href="cc_tutorial_part6.html"><span class="dd2-num">06</span>Booleans & Schleifen</a>
+            <a href="cc_tutorial_part7.html"><span class="dd2-num">07</span>Events</a>
+            <a href="cc_tutorial_part8.html"><span class="dd2-num">08</span>rednet</a>
+            <a href="cc_tutorial_part9.html"><span class="dd2-num">09</span>Tabellen</a>
+            <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils</a>
+          </div>
+        </div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+      </div>
+    </li>
+    <li><a href="server.html" data-i18n="nav_server">Server</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cc_tutorial_part1.html">◀ 01</a>
+    <a href="cc_tutorial_part3.html">03 ▶</a>
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YT</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TT</a>
+  </div>
+  <button class="nav-hamburger">☰</button>
+</nav>
+
+<div class="nav-mobile-menu" id="sqc-mob">
+  <a href="index.html">Startseite</a>
+  <a href="server.html">Server</a>
+  <div class="mob-sec">CC: TWEAKED</div>
+  <a class="mob-sub" href="tutorials_cc.html">📋 Übersicht</a>
+  <a class="mob-sub" href="cc_tutorial_part1.html">01 · Hello, World!</a>
+  <a class="mob-sub" href="cc_tutorial_part2.html">02 · Variablen</a>
+  <a class="mob-sub" href="cc_tutorial_part3.html">03 · Variablen kombinieren</a>
+  <a class="mob-sub" href="cc_tutorial_part4.html">04 · if / else</a>
+  <a class="mob-sub" href="cc_tutorial_part5.html">05 · elseif · and · or · not</a>
+  <a class="mob-sub" href="cc_tutorial_part6.html">06 · Booleans & Schleifen</a>
+  <a class="mob-sub" href="cc_tutorial_part7.html">07 · Events</a>
+  <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
+  <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
+  <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils</a>
+  <div class="mob-sec">SOCIAL</div>
+  <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+  <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+</div>
+
+<div class="container">
+
+  <div class="episode-title">
+    <div class="ep-num" data-i18n="p2_ep">▶ Episode 02</div>
+    <h2 data-i18n="p2_title">Variablen</h2>
+    <p class="subtitle" data-i18n="p2_sub">Daten speichern und in print() verwenden</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Was ist eine Variable -->
+  <div class="card" data-label="KONZEPT" data-label-i18n="label_concept">
+    <h3 data-i18n="p2_concept_h">Was ist eine Variable?</h3>
+    <p>Eine Variable ist wie eine <strong style="color:#f2b233">beschriftete Kiste</strong> – du legst einen Wert hinein und kannst ihn später über den Namen wieder abrufen. In Lua erstellst du eine Variable einfach mit <span class="inline-code">local</span>:</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">Syntax</div>
+    <pre><span class="kw">local</span> <span class="var">variablenname</span> = <span class="str">Wert</span></pre>
+  </div>
+
+  <!-- Datentypen -->
+  <div class="card" data-label="DATENTYPEN" data-label-i18n="label_datatypes">
+    <h3 data-i18n="p2_types_h">Die wichtigsten Typen in Lua</h3>
+    <table class="type-table">
+      <tr>
+        <th>Typ</th>
+        <th>Beispiel</th>
+        <th>Beschreibung</th>
+      </tr>
+      <tr>
+        <td class="t-name">string</td>
+        <td class="t-ex">"Hallo"</td>
+        <td>Text, in Anführungszeichen</td>
+      </tr>
+      <tr>
+        <td class="t-name">number</td>
+        <td class="t-ex">42 &nbsp;/&nbsp; 3.14</td>
+        <td>Ganze Zahlen oder Dezimalzahlen</td>
+      </tr>
+      <tr>
+        <td class="t-name">boolean</td>
+        <td class="t-ex">true &nbsp;/&nbsp; false</td>
+        <td>Wahr oder Falsch</td>
+      </tr>
+      <tr>
+        <td class="t-name">nil</td>
+        <td class="t-ex">nil</td>
+        <td>Kein Wert / nicht gesetzt</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Code Beispiel -->
+  <div class="card" data-label="BEISPIEL" data-label-i18n="label_example">
+    <h3 data-i18n="p2_example_h">Hello World – mit Variable</h3>
+    <p>Statt den Text direkt in <span class="inline-code">print()</span> zu schreiben, speichern wir ihn zuerst in einer Variable:</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">hello2.lua</div>
+    <pre><span class="cmt">-- Text in einer Variable speichern</span>
+<span class="kw">local</span> <span class="var">nachricht</span> = <span class="str">"Hello, World!"</span>
+
+<span class="cmt">-- Variable ausgeben</span>
+<span class="fn">print</span>(<span class="var">nachricht</span>)</pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      CraftOS 1.9 — Computer #1
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">hello2</span></div>
+      <div class="t-out">Hello, World!</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">[i]</div>
+    <div>Das Ergebnis ist identisch zu Teil 1 – aber jetzt steckt der Text in einer Variable. Das macht den Code flexibler: du änderst den Text nur an <strong style="color:#f2b233">einer Stelle</strong>, egal wie oft du ihn verwendest.</div>
+  </div>
+
+  <!-- Zahlen -->
+  <div class="card" data-label="ZAHLEN" data-label-i18n="label_numbers">
+    <h3 data-i18n="p2_numbers_h">Variablen mit Zahlen</h3>
+    <p>Zahlen brauchen <strong style="color:#f2b233">keine</strong> Anführungszeichen. Du kannst mit ihnen auch direkt rechnen:</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">zahlen.lua</div>
+    <pre><span class="kw">local</span> <span class="var">alter</span>   = <span class="num">25</span>
+<span class="kw">local</span> <span class="var">punkte</span>  = <span class="num">1337</span>
+<span class="kw">local</span> <span class="var">version</span> = <span class="num">1.21</span>
+
+<span class="fn">print</span>(<span class="var">alter</span>)
+<span class="fn">print</span>(<span class="var">punkte</span>)
+<span class="fn">print</span>(<span class="var">version</span>)</pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      CraftOS 1.9 — Computer #1
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">zahlen</span></div>
+      <div class="t-out">25</div>
+      <div class="t-out">1337</div>
+      <div class="t-out">1.21</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <!-- Warnung: local -->
+  <div class="warn">
+    <div class="warn-icon">[!]</div>
+    <div>
+      Schreib <strong style="color:#f2b233">immer</strong> <span class="inline-code">local</span> vor deine Variablen! Ohne <span class="inline-code">local</span> wird die Variable global – das kann in größeren Programmen zu schwer findbaren Fehlern führen.
+    </div>
+  </div>
+
+  <!-- Gelernt -->
+  <div class="learned">
+    <h3><span data-i18n="tut_learned_h">✔ Das hast du gelernt</span></h3>
+    <ul>
+      <li data-i18n-html="p2_learned_1">Was eine Variable ist und wozu sie dient</li>
+      <li data-i18n-html="p2_learned_2">Wie du mit <strong style="color:#f2b233">local</strong> eine Variable erstellst</li>
+      <li data-i18n-html="p2_learned_3">Den Unterschied zwischen <strong style="color:#57a64e">strings</strong> (Text) und <strong style="color:#d87f33">numbers</strong> (Zahlen)</li>
+      <li data-i18n-html="p2_learned_4">Eine Variable direkt an <strong style="color:#4fc3f7">print()</strong> übergeben</li>
+      <li data-i18n-html="p2_learned_5">Warum <strong style="color:#f2b233">local</strong> fast immer die richtige Wahl ist</li>
+    </ul>
+  </div>
+
+  <div class="next-ep">
+    <div>
+      <div class="next-label" data-i18n="tut_next_label">NÄCHSTES TUTORIAL</div>
+      <div class="next-title" data-i18n="p2_next">Teil 3 → Mehrere Variablen kombinieren</div>
+    </div>
+    <div class="arrow">▶▶</div>
+  </div>
+
+</div>
+
+<footer data-i18n="footer_brand">SideQuestChris · CC: Tweaked Tutorial-Serie · Teil 2 von 10</footer>
+
+
+<script src="main.js"></script>
+<script src="i18n.js"></script>
+</body>
+</html>

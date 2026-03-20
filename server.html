@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Server – SideQuestCommunity</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── Server-page styles ────────────────────── */
+.ip-row { display:flex; align-items:center; gap:12px; padding:12px 22px; flex-wrap:wrap; background:#0a0a00; border-bottom:1px solid #1a1a00; }
+.ip-lbl { font-family:'VT323',monospace; font-size:16px; color:#555; }
+.ip-val { font-family:'VT323',monospace; font-size:26px; color:var(--cc-yellow); flex:1; min-width:180px; }
+.ip-btn { font-family:'VT323',monospace; font-size:16px; background:var(--cc-yellow); color:#000; border:none; padding:6px 18px; cursor:pointer; box-shadow:2px 2px 0 var(--cc-orange); transition:all .15s; }
+.ip-btn:hover { transform:translate(-1px,-1px); box-shadow:3px 3px 0 var(--cc-orange); }
+.ip-btn.copied { background:var(--cc-green); box-shadow:2px 2px 0 #2d5228; }
+.motd-row { padding:10px 22px; font-family:'VT323',monospace; font-size:18px; color:#444; border-bottom:1px solid #141414; }
+.status-indicator { display:inline-flex; align-items:center; gap:8px; }
+.si-dot { width:10px; height:10px; border-radius:50%; background:#2a2a2a; flex-shrink:0; }
+.si-dot.online  { background:var(--cc-green); animation:pulseDot 2s ease-in-out infinite; }
+.si-dot.offline { background:var(--cc-red); }
+.si-txt { font-family:'VT323',monospace; font-size:17px; }
+.si-txt.online  { color:var(--cc-green); }
+.si-txt.offline { color:var(--cc-red); }
+.si-txt.loading { color:#333; }
+.stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); }
+.stat-cell { padding:18px 20px; border-right:1px solid #141414; text-align:center; }
+.stat-cell:last-child { border-right:none; }
+.sc-val { font-family:'VT323',monospace; font-size:38px; color:var(--cc-yellow); line-height:1; }
+.sc-val.dim { color:#2a2a2a; }
+.sc-lbl { font-size:10px; color:#333; letter-spacing:2px; margin-top:4px; }
+.players-grid { display:flex; flex-wrap:wrap; gap:10px; }
+.player-chip { display:flex; align-items:center; gap:8px; background:#111; border:1px solid #1e1e1e; padding:7px 13px; font-family:'VT323',monospace; font-size:17px; color:#aaa; transition:all .15s; }
+.player-chip:hover { border-color:var(--cc-cyan); color:var(--cc-white); }
+.player-chip img { width:22px; height:22px; image-rendering:pixelated; }
+.empty-state { font-family:'VT323',monospace; font-size:18px; color:#2a2a2a; }
+.steps { display:flex; flex-direction:column; gap:20px; }
+.step-row { display:flex; gap:16px; align-items:flex-start; }
+.step-num { width:32px; height:32px; background:var(--cc-yellow); color:#000; font-family:'VT323',monospace; font-size:20px; display:grid; place-items:center; flex-shrink:0; box-shadow:2px 2px 0 var(--cc-orange); }
+.step-title { font-family:'VT323',monospace; font-size:20px; color:var(--cc-white); }
+.step-desc { font-size:12px; color:#555; line-height:1.7; margin-top:3px; }
+.mod-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(175px,1fr)); gap:1px; background:#141414; }
+.mod-cell { background:#0a0a0a; padding:14px 16px; }
+.mod-name { font-family:'VT323',monospace; font-size:19px; color:var(--cc-white); margin-bottom:3px; }
+.mod-desc { font-size:11px; color:#444; line-height:1.5; }
+.mod-tag { display:inline-block; margin-top:5px; font-family:'VT323',monospace; font-size:13px; color:var(--cc-purple); background:#10001a; padding:1px 6px; border:1px solid #220030; }
+.dc-body { display:flex; gap:24px; align-items:center; flex-wrap:wrap; }
+.dc-logo-big { font-size:56px; color:#5865F2; font-family:'VT323',monospace; flex-shrink:0; }
+.dc-info .dc-name { font-family:'VT323',monospace; font-size:28px; color:var(--cc-white); margin-bottom:6px; }
+.dc-info .dc-desc { font-size:12px; color:#555; line-height:1.7; margin-bottom:14px; max-width:400px; }
+.dc-stats { display:flex; gap:24px; margin-bottom:16px; }
+.dcs-num { font-family:'VT323',monospace; font-size:32px; color:#5865F2; }
+.dcs-lbl { font-size:11px; color:#444; letter-spacing:1px; }
+.refresh-row { display:flex; align-items:center; justify-content:flex-end; gap:10px; }
+.refresh-btn { font-family:'VT323',monospace; font-size:15px; color:#555; background:none; border:1px solid #2a2a2a; padding:4px 12px; cursor:pointer; transition:all .15s; }
+.refresh-btn:hover { color:var(--cc-yellow); border-color:var(--cc-yellow); }
+.last-upd { font-size:11px; color:#2a2a2a; font-family:'VT323',monospace; }
+.container { max-width:1060px; margin:0 auto; padding:40px 24px 100px; display:flex; flex-direction:column; gap:28px; }
+.container > * { opacity:0; animation:fadeUp .4s ease forwards; }
+.container > *:nth-child(1){animation-delay:.04s} .container > *:nth-child(2){animation-delay:.08s}
+.container > *:nth-child(3){animation-delay:.12s} .container > *:nth-child(4){animation-delay:.16s}
+.container > *:nth-child(5){animation-delay:.20s} .container > *:nth-child(6){animation-delay:.24s}
+.container > *:nth-child(7){animation-delay:.28s}
+.container > *:nth-child(8){animation-delay:.32s} .container > *:nth-child(9){animation-delay:.36s}
+</style>
+</head>
+<body>
+
+<nav class="sqc-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-px">SQ</div>
+    <div class="logo-text">SideQuest<span>Community</span></div>
+  </a>
+  <ul class="nav-items">
+    <li><a href="index.html">Startseite</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0">Tutorials <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <div class="dd1-item" tabindex="0">
+          <span class="dd1-icon">▶</span>CC: Tweaked<span class="dd1-badge">10</span><span class="dd1-arrow">›</span>
+          <div class="nav-dropdown-l2">
+            <div class="dd2-header">CC: TWEAKED</div>
+            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="cc_tutorial_part1.html"><span class="dd2-num">01</span>Hello World</a>
+            <a href="cc_tutorial_part2.html"><span class="dd2-num">02</span>Variablen</a>
+            <a href="cc_tutorial_part3.html"><span class="dd2-num">03</span>Kombinieren</a>
+            <a href="cc_tutorial_part4.html"><span class="dd2-num">04</span>if / else</a>
+            <a href="cc_tutorial_part5.html"><span class="dd2-num">05</span>elseif · and · or</a>
+            <a href="cc_tutorial_part6.html"><span class="dd2-num">06</span>Booleans & Schleifen</a>
+            <a href="cc_tutorial_part7.html"><span class="dd2-num">07</span>Events</a>
+            <a href="cc_tutorial_part8.html"><span class="dd2-num">08</span>rednet</a>
+            <a href="cc_tutorial_part9.html"><span class="dd2-num">09</span>Tabellen</a>
+            <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils ★</a>
+          </div>
+        </div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon">bald</span></div>
+      </div>
+    </li>
+    <li><a href="server.html" class="nav-active">Server</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YT</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TT</a>
+  </div>
+  <button class="nav-hamburger">☰</button>
+</nav>
+
+<div class="nav-mobile-menu" id="sqc-mob">
+  <a href="index.html">Startseite</a>
+  <a href="server.html">Server</a>
+  <div class="mob-sec">TUTORIALS › CC: TWEAKED</div>
+  <a class="mob-sub" href="tutorials_cc.html">📋 Übersicht</a>
+  <a class="mob-sub" href="cc_tutorial_part1.html">01 · Hello World</a>
+  <a class="mob-sub" href="cc_tutorial_part2.html">02 · Variablen</a>
+  <a class="mob-sub" href="cc_tutorial_part3.html">03 · Kombinieren</a>
+  <a class="mob-sub" href="cc_tutorial_part4.html">04 · if / else</a>
+  <a class="mob-sub" href="cc_tutorial_part5.html">05 · elseif · and · or</a>
+  <a class="mob-sub" href="cc_tutorial_part6.html">06 · Booleans & Schleifen</a>
+  <a class="mob-sub" href="cc_tutorial_part7.html">07 · Events</a>
+  <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
+  <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
+  <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils ★</a>
+  <div class="mob-sec">SOCIAL</div>
+  <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+  <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+</div>
+
+<div class="page-hero green-hero" style="background:linear-gradient(180deg,#080f08 0%,var(--cc-bg) 100%)">
+  <div class="ph-inner">
+    <div class="ph-bread"><a href="index.html">Home</a> › Server</div>
+    <div class="ph-title green">SideQuest Server</div>
+    <p class="ph-desc">All the Mods 10 · NeoForge · Whitelisted Community Server</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="refresh-row">
+    <span class="last-upd" id="last-upd">Lädt...</span>
+    <button class="refresh-btn" onclick="fetchAll()">↻ Aktualisieren</button>
+  </div>
+
+  <div class="sq-card border-green">
+    <div class="card-head">
+      <h2>Server Status</h2>
+      <span class="status-indicator" style="margin-left:auto">
+        <span class="si-dot" id="si-dot"></span>
+        <span class="si-txt loading" id="si-txt">Verbinde...</span>
+      </span>
+    </div>
+    <div class="ip-row">
+      <span class="ip-lbl">IP:</span>
+      <span class="ip-val">SideQuest.serv.cx</span>
+      <button class="ip-btn" id="ip-btn" onclick="copyIP()">📋 IP kopieren</button>
+    </div>
+    <div class="motd-row" id="motd-row">▶ Verbinde mit Server...</div>
+    <div class="stat-grid">
+      <div class="stat-cell"><div class="sc-val dim" id="s-players">–</div><div class="sc-lbl">SPIELER ONLINE</div></div>
+      <div class="stat-cell"><div class="sc-val dim" id="s-max">–</div><div class="sc-lbl">MAX SLOTS</div></div>
+      <div class="stat-cell"><div class="sc-val dim" id="s-ver">–</div><div class="sc-lbl">MC VERSION</div></div>
+      <div class="stat-cell"><div class="sc-val dim" id="s-ping">–</div><div class="sc-lbl">PING ms</div></div>
+    </div>
+  </div>
+
+
+  <!-- UPTIME + TPS -->
+  <div class="sq-card" style="border-top:3px solid var(--cc-orange);overflow:hidden">
+    <div class="card-head">
+      <h2>Performance</h2>
+      <span id="tps-badge" style="margin-left:auto;font-family:'VT323',monospace;font-size:15px;padding:2px 10px;border:1px solid #2a2a2a;color:#444">TPS –</span>
+    </div>
+    <div class="stat-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+      <div class="stat-cell"><div class="sc-val dim" id="s-uptime">–</div><div class="sc-lbl">UPTIME</div></div>
+      <div class="stat-cell"><div class="sc-val dim" id="s-tps">–</div><div class="sc-lbl">TPS (ZIEL 20)</div></div>
+      <div class="stat-cell"><div class="sc-val dim" id="s-mspt">–</div><div class="sc-lbl">MSPT</div></div>
+      <div class="stat-cell"><div class="sc-val dim" id="s-cpu">–</div><div class="sc-lbl">CPU %</div></div>
+    </div>
+    <div style="padding:8px 22px;font-size:11px;color:#2a2a2a;border-top:1px solid #141414">
+      TPS/MSPT/CPU benötigen ein CC: Tweaked Monitor-Script auf dem Server. Uptime wird über die mcsrvstat API abgerufen.
+    </div>
+  </div>
+
+  <div class="sq-card border-cyan">
+    <div class="card-head">
+      <h2>Online Spieler</h2>
+      <span id="ps-count" style="margin-left:auto;font-family:'VT323',monospace;font-size:17px;color:var(--cc-cyan)">– / –</span>
+    </div>
+    <div class="card-body">
+      <div id="ps-body" class="empty-state">Verbinde...</div>
+    </div>
+  </div>
+
+  <div class="sq-card border-yellow">
+    <div class="card-head"><h2>Wie joinen?</h2></div>
+    <div class="card-body">
+      <div class="steps">
+        <div class="step-row">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">ATM10 Modpack installieren</div>
+            <div class="step-desc">Lade "All the Mods 10" über CurseForge oder ATLauncher herunter. Die Modpack-Version muss mit dem Server übereinstimmen.</div>
+            <a href="https://www.curseforge.com/minecraft/modpacks/all-the-mods-10" target="_blank" class="sqc-btn" style="font-size:16px;padding:5px 16px;margin-top:8px;display:inline-block">CurseForge ↗</a>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Discord joinen & Whitelist anfragen</div>
+            <div class="step-desc">Tritt dem Discord bei, gehe in den #whitelist Kanal und schreibe deinen Minecraft-Nutzernamen.</div>
+            <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn green" style="font-size:16px;padding:5px 16px;margin-top:8px;display:inline-block">Discord joinen ↗</a>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">Verbinden!</div>
+            <div class="step-desc">Minecraft → Multiplayer → Server hinzufügen → IP einfügen → Fertig!</div>
+            <button class="sqc-btn" style="font-size:16px;padding:5px 16px;margin-top:8px" onclick="copyIP()">📋 IP kopieren</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sq-card border-purple">
+    <div class="card-head">
+      <h2>ATM10 Mod Highlights</h2>
+      <span class="ch-sub" style="margin-left:auto">250+ Mods</span>
+    </div>
+    <div class="mod-grid">
+      <div class="mod-cell"><div class="mod-name">CC: Tweaked</div><div class="mod-desc">Lua-Computer & Turtles – unser Tutorial-Thema!</div><span class="mod-tag">Tutorial</span></div>
+      <div class="mod-cell"><div class="mod-name">Create</div><div class="mod-desc">Mechanische Automation mit Zahnrädern & Zügen.</div><span class="mod-tag">Automation</span></div>
+      <div class="mod-cell"><div class="mod-name">Mekanism</div><div class="mod-desc">Energie, Gases, Ore-Processing auf 5 Stufen.</div><span class="mod-tag">Energie</span></div>
+      <div class="mod-cell"><div class="mod-name">Extreme Reactors</div><div class="mod-desc">Multiblock-Reaktoren für massive RF-Power.</div><span class="mod-tag">Energie</span></div>
+      <div class="mod-cell"><div class="mod-name">AE2</div><div class="mod-desc">ME-Netzwerke und vollständige Crafting-Automation.</div><span class="mod-tag">Storage</span></div>
+      <div class="mod-cell"><div class="mod-name">Refined Storage</div><div class="mod-desc">Alternatives Storage-System zu AE2.</div><span class="mod-tag">Storage</span></div>
+      <div class="mod-cell"><div class="mod-name">Botania</div><div class="mod-desc">Magische Blumen & Mana-basierte Automation.</div><span class="mod-tag">Magic</span></div>
+      <div class="mod-cell"><div class="mod-name">Tinkers Construct</div><div class="mod-desc">Werkzeuge aus verschiedenen Materialien schmieden.</div><span class="mod-tag">Tools</span></div>
+      <div class="mod-cell"><div class="mod-name">Occultism</div><div class="mod-desc">Dämonen beschwören & magische Dimensionen.</div><span class="mod-tag">Magic</span></div>
+      <div class="mod-cell"><div class="mod-name">Blood Magic</div><div class="mod-desc">Blut-basierte Magie & Altäre.</div><span class="mod-tag">Magic</span></div>
+      <div class="mod-cell"><div class="mod-name">Thermal Series</div><div class="mod-desc">Maschinen, Energie-Netzwerke & Processing.</div><span class="mod-tag">Automation</span></div>
+      <div class="mod-cell"><div class="mod-name">+ 240 weitere</div><div class="mod-desc">Über 250 Mods insgesamt im ATM10 Paket!</div><span class="mod-tag">Modpack</span></div>
+    </div>
+  </div>
+
+  <!-- TIKTOK -->
+  <div class="sq-card" style="border-top:3px solid #000;overflow:hidden">
+    <div class="card-head">
+      <h2>TikTok</h2>
+      <span style="margin-left:auto;font-family:'VT323',monospace;font-size:15px;color:#aaa">@sidequestchris4</span>
+    </div>
+    <div class="card-body" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <div style="font-size:52px;flex-shrink:0">♪</div>
+      <div style="flex:1;min-width:200px">
+        <div style="font-family:'VT323',monospace;font-size:22px;color:var(--cc-white);margin-bottom:6px">SideQuestChris auf TikTok</div>
+        <div style="font-size:12px;color:#555;line-height:1.7;margin-bottom:14px">Kurze Minecraft-Clips, Mod-Tipps und Server-Content. Schau vorbei!</div>
+        <a href="https://www.tiktok.com/@sidequestchris4" target="_blank" class="sqc-btn" style="background:#000;color:#fff;box-shadow:3px 3px 0 #333">♪ TikTok folgen ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sq-card border-discord">
+    <div class="card-head"><h2>Discord Community</h2></div>
+    <div class="card-body">
+      <div class="dc-body">
+        <div class="dc-logo-big">DC</div>
+        <div class="dc-info">
+          <div class="dc-name">SideQuestCommunity</div>
+          <div class="dc-desc">Whitelist-Anfragen, Server-Support, Modpack-Hilfe, Community-Events und alles rund um ATM10 und unsere Tutorial-Reihen.</div>
+          <div class="dc-stats">
+            <div><div class="dcs-num" id="dc-online">–</div><div class="dcs-lbl">ONLINE</div></div>
+            <div><div class="dcs-num" id="dc-total">–</div><div class="dcs-lbl">MITGLIEDER</div></div>
+          </div>
+          <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn discord">Discord beitreten ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-social">
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+  </div>
+  SideQuestCommunity · SideQuest.serv.cx · ATM10
+</footer>
+
+<script src="main.js"></script>
+<script src="server.js"></script>
+</body>
+</html>

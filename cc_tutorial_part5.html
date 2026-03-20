@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC: Tweaked Tutorial #5 – elseif · and · or · not · SideQuestCommunity</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+
+<nav class="sqc-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-px">SQ</div>
+    <div class="logo-text">SideQuest<span>Community</span></div>
+  </a>
+  <ul class="nav-items">
+    <li><a href="index.html" data-i18n="nav_startseite">Startseite</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_tutorials_btn">Tutorials</span> <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <div class="dd1-item dd1-active" tabindex="0">
+          <span class="dd1-icon">▶</span>CC: Tweaked<span class="dd1-badge">10</span><span class="dd1-arrow">›</span>
+          <div class="nav-dropdown-l2">
+            <div class="dd2-header">CC: TWEAKED</div>
+            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="cc_tutorial_part1.html"><span class="dd2-num">01</span>Hello, World!</a>
+            <a href="cc_tutorial_part2.html"><span class="dd2-num">02</span>Variablen</a>
+            <a href="cc_tutorial_part3.html"><span class="dd2-num">03</span>Variablen kombinieren</a>
+            <a href="cc_tutorial_part4.html"><span class="dd2-num">04</span>if / else</a>
+            <a href="cc_tutorial_part5.html" class="dd2-active"><span class="dd2-num">05</span>elseif · and · or · not</a>
+            <a href="cc_tutorial_part6.html"><span class="dd2-num">06</span>Booleans & Schleifen</a>
+            <a href="cc_tutorial_part7.html"><span class="dd2-num">07</span>Events</a>
+            <a href="cc_tutorial_part8.html"><span class="dd2-num">08</span>rednet</a>
+            <a href="cc_tutorial_part9.html"><span class="dd2-num">09</span>Tabellen</a>
+            <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils</a>
+          </div>
+        </div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+      </div>
+    </li>
+    <li><a href="server.html" data-i18n="nav_server">Server</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cc_tutorial_part4.html">◀ 04</a>
+    <a href="cc_tutorial_part6.html">06 ▶</a>
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YT</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TT</a>
+  </div>
+  <button class="nav-hamburger">☰</button>
+</nav>
+
+<div class="nav-mobile-menu" id="sqc-mob">
+  <a href="index.html">Startseite</a>
+  <a href="server.html">Server</a>
+  <div class="mob-sec">CC: TWEAKED</div>
+  <a class="mob-sub" href="tutorials_cc.html">📋 Übersicht</a>
+  <a class="mob-sub" href="cc_tutorial_part1.html">01 · Hello, World!</a>
+  <a class="mob-sub" href="cc_tutorial_part2.html">02 · Variablen</a>
+  <a class="mob-sub" href="cc_tutorial_part3.html">03 · Variablen kombinieren</a>
+  <a class="mob-sub" href="cc_tutorial_part4.html">04 · if / else</a>
+  <a class="mob-sub" href="cc_tutorial_part5.html">05 · elseif · and · or · not</a>
+  <a class="mob-sub" href="cc_tutorial_part6.html">06 · Booleans & Schleifen</a>
+  <a class="mob-sub" href="cc_tutorial_part7.html">07 · Events</a>
+  <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
+  <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
+  <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils</a>
+  <div class="mob-sec">SOCIAL</div>
+  <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+  <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+</div>
+
+<div class="container">
+
+  <div class="episode-title">
+    <div class="ep-num" data-i18n="p5_ep">▶ Episode 05</div>
+    <h2 data-i18n="p5_title">elseif · and · or · not</h2>
+    <p class="subtitle" data-i18n="p5_sub">Mehrere Bedingungen · Logische Operatoren · Komplexe Entscheidungen</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- elseif -->
+  <div class="card" data-label="ELSEIF" data-label-i18n="label_elseif">
+    <h3 data-i18n="p5_elseif_h">Mehrere Fälle mit elseif</h3>
+    <p>In Teil 4 hattest du nur zwei Möglichkeiten: wahr oder falsch. Mit <strong style="color:var(--cc-purple)">elseif</strong> kannst du beliebig viele Fälle abdecken – Lua prüft sie der Reihe nach und führt den ersten passenden Block aus.</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">Syntax</div>
+    <pre><span class="kw">if</span> <span class="var">bedingung1</span> <span class="kw">then</span>
+    <span class="cmt">-- Fall 1</span>
+<span class="kw">elseif</span> <span class="var">bedingung2</span> <span class="kw">then</span>
+    <span class="cmt">-- Fall 2</span>
+<span class="kw">elseif</span> <span class="var">bedingung3</span> <span class="kw">then</span>
+    <span class="cmt">-- Fall 3</span>
+<span class="kw">else</span>
+    <span class="cmt">-- Kein Fall traf zu</span>
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">reaktorstufe.lua</div>
+    <pre><span class="kw">local</span> <span class="var">temperatur</span> = <span class="num">750</span>
+
+<span class="kw">if</span> <span class="var">temperatur</span> <span class="op">>=</span> <span class="num">1000</span> <span class="kw">then</span>
+    <span class="fn">print</span>(<span class="str">"[KRITISCH] Notabschaltung!"</span>)
+<span class="kw">elseif</span> <span class="var">temperatur</span> <span class="op">>=</span> <span class="num">800</span> <span class="kw">then</span>
+    <span class="fn">print</span>(<span class="str">"[WARNUNG]  Temperatur hoch!"</span>)
+<span class="kw">elseif</span> <span class="var">temperatur</span> <span class="op">>=</span> <span class="num">500</span> <span class="kw">then</span>
+    <span class="fn">print</span>(<span class="str">"[OK]       Normalbetrieb"</span>)
+<span class="kw">else</span>
+    <span class="fn">print</span>(<span class="str">"[INFO]     Reaktor kalt"</span>)
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      CraftOS 1.9 — Computer #1
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">reaktorstufe</span></div>
+      <div class="t-out">[OK]       Normalbetrieb</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">[i]</div>
+    <div>Lua prüft von <strong style="color:var(--cc-yellow)">oben nach unten</strong> und stoppt beim ersten passenden Block. Deshalb fängst du immer mit dem <strong style="color:var(--cc-yellow)">strengsten</strong> Fall an – hier &gt;= 1000 vor &gt;= 800.</div>
+  </div>
+
+  <!-- and / or / not -->
+  <div class="card" data-label="LOGISCHE OPERATOREN" data-label-i18n="label_logicops">
+    <h3 data-i18n="p5_logic_h">and · or · not</h3>
+    <p>Mit logischen Operatoren kannst du mehrere Bedingungen in einem <span class="inline-code">if</span> kombinieren:</p>
+  </div>
+
+  <div class="logic-grid">
+    <div class="logic-card lc-and">
+      <div class="lc-header">and</div>
+      <div class="lc-body">Beide Bedingungen müssen <strong style="color:var(--cc-green)">true</strong> sein</div>
+      <div class="lc-ex">a > 0 and b > 0</div>
+    </div>
+    <div class="logic-card lc-or">
+      <div class="lc-header">or</div>
+      <div class="lc-body">Mindestens eine muss <strong style="color:var(--cc-cyan)">true</strong> sein</div>
+      <div class="lc-ex">a == 0 or b == 0</div>
+    </div>
+    <div class="logic-card lc-not">
+      <div class="lc-header">not</div>
+      <div class="lc-body">Kehrt den Wahrheitswert <strong style="color:var(--cc-red)">um</strong></div>
+      <div class="lc-ex">not (a == b)</div>
+    </div>
+  </div>
+
+  <!-- Wahrheitstabelle -->
+  <div class="card" data-label="WAHRHEITSTABELLE" data-label-i18n="label_truthtbl">
+    <h3 data-i18n="p5_truth_h">Übersicht: and / or / not</h3>
+    <table class="truth-table">
+      <tr>
+        <th>A</th><th>B</th><th>A and B</th><th>A or B</th><th>not A</th>
+      </tr>
+      <tr>
+        <td class="t-true">true</td><td class="t-true">true</td>
+        <td class="t-true">true</td><td class="t-true">true</td><td class="t-false">false</td>
+      </tr>
+      <tr>
+        <td class="t-true">true</td><td class="t-false">false</td>
+        <td class="t-false">false</td><td class="t-true">true</td><td class="t-false">false</td>
+      </tr>
+      <tr>
+        <td class="t-false">false</td><td class="t-true">true</td>
+        <td class="t-false">false</td><td class="t-true">true</td><td class="t-true">true</td>
+      </tr>
+      <tr>
+        <td class="t-false">false</td><td class="t-false">false</td>
+        <td class="t-false">false</td><td class="t-false">false</td><td class="t-true">true</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Beispiel and -->
+  <div class="code-block">
+    <div class="code-label">zugang.lua</div>
+    <pre><span class="kw">local</span> <span class="var">level</span>     = <span class="num">10</span>
+<span class="kw">local</span> <span class="var">hat_key</span>  = <span class="kw">true</span>
+
+<span class="cmt">-- and: beide Bedingungen müssen stimmen</span>
+<span class="kw">if</span> <span class="var">level</span> <span class="op">>=</span> <span class="num">5</span> <span class="kw">and</span> <span class="var">hat_key</span> <span class="kw">then</span>
+    <span class="fn">print</span>(<span class="str">"Zugang gewaehrt!"</span>)
+<span class="kw">else</span>
+    <span class="fn">print</span>(<span class="str">"Zugang verweigert."</span>)
+<span class="kw">end</span>
+
+<span class="cmt">-- or: eine Bedingung reicht</span>
+<span class="kw">local</span> <span class="var">ist_admin</span> = <span class="kw">false</span>
+<span class="kw">local</span> <span class="var">ist_op</span>    = <span class="kw">true</span>
+
+<span class="kw">if</span> <span class="var">ist_admin</span> <span class="kw">or</span> <span class="var">ist_op</span> <span class="kw">then</span>
+    <span class="fn">print</span>(<span class="str">"Erweiterte Rechte aktiv"</span>)
+<span class="kw">end</span>
+
+<span class="cmt">-- not: Umkehrung</span>
+<span class="kw">local</span> <span class="var">gesperrt</span> = <span class="kw">false</span>
+
+<span class="kw">if</span> <span class="kw">not</span> <span class="var">gesperrt</span> <span class="kw">then</span>
+    <span class="fn">print</span>(<span class="str">"System ist erreichbar"</span>)
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      CraftOS 1.9 — Computer #1
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">zugang</span></div>
+      <div class="t-out">Zugang gewaehrt!</div>
+      <div class="t-out">Erweiterte Rechte aktiv</div>
+      <div class="t-out">System ist erreichbar</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <!-- Abschlussprogramm -->
+  <div class="final-card">
+    <div class="final-header"><span data-i18n="tut_final_hdr">★ ABSCHLUSSPROGRAMM – </span>Vollständiger Reaktor-Check</div>
+    <div class="code-block">
+      <pre><span class="cmt">-- Erweiterter Reaktor-Sicherheitscheck</span>
+<span class="kw">local</span> <span class="var">temp</span>      = <span class="num">870</span>
+<span class="kw">local</span> <span class="var">energie</span>   = <span class="num">12</span>
+<span class="kw">local</span> <span class="var">online</span>    = <span class="kw">true</span>
+
+<span class="fn">print</span>(<span class="str">"=== Reaktor-Diagnose ==="</span>)
+
+<span class="kw">if</span> <span class="kw">not</span> <span class="var">online</span> <span class="kw">then</span>
+    <span class="fn">print</span>(<span class="str">"[OFFLINE] Reaktor nicht aktiv"</span>)
+<span class="kw">elseif</span> <span class="var">temp</span> <span class="op">>=</span> <span class="num">1000</span> <span class="kw">and</span> <span class="var">energie</span> <span class="op">&lt;</span> <span class="num">10</span> <span class="kw">then</span>
+    <span class="fn">print</span>(<span class="str">"[NOTFALL]  Temp+Energie kritisch!"</span>)
+<span class="kw">elseif</span> <span class="var">temp</span> <span class="op">>=</span> <span class="num">800</span> <span class="kw">or</span> <span class="var">energie</span> <span class="op">&lt;</span> <span class="num">20</span> <span class="kw">then</span>
+    <span class="fn">print</span>(<span class="str">"[WARNUNG]  Ein Wert kritisch!"</span>)
+<span class="kw">else</span>
+    <span class="fn">print</span>(<span class="str">"[OK]       Alle Werte normal"</span>)
+<span class="kw">end</span>
+
+<span class="fn">print</span>(<span class="str">"Temp:    "</span> <span class="op">..</span> <span class="var">temp</span> <span class="op">..</span> <span class="str">" C"</span>)
+<span class="fn">print</span>(<span class="str">"Energie: "</span> <span class="op">..</span> <span class="var">energie</span> <span class="op">..</span> <span class="str">"%"</span>)
+<span class="fn">print</span>(<span class="str">"========================"</span>)</pre>
+    </div>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      CraftOS 1.9 — Computer #1
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">diagnose</span></div>
+      <div class="t-out">=== Reaktor-Diagnose ===</div>
+      <div class="t-out-yellow">[WARNUNG]  Ein Wert kritisch!</div>
+      <div class="t-out">Temp:    870 C</div>
+      <div class="t-out-red">Energie: 12%</div>
+      <div class="t-out">========================</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="learned">
+    <h3><span data-i18n="tut_learned_h">✔ Das hast du gelernt</span></h3>
+    <ul>
+      <li data-i18n-html="p5_learned_1"><strong style="color:var(--cc-purple)">elseif</strong> für mehrere aufeinanderfolgende Fälle</li>
+      <li data-i18n-html="p5_learned_2">Lua prüft <strong style="color:var(--cc-yellow)">von oben nach unten</strong> – Reihenfolge ist wichtig!</li>
+      <li data-i18n-html="p5_learned_3"><strong style="color:var(--cc-green)">and</strong> – beide Bedingungen müssen wahr sein</li>
+      <li data-i18n-html="p5_learned_4"><strong style="color:var(--cc-cyan)">or</strong> – mindestens eine muss wahr sein</li>
+      <li data-i18n-html="p5_learned_5"><strong style="color:var(--cc-red)">not</strong> – kehrt den Wahrheitswert um</li>
+      <li data-i18n-html="p5_learned_6">Komplexe Bedingungen aus einfachen zusammenbauen</li>
+    </ul>
+  </div>
+
+  <div class="next-ep">
+    <div>
+      <div class="next-label" data-i18n="tut_next_label">NÄCHSTES TUTORIAL</div>
+      <div class="next-title" data-i18n="p5_next">Teil 6 → Booleans &amp; Schleifen</div>
+    </div>
+    <div class="arrow">▶▶</div>
+  </div>
+
+</div>
+
+<footer data-i18n="footer_brand">SideQuestChris · CC: Tweaked Tutorial-Serie · Teil 5 von 10</footer>
+
+
+<script src="main.js"></script>
+<script src="i18n.js"></script>
+</body>
+</html>

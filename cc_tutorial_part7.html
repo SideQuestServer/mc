@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC: Tweaked Tutorial #7 – Events · SideQuestCommunity</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+
+<nav class="sqc-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-px">SQ</div>
+    <div class="logo-text">SideQuest<span>Community</span></div>
+  </a>
+  <ul class="nav-items">
+    <li><a href="index.html" data-i18n="nav_startseite">Startseite</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_tutorials_btn">Tutorials</span> <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <div class="dd1-item dd1-active" tabindex="0">
+          <span class="dd1-icon">▶</span>CC: Tweaked<span class="dd1-badge">10</span><span class="dd1-arrow">›</span>
+          <div class="nav-dropdown-l2">
+            <div class="dd2-header">CC: TWEAKED</div>
+            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="cc_tutorial_part1.html"><span class="dd2-num">01</span>Hello, World!</a>
+            <a href="cc_tutorial_part2.html"><span class="dd2-num">02</span>Variablen</a>
+            <a href="cc_tutorial_part3.html"><span class="dd2-num">03</span>Variablen kombinieren</a>
+            <a href="cc_tutorial_part4.html"><span class="dd2-num">04</span>if / else</a>
+            <a href="cc_tutorial_part5.html"><span class="dd2-num">05</span>elseif · and · or · not</a>
+            <a href="cc_tutorial_part6.html"><span class="dd2-num">06</span>Booleans & Schleifen</a>
+            <a href="cc_tutorial_part7.html" class="dd2-active"><span class="dd2-num">07</span>Events</a>
+            <a href="cc_tutorial_part8.html"><span class="dd2-num">08</span>rednet</a>
+            <a href="cc_tutorial_part9.html"><span class="dd2-num">09</span>Tabellen</a>
+            <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils</a>
+          </div>
+        </div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+      </div>
+    </li>
+    <li><a href="server.html" data-i18n="nav_server">Server</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cc_tutorial_part6.html">◀ 06</a>
+    <a href="cc_tutorial_part8.html">08 ▶</a>
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YT</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TT</a>
+  </div>
+  <button class="nav-hamburger">☰</button>
+</nav>
+
+<div class="nav-mobile-menu" id="sqc-mob">
+  <a href="index.html">Startseite</a>
+  <a href="server.html">Server</a>
+  <div class="mob-sec">CC: TWEAKED</div>
+  <a class="mob-sub" href="tutorials_cc.html">📋 Übersicht</a>
+  <a class="mob-sub" href="cc_tutorial_part1.html">01 · Hello, World!</a>
+  <a class="mob-sub" href="cc_tutorial_part2.html">02 · Variablen</a>
+  <a class="mob-sub" href="cc_tutorial_part3.html">03 · Variablen kombinieren</a>
+  <a class="mob-sub" href="cc_tutorial_part4.html">04 · if / else</a>
+  <a class="mob-sub" href="cc_tutorial_part5.html">05 · elseif · and · or · not</a>
+  <a class="mob-sub" href="cc_tutorial_part6.html">06 · Booleans & Schleifen</a>
+  <a class="mob-sub" href="cc_tutorial_part7.html">07 · Events</a>
+  <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
+  <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
+  <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils</a>
+  <div class="mob-sec">SOCIAL</div>
+  <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+  <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+</div>
+
+<div class="container">
+
+  <div class="episode-title">
+    <div class="ep-num" data-i18n="p7_ep">▶ Episode 07</div>
+    <h2 data-i18n="p7_title">Events</h2>
+    <p class="subtitle" data-i18n="p7_sub">os.pullEvent · Tastatur · Maus · Timer</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="card" data-label="KONZEPT" data-label-i18n="label_concept">
+    <h3 data-i18n="p7_concept_h">Was sind Events?</h3>
+    <p>In CC: Tweaked passieren ständig Dinge – Tasten werden gedrückt, Redstone-Signale ändern sich, Timer laufen ab. All das sind <strong style="color:var(--cc-cyan)">Events</strong>. Mit <span class="inline-code">os.pullEvent()</span> wartet dein Programm auf das nächste Event und reagiert darauf.</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">Syntax</div>
+    <pre><span class="kw">local</span> <span class="var">event</span>, <span class="var">arg1</span>, <span class="var">arg2</span> = <span class="fn">os.pullEvent</span>(<span class="str">"eventName"</span>)
+<span class="cmt">-- wartet NUR auf diesen Event-Typ
+-- ohne Argument: wartet auf JEDEN Event</span></pre>
+  </div>
+
+  <!-- Event Tabelle -->
+  <div class="card" data-label="HÄUFIGE EVENTS" data-label-i18n="label_events">
+    <h3 data-i18n="p7_events_h">Die wichtigsten Events</h3>
+    <table class="event-table">
+      <tr><th>Event</th><th>Rückgabewerte</th><th>Wann?</th></tr>
+      <tr>
+        <td class="ev-name">key</td>
+        <td class="ev-args">keyCode, held</td>
+        <td class="ev-desc">Taste gedrückt</td>
+      </tr>
+      <tr>
+        <td class="ev-name">key_up</td>
+        <td class="ev-args">keyCode</td>
+        <td class="ev-desc">Taste losgelassen</td>
+      </tr>
+      <tr>
+        <td class="ev-name">char</td>
+        <td class="ev-args">character</td>
+        <td class="ev-desc">Zeichen eingegeben</td>
+      </tr>
+      <tr>
+        <td class="ev-name">mouse_click</td>
+        <td class="ev-args">button, x, y</td>
+        <td class="ev-desc">Mausklick</td>
+      </tr>
+      <tr>
+        <td class="ev-name">mouse_scroll</td>
+        <td class="ev-args">direction, x, y</td>
+        <td class="ev-desc">Mausrad</td>
+      </tr>
+      <tr>
+        <td class="ev-name">timer</td>
+        <td class="ev-args">timerID</td>
+        <td class="ev-desc">os.startTimer() abgelaufen</td>
+      </tr>
+      <tr>
+        <td class="ev-name">redstone</td>
+        <td class="ev-args">–</td>
+        <td class="ev-desc">Redstone-Signal geändert</td>
+      </tr>
+      <tr>
+        <td class="ev-name">terminate</td>
+        <td class="ev-args">–</td>
+        <td class="ev-desc">Strg+T gedrückt</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Part A: key event -->
+  <div class="section-divider">
+    <div class="sd-label sd-a">PART A · TASTATUR-EVENTS</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">tastatur.lua</div>
+    <pre><span class="fn">print</span>(<span class="str">"Drücke eine Taste (Q = Beenden)..."</span>)
+
+<span class="kw">while</span> <span class="kw">true</span> <span class="kw">do</span>
+    <span class="kw">local</span> <span class="var">event</span>, <span class="var">key</span> = <span class="fn">os.pullEvent</span>(<span class="str">"key"</span>)
+
+    <span class="kw">if</span> <span class="var">key</span> == <span class="fn">keys.q</span> <span class="kw">then</span>
+        <span class="fn">print</span>(<span class="str">"Beendet!"</span>)
+        <span class="kw">break</span>
+    <span class="kw">else</span>
+        <span class="fn">print</span>(<span class="str">"Taste: "</span> <span class="op">..</span> <span class="fn">keys.getName</span>(<span class="var">key</span>))
+    <span class="kw">end</span>
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS 1.9 — Computer #1</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">tastatur</span></div>
+      <div class="t-out">Drücke eine Taste (Q = Beenden)...</div>
+      <div class="t-out">Taste: w</div>
+      <div class="t-out">Taste: space</div>
+      <div class="t-out">Taste: enter</div>
+      <div class="t-out-yellow">Beendet!</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">[i]</div>
+    <div><span class="inline-code">keys.q</span>, <span class="inline-code">keys.enter</span>, <span class="inline-code">keys.space</span> usw. sind vordefinierte Konstanten in CC: Tweaked. Mit <span class="inline-code">keys.getName(keyCode)</span> bekommst du den Namen als String zurück.</div>
+  </div>
+
+  <!-- Part B: mouse event -->
+  <div class="section-divider">
+    <div class="sd-label sd-b">PART B · MAUS-EVENTS</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">maus.lua</div>
+    <pre><span class="fn">print</span>(<span class="str">"Klicke irgendwo! (Rechtsklick = Ende)"</span>)
+
+<span class="kw">while</span> <span class="kw">true</span> <span class="kw">do</span>
+    <span class="kw">local</span> <span class="var">ev</span>, <span class="var">btn</span>, <span class="var">x</span>, <span class="var">y</span> = <span class="fn">os.pullEvent</span>(<span class="str">"mouse_click"</span>)
+
+    <span class="kw">if</span> <span class="var">btn</span> == <span class="num">2</span> <span class="kw">then</span>   <span class="cmt">-- 1=links, 2=rechts, 3=mitte</span>
+        <span class="fn">print</span>(<span class="str">"Beendet!"</span>)
+        <span class="kw">break</span>
+    <span class="kw">else</span>
+        <span class="fn">print</span>(<span class="str">"Klick bei X="</span> <span class="op">..</span> <span class="var">x</span> <span class="op">..</span> <span class="str">" Y="</span> <span class="op">..</span> <span class="var">y</span>)
+    <span class="kw">end</span>
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS 1.9 — Computer #1</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">maus</span></div>
+      <div class="t-out">Klicke irgendwo! (Rechtsklick = Ende)</div>
+      <div class="t-out">Klick bei X=12 Y=5</div>
+      <div class="t-out">Klick bei X=3  Y=9</div>
+      <div class="t-out-yellow">Beendet!</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <!-- Part C: Timer -->
+  <div class="section-divider">
+    <div class="sd-label sd-c">PART C · TIMER-EVENTS</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">timer.lua</div>
+    <pre><span class="fn">print</span>(<span class="str">"Timer gestartet..."</span>)
+
+<span class="kw">local</span> <span class="var">t</span> = <span class="fn">os.startTimer</span>(<span class="num">3</span>)  <span class="cmt">-- 3 Sekunden</span>
+
+<span class="kw">while</span> <span class="kw">true</span> <span class="kw">do</span>
+    <span class="kw">local</span> <span class="var">ev</span>, <span class="var">id</span> = <span class="fn">os.pullEvent</span>(<span class="str">"timer"</span>)
+
+    <span class="kw">if</span> <span class="var">id</span> == <span class="var">t</span> <span class="kw">then</span>
+        <span class="fn">print</span>(<span class="str">"Timer abgelaufen!"</span>)
+        <span class="kw">break</span>
+    <span class="kw">end</span>
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">[i]</div>
+    <div>Du kannst mehrere Timer gleichzeitig laufen lassen. Jeder bekommt eine eigene ID – deshalb vergleichst du <span class="inline-code">id == t</span>, um sicherzustellen dass es <em>dein</em> Timer war.</div>
+  </div>
+
+  <!-- Abschlussprogramm -->
+  <div class="final-card">
+    <div class="final-header"><span data-i18n="tut_final_hdr">★ ABSCHLUSSPROGRAMM – </span>Reaktor Notfall-Panel</div>
+    <div class="code-block">
+      <pre><span class="cmt">-- Notfall-Panel: wartet auf Tastendruck</span>
+<span class="kw">local</span> <span class="var">aktiv</span> = <span class="kw">true</span>
+
+<span class="fn">print</span>(<span class="str">"=== Notfall-Panel ==="</span>)
+<span class="fn">print</span>(<span class="str">"[S] Status  [A] Alarm  [Q] Beenden"</span>)
+
+<span class="kw">while</span> <span class="var">aktiv</span> <span class="kw">do</span>
+    <span class="kw">local</span> <span class="var">ev</span>, <span class="var">key</span> = <span class="fn">os.pullEvent</span>(<span class="str">"key"</span>)
+
+    <span class="kw">if</span> <span class="var">key</span> == <span class="fn">keys.s</span> <span class="kw">then</span>
+        <span class="fn">print</span>(<span class="str">"[OK] Reaktor laeuft normal"</span>)
+    <span class="kw">elseif</span> <span class="var">key</span> == <span class="fn">keys.a</span> <span class="kw">then</span>
+        <span class="fn">print</span>(<span class="str">"[!!] ALARM AUSGELOEST"</span>)
+    <span class="kw">elseif</span> <span class="var">key</span> == <span class="fn">keys.q</span> <span class="kw">then</span>
+        <span class="var">aktiv</span> = <span class="kw">false</span>
+        <span class="fn">print</span>(<span class="str">"Panel beendet."</span>)
+    <span class="kw">end</span>
+<span class="kw">end</span></pre>
+    </div>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS 1.9 — Computer #1</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">panel</span></div>
+      <div class="t-out">=== Notfall-Panel ===</div>
+      <div class="t-out">[S] Status  [A] Alarm  [Q] Beenden</div>
+      <div class="t-out">[OK] Reaktor laeuft normal</div>
+      <div class="t-out-red">[!!] ALARM AUSGELOEST</div>
+      <div class="t-out">[OK] Reaktor laeuft normal</div>
+      <div class="t-out-yellow">Panel beendet.</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="learned">
+    <h3><span data-i18n="tut_learned_h">✔ Das hast du gelernt</span></h3>
+    <ul>
+      <li data-i18n-html="p7_learned_1"><strong style="color:var(--cc-cyan)">os.pullEvent()</strong> – wartet auf Events, gibt Typ + Argumente zurück</li>
+      <li data-i18n-html="p7_learned_2"><strong style="color:var(--cc-cyan)">key</strong> Event + <span class="inline-code">keys.NAME</span> Konstanten</li>
+      <li data-i18n-html="p7_learned_3"><strong style="color:var(--cc-cyan)">mouse_click</strong> Event mit Button (1/2/3) und X/Y Position</li>
+      <li data-i18n-html="p7_learned_4"><strong style="color:var(--cc-cyan)">os.startTimer()</strong> + <span class="inline-code">timer</span> Event</li>
+      <li data-i18n-html="p7_learned_5">Events in einer <span class="inline-code">while true</span> Schleife verarbeiten</li>
+      <li data-i18n-html="p7_learned_6">Boolean als Schleifenschalter nutzen</li>
+    </ul>
+  </div>
+
+  <div class="next-ep">
+    <div>
+      <div class="next-label" data-i18n="tut_next_label">NÄCHSTES TUTORIAL</div>
+      <div class="next-title" data-i18n="p7_next">Teil 8 → rednet</div>
+    </div>
+    <div class="arrow">▶▶</div>
+  </div>
+
+</div>
+<footer data-i18n="footer_brand">SideQuestChris · CC: Tweaked Tutorial-Serie · Teil 7 von 10</footer>
+
+
+<script src="main.js"></script>
+<script src="i18n.js"></script>
+</body>
+</html>

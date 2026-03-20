@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC: Tweaked Tutorial #10 – paintutils · SideQuestCommunity</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+
+<nav class="sqc-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-px">SQ</div>
+    <div class="logo-text">SideQuest<span>Community</span></div>
+  </a>
+  <ul class="nav-items">
+    <li><a href="index.html" data-i18n="nav_startseite">Startseite</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_tutorials_btn">Tutorials</span> <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <div class="dd1-item dd1-active" tabindex="0">
+          <span class="dd1-icon">▶</span>CC: Tweaked<span class="dd1-badge">10</span><span class="dd1-arrow">›</span>
+          <div class="nav-dropdown-l2">
+            <div class="dd2-header">CC: TWEAKED</div>
+            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="cc_tutorial_part1.html"><span class="dd2-num">01</span>Hello, World!</a>
+            <a href="cc_tutorial_part2.html"><span class="dd2-num">02</span>Variablen</a>
+            <a href="cc_tutorial_part3.html"><span class="dd2-num">03</span>Variablen kombinieren</a>
+            <a href="cc_tutorial_part4.html"><span class="dd2-num">04</span>if / else</a>
+            <a href="cc_tutorial_part5.html"><span class="dd2-num">05</span>elseif · and · or · not</a>
+            <a href="cc_tutorial_part6.html"><span class="dd2-num">06</span>Booleans & Schleifen</a>
+            <a href="cc_tutorial_part7.html"><span class="dd2-num">07</span>Events</a>
+            <a href="cc_tutorial_part8.html"><span class="dd2-num">08</span>rednet</a>
+            <a href="cc_tutorial_part9.html"><span class="dd2-num">09</span>Tabellen</a>
+            <a href="cc_tutorial_part10.html" class="dd2-active"><span class="dd2-num">10</span>paintutils</a>
+          </div>
+        </div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+      </div>
+    </li>
+    <li><a href="server.html" data-i18n="nav_server">Server</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cc_tutorial_part9.html">◀ 09</a>
+    
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YT</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TT</a>
+  </div>
+  <button class="nav-hamburger">☰</button>
+</nav>
+
+<div class="nav-mobile-menu" id="sqc-mob">
+  <a href="index.html">Startseite</a>
+  <a href="server.html">Server</a>
+  <div class="mob-sec">CC: TWEAKED</div>
+  <a class="mob-sub" href="tutorials_cc.html">📋 Übersicht</a>
+  <a class="mob-sub" href="cc_tutorial_part1.html">01 · Hello, World!</a>
+  <a class="mob-sub" href="cc_tutorial_part2.html">02 · Variablen</a>
+  <a class="mob-sub" href="cc_tutorial_part3.html">03 · Variablen kombinieren</a>
+  <a class="mob-sub" href="cc_tutorial_part4.html">04 · if / else</a>
+  <a class="mob-sub" href="cc_tutorial_part5.html">05 · elseif · and · or · not</a>
+  <a class="mob-sub" href="cc_tutorial_part6.html">06 · Booleans & Schleifen</a>
+  <a class="mob-sub" href="cc_tutorial_part7.html">07 · Events</a>
+  <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
+  <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
+  <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils</a>
+  <div class="mob-sec">SOCIAL</div>
+  <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+  <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+</div>
+
+<div class="container">
+
+  <div class="episode-title">
+    <div class="ep-num" data-i18n="p10_ep">▶ Episode 10 – FINALE</div>
+    <h2 data-i18n="p10_title">paintutils</h2>
+    <p class="subtitle" data-i18n="p10_sub">Farben · Formen zeichnen · term API · GUIs bauen</p>
+    <div class="finale-badge">★ SERIENFINALE ★</div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="card" data-label="KONZEPT" data-label-i18n="label_concept">
+    <h3 data-i18n="p10_concept_h">Was ist paintutils?</h3>
+    <p>Mit <strong style="color:var(--cc-cyan)">paintutils</strong> und der <strong style="color:var(--cc-cyan)">term</strong> API kannst du auf dem CC-Terminal zeichnen – Farben setzen, Rechtecke füllen, Text positionieren. Das ist die Grundlage für alle GUIs in CC: Tweaked.</p>
+  </div>
+
+  <!-- Part A: Farben -->
+  <div class="section-divider">
+    <div class="sd-label sd-a">PART A · FARBEN</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="card" data-label="FARBPALETTE" data-label-i18n="label_palette">
+    <h3 data-i18n="p10_palette_h">Die 16 CC-Farben</h3>
+    <div class="color-palette" style="margin-top:8px">
+      <div class="color-swatch" style="background:#f0f0f0;color:#000"><span>white</span><span class="cs-name">1</span></div>
+      <div class="color-swatch" style="background:#f2b233;color:#000"><span>orange</span><span class="cs-name">2</span></div>
+      <div class="color-swatch" style="background:#e57fd8"><span>magenta</span><span class="cs-name">4</span></div>
+      <div class="color-swatch" style="background:#99b2f2"><span>lblue</span><span class="cs-name">8</span></div>
+      <div class="color-swatch" style="background:#dede6c;color:#000"><span>yellow</span><span class="cs-name">16</span></div>
+      <div class="color-swatch" style="background:#7fcc19;color:#000"><span>lime</span><span class="cs-name">32</span></div>
+      <div class="color-swatch" style="background:#f2b2cc"><span>pink</span><span class="cs-name">64</span></div>
+      <div class="color-swatch" style="background:#4c4c4c"><span>gray</span><span class="cs-name">128</span></div>
+      <div class="color-swatch" style="background:#999999;color:#000"><span>lgray</span><span class="cs-name">256</span></div>
+      <div class="color-swatch" style="background:#4c99b2"><span>cyan</span><span class="cs-name">512</span></div>
+      <div class="color-swatch" style="background:#b266e5"><span>purple</span><span class="cs-name">1024</span></div>
+      <div class="color-swatch" style="background:#3366cc"><span>blue</span><span class="cs-name">2048</span></div>
+      <div class="color-swatch" style="background:#7f664c"><span>brown</span><span class="cs-name">4096</span></div>
+      <div class="color-swatch" style="background:#57a64e;color:#000"><span>green</span><span class="cs-name">8192</span></div>
+      <div class="color-swatch" style="background:#cc4c4c"><span>red</span><span class="cs-name">16384</span></div>
+      <div class="color-swatch" style="background:#111111"><span>black</span><span class="cs-name">32768</span></div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">farben.lua</div>
+    <pre><span class="cmt">-- Hintergrund- und Textfarbe setzen</span>
+<span class="fn">term.setBackgroundColor</span>(<span class="fn">colors</span>.<span class="var">blue</span>)
+<span class="fn">term.setTextColor</span>(<span class="fn">colors</span>.<span class="var">yellow</span>)
+<span class="fn">term.clear</span>()           <span class="cmt">-- ganzen Screen füllen</span>
+<span class="fn">term.setCursorPos</span>(<span class="num">1</span>, <span class="num">1</span>)
+<span class="fn">print</span>(<span class="str">"Gelb auf Blau!"</span>)
+
+<span class="cmt">-- Zurücksetzen</span>
+<span class="fn">term.setBackgroundColor</span>(<span class="fn">colors</span>.<span class="var">black</span>)
+<span class="fn">term.setTextColor</span>(<span class="fn">colors</span>.<span class="var">white</span>)</pre>
+  </div>
+
+  <!-- Part B: paintutils Funktionen -->
+  <div class="section-divider">
+    <div class="sd-label sd-b">PART B · PAINTUTILS FUNKTIONEN</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <table class="fn-table">
+    <tr><th>Funktion</th><th>Parameter</th><th>Was sie tut</th></tr>
+    <tr>
+      <td class="fn-name">paintutils.drawPixel</td>
+      <td class="fn-args">x, y, color</td>
+      <td class="fn-desc">Einzelnen Pixel setzen</td>
+    </tr>
+    <tr>
+      <td class="fn-name">paintutils.drawLine</td>
+      <td class="fn-args">x1,y1, x2,y2, color</td>
+      <td class="fn-desc">Linie zeichnen</td>
+    </tr>
+    <tr>
+      <td class="fn-name">paintutils.drawBox</td>
+      <td class="fn-args">x1,y1, x2,y2, color</td>
+      <td class="fn-desc">Rahmen (leer)</td>
+    </tr>
+    <tr>
+      <td class="fn-name">paintutils.drawFilledBox</td>
+      <td class="fn-args">x1,y1, x2,y2, color</td>
+      <td class="fn-desc">Gefülltes Rechteck</td>
+    </tr>
+    <tr>
+      <td class="fn-name">paintutils.loadImage</td>
+      <td class="fn-args">path</td>
+      <td class="fn-desc">.nfp Bilddatei laden</td>
+    </tr>
+    <tr>
+      <td class="fn-name">paintutils.drawImage</td>
+      <td class="fn-args">image, x, y</td>
+      <td class="fn-desc">Geladenes Bild zeichnen</td>
+    </tr>
+  </table>
+
+  <div class="code-block">
+    <div class="code-label">formen.lua</div>
+    <pre><span class="cmt">-- Screen leeren</span>
+<span class="fn">term.setBackgroundColor</span>(<span class="fn">colors</span>.<span class="var">black</span>)
+<span class="fn">term.clear</span>()
+
+<span class="cmt">-- Gefülltes Rechteck: Hintergrund</span>
+<span class="fn">paintutils.drawFilledBox</span>(<span class="num">1</span>, <span class="num">1</span>, <span class="num">20</span>, <span class="num">10</span>, <span class="fn">colors</span>.<span class="var">blue</span>)
+
+<span class="cmt">-- Rahmen darüber</span>
+<span class="fn">paintutils.drawBox</span>(<span class="num">1</span>, <span class="num">1</span>, <span class="num">20</span>, <span class="num">10</span>, <span class="fn">colors</span>.<span class="var">cyan</span>)
+
+<span class="cmt">-- Text positionieren</span>
+<span class="fn">term.setCursorPos</span>(<span class="num">4</span>, <span class="num">5</span>)
+<span class="fn">term.setBackgroundColor</span>(<span class="fn">colors</span>.<span class="var">blue</span>)
+<span class="fn">term.setTextColor</span>(<span class="fn">colors</span>.<span class="var">yellow</span>)
+<span class="fn">print</span>(<span class="str">"Reaktor Online!"</span>)</pre>
+  </div>
+
+  <!-- Part C: term API -->
+  <div class="section-divider">
+    <div class="sd-label sd-c">PART C · TERM API</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="card" data-label="TERM API" data-label-i18n="label_termapi">
+    <h3 data-i18n="p10_termapi_h">Die wichtigsten term-Befehle</h3>
+    <ul>
+      <li><span class="inline-code">term.clear()</span> – ganzen Screen mit Hintergrundfarbe füllen</li>
+      <li><span class="inline-code">term.clearLine()</span> – aktuelle Zeile löschen</li>
+      <li><span class="inline-code">term.setCursorPos(x, y)</span> – Cursor positionieren</li>
+      <li><span class="inline-code">term.getSize()</span> – Breite und Höhe zurückgeben</li>
+      <li><span class="inline-code">term.setTextColor(colors.X)</span> – Textfarbe</li>
+      <li><span class="inline-code">term.setBackgroundColor(colors.X)</span> – Hintergrundfarbe</li>
+      <li><span class="inline-code">term.write("text")</span> – Text ohne Zeilenumbruch schreiben</li>
+    </ul>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">[i]</div>
+    <div><span class="inline-code">term.getSize()</span> gibt Breite und Höhe zurück. Standard-Computer: <strong style="color:var(--cc-yellow)">51 × 19</strong>. Damit kannst du deine GUI immer zentriert zeichnen, egal wie groß der Screen ist.</div>
+  </div>
+
+  <!-- Part D: GUI -->
+  <div class="section-divider">
+    <div class="sd-label sd-d">PART D · GUI BAUEN</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <!-- Abschlussprogramm -->
+  <div class="final-card">
+    <div class="final-header">★ ABSCHLUSSPROGRAMM – Reaktor GUI Dashboard</div>
+    <div class="code-block">
+      <pre><span class="cmt">-- Hilfsfunktionen</span>
+<span class="kw">local function</span> <span class="fn">zentriert</span>(<span class="var">y</span>, <span class="var">text</span>, <span class="var">fg</span>, <span class="var">bg</span>)
+    <span class="kw">local</span> <span class="var">w</span> = <span class="fn">term.getSize</span>()
+    <span class="kw">local</span> <span class="var">x</span> = <span class="fn">math.floor</span>((<span class="var">w</span> <span class="op">-</span> <span class="op">#</span><span class="var">text</span>) / <span class="num">2</span>) <span class="op">+</span> <span class="num">1</span>
+    <span class="fn">term.setCursorPos</span>(<span class="var">x</span>, <span class="var">y</span>)
+    <span class="fn">term.setTextColor</span>(<span class="var">fg</span>)
+    <span class="fn">term.setBackgroundColor</span>(<span class="var">bg</span>)
+    <span class="fn">term.write</span>(<span class="var">text</span>)
+<span class="kw">end</span>
+
+<span class="kw">local function</span> <span class="fn">zeichneGUI</span>(<span class="var">temp</span>, <span class="var">energie</span>)
+    <span class="fn">term.setBackgroundColor</span>(<span class="fn">colors</span>.<span class="var">black</span>)
+    <span class="fn">term.clear</span>()
+
+    <span class="cmt">-- Titelleiste</span>
+    <span class="fn">paintutils.drawFilledBox</span>(<span class="num">1</span>,<span class="num">1</span>, <span class="num">51</span>,<span class="num">1</span>, <span class="fn">colors</span>.<span class="var">yellow</span>)
+    <span class="fn">zentriert</span>(<span class="num">1</span>, <span class="str">"REAKTOR DASHBOARD"</span>, <span class="fn">colors</span>.<span class="var">black</span>, <span class="fn">colors</span>.<span class="var">yellow</span>)
+
+    <span class="cmt">-- Temperatur Panel</span>
+    <span class="fn">paintutils.drawFilledBox</span>(<span class="num">2</span>,<span class="num">3</span>, <span class="num">24</span>,<span class="num">9</span>, <span class="fn">colors</span>.<span class="var">gray</span>)
+    <span class="fn">zentriert</span>(<span class="num">4</span>, <span class="str">"TEMPERATUR"</span>, <span class="fn">colors</span>.<span class="var">white</span>, <span class="fn">colors</span>.<span class="var">gray</span>)
+
+    <span class="kw">local</span> <span class="var">tFarbe</span> = <span class="fn">colors</span>.<span class="var">lime</span>
+    <span class="kw">if</span> <span class="var">temp</span> <span class="op">>=</span> <span class="num">1000</span> <span class="kw">then</span> <span class="var">tFarbe</span> = <span class="fn">colors</span>.<span class="var">red</span>
+    <span class="kw">elseif</span> <span class="var">temp</span> <span class="op">>=</span> <span class="num">800</span> <span class="kw">then</span> <span class="var">tFarbe</span> = <span class="fn">colors</span>.<span class="var">orange</span> <span class="kw">end</span>
+    <span class="fn">zentriert</span>(<span class="num">6</span>, <span class="var">temp</span> <span class="op">..</span> <span class="str">" C"</span>, <span class="var">tFarbe</span>, <span class="fn">colors</span>.<span class="var">gray</span>)
+
+    <span class="cmt">-- Energie Panel</span>
+    <span class="fn">paintutils.drawFilledBox</span>(<span class="num">27</span>,<span class="num">3</span>, <span class="num">50</span>,<span class="num">9</span>, <span class="fn">colors</span>.<span class="var">gray</span>)
+    <span class="fn">zentriert</span>(<span class="num">4</span>, <span class="str">"ENERGIE"</span>, <span class="fn">colors</span>.<span class="var">white</span>, <span class="fn">colors</span>.<span class="var">gray</span>)
+    <span class="fn">zentriert</span>(<span class="num">6</span>, <span class="var">energie</span> <span class="op">..</span> <span class="str">"%"</span>, <span class="fn">colors</span>.<span class="var">lime</span>, <span class="fn">colors</span>.<span class="var">gray</span>)
+
+    <span class="cmt">-- Fußzeile</span>
+    <span class="fn">paintutils.drawFilledBox</span>(<span class="num">1</span>,<span class="num">19</span>, <span class="num">51</span>,<span class="num">19</span>, <span class="fn">colors</span>.<span class="var">gray</span>)
+    <span class="fn">zentriert</span>(<span class="num">19</span>, <span class="str">"[Q] Beenden"</span>, <span class="fn">colors</span>.<span class="var">white</span>, <span class="fn">colors</span>.<span class="var">gray</span>)
+<span class="kw">end</span>
+
+<span class="cmt">-- Hauptprogramm</span>
+<span class="fn">zeichneGUI</span>(<span class="num">750</span>, <span class="num">92</span>)
+
+<span class="kw">while</span> <span class="kw">true</span> <span class="kw">do</span>
+    <span class="kw">local</span> <span class="var">ev</span>, <span class="var">key</span> = <span class="fn">os.pullEvent</span>(<span class="str">"key"</span>)
+    <span class="kw">if</span> <span class="var">key</span> == <span class="fn">keys</span>.<span class="var">q</span> <span class="kw">then</span>
+        <span class="fn">term.setBackgroundColor</span>(<span class="fn">colors</span>.<span class="var">black</span>)
+        <span class="fn">term.setTextColor</span>(<span class="fn">colors</span>.<span class="var">white</span>)
+        <span class="fn">term.clear</span>()
+        <span class="fn">term.setCursorPos</span>(<span class="num">1</span>,<span class="num">1</span>)
+        <span class="kw">break</span>
+    <span class="kw">end</span>
+<span class="kw">end</span></pre>
+    </div>
+  </div>
+
+  <div class="learned">
+    <h3><span data-i18n="tut_learned_h">✔ Das hast du gelernt</span></h3>
+    <ul>
+      <li data-i18n-html="p10_learned_1">Die 16 CC-Farben mit <strong style="color:var(--cc-yellow)">colors.NAME</strong> ansprechen</li>
+      <li data-i18n-html="p10_learned_2"><strong style="color:var(--cc-cyan)">term.setBackgroundColor / setTextColor</strong></li>
+      <li data-i18n-html="p10_learned_3"><strong style="color:var(--cc-cyan)">term.clear / setCursorPos / write / getSize</strong></li>
+      <li data-i18n-html="p10_learned_4"><strong style="color:var(--cc-cyan)">paintutils.drawFilledBox / drawBox / drawLine</strong></li>
+      <li data-i18n-html="p10_learned_5">GUI-Elemente mit Funktionen modular aufbauen</li>
+      <li data-i18n-html="p10_learned_6">Events und paintutils kombinieren für interaktive GUIs</li>
+      <li data-i18n-html="p10_learned_7">Screen nach Programm-Ende sauber zurücksetzen</li>
+    </ul>
+  </div>
+
+  <!-- Serie abgeschlossen -->
+  <div class="series-complete">
+    <h2>★ SERIE ABGESCHLOSSEN ★</h2>
+    <p>Du hast alle 10 Teile der CC: Tweaked Tutorial-Serie durchgearbeitet!<br>Von "Hello World" bis zur vollständigen GUI – du kennst jetzt die Grundlagen.</p>
+    <div class="sc-parts">
+      <div class="sc-part">1 · Hello World</div>
+      <div class="sc-part">2 · Variablen</div>
+      <div class="sc-part">3 · Kombinieren</div>
+      <div class="sc-part">4 · if/else</div>
+      <div class="sc-part">5 · elseif · and · or</div>
+      <div class="sc-part">6 · Bool · Schleifen</div>
+      <div class="sc-part">7 · Events</div>
+      <div class="sc-part">8 · Funktionen</div>
+      <div class="sc-part">9 · Tabellen</div>
+      <div class="sc-part">10 · paintutils ★</div>
+    </div>
+  </div>
+
+</div>
+<footer data-i18n="footer_brand">SideQuestChris · CC: Tweaked Tutorial-Serie · Teil 10 von 10</footer>
+
+
+<script src="main.js"></script>
+<script src="i18n.js"></script>
+</body>
+</html>

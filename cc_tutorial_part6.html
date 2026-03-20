@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC: Tweaked Tutorial #6 – Booleans & Schleifen · SideQuestCommunity</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+
+<nav class="sqc-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-px">SQ</div>
+    <div class="logo-text">SideQuest<span>Community</span></div>
+  </a>
+  <ul class="nav-items">
+    <li><a href="index.html" data-i18n="nav_startseite">Startseite</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_tutorials_btn">Tutorials</span> <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <div class="dd1-item dd1-active" tabindex="0">
+          <span class="dd1-icon">▶</span>CC: Tweaked<span class="dd1-badge">10</span><span class="dd1-arrow">›</span>
+          <div class="nav-dropdown-l2">
+            <div class="dd2-header">CC: TWEAKED</div>
+            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="cc_tutorial_part1.html"><span class="dd2-num">01</span>Hello, World!</a>
+            <a href="cc_tutorial_part2.html"><span class="dd2-num">02</span>Variablen</a>
+            <a href="cc_tutorial_part3.html"><span class="dd2-num">03</span>Variablen kombinieren</a>
+            <a href="cc_tutorial_part4.html"><span class="dd2-num">04</span>if / else</a>
+            <a href="cc_tutorial_part5.html"><span class="dd2-num">05</span>elseif · and · or · not</a>
+            <a href="cc_tutorial_part6.html" class="dd2-active"><span class="dd2-num">06</span>Booleans & Schleifen</a>
+            <a href="cc_tutorial_part7.html"><span class="dd2-num">07</span>Events</a>
+            <a href="cc_tutorial_part8.html"><span class="dd2-num">08</span>rednet</a>
+            <a href="cc_tutorial_part9.html"><span class="dd2-num">09</span>Tabellen</a>
+            <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils</a>
+          </div>
+        </div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+      </div>
+    </li>
+    <li><a href="server.html" data-i18n="nav_server">Server</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cc_tutorial_part5.html">◀ 05</a>
+    <a href="cc_tutorial_part7.html">07 ▶</a>
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YT</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TT</a>
+  </div>
+  <button class="nav-hamburger">☰</button>
+</nav>
+
+<div class="nav-mobile-menu" id="sqc-mob">
+  <a href="index.html">Startseite</a>
+  <a href="server.html">Server</a>
+  <div class="mob-sec">CC: TWEAKED</div>
+  <a class="mob-sub" href="tutorials_cc.html">📋 Übersicht</a>
+  <a class="mob-sub" href="cc_tutorial_part1.html">01 · Hello, World!</a>
+  <a class="mob-sub" href="cc_tutorial_part2.html">02 · Variablen</a>
+  <a class="mob-sub" href="cc_tutorial_part3.html">03 · Variablen kombinieren</a>
+  <a class="mob-sub" href="cc_tutorial_part4.html">04 · if / else</a>
+  <a class="mob-sub" href="cc_tutorial_part5.html">05 · elseif · and · or · not</a>
+  <a class="mob-sub" href="cc_tutorial_part6.html">06 · Booleans & Schleifen</a>
+  <a class="mob-sub" href="cc_tutorial_part7.html">07 · Events</a>
+  <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
+  <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
+  <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils</a>
+  <div class="mob-sec">SOCIAL</div>
+  <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+  <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+</div>
+
+<div class="container">
+
+  <div class="episode-title">
+    <div class="ep-num" data-i18n="p6_ep">▶ Episode 06</div>
+    <h2 data-i18n="p6_title">Booleans &amp; Schleifen</h2>
+    <p class="subtitle" data-i18n="p6_sub">true / false als Schalter · while · for · break</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════ BOOLEANS ═══════════════ -->
+  <div class="section-divider">
+    <div class="sd-label sd-bool">PART A · BOOLEANS</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="card" data-label="KONZEPT" data-label-i18n="label_concept">
+    <h3 data-i18n="p6_bool_h">Boolean – der einfachste Datentyp</h3>
+    <p>Ein Boolean kennt nur zwei Werte: <strong style="color:var(--cc-green)">true</strong> oder <strong style="color:var(--cc-red)">false</strong>. Du kennst ihn schon aus den if/else-Bedingungen – aber du kannst ihn auch direkt in Variablen speichern und als Schalter nutzen.</p>
+  </div>
+
+  <div class="bool-viz">
+    <div class="bool-box bool-box-true">
+      true
+      <div class="bv-label">An · Ja · Wahr · 1</div>
+    </div>
+    <div class="bool-box bool-box-false">
+      false
+      <div class="bv-label">Aus · Nein · Falsch · 0</div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">schalter.lua</div>
+    <pre><span class="cmt">-- Boolean direkt in Variable</span>
+<span class="kw">local</span> <span class="var">reaktor_an</span>  = <span class="bool-t">true</span>
+<span class="kw">local</span> <span class="var">alarm_aktiv</span> = <span class="bool-f">false</span>
+
+<span class="kw">if</span> <span class="var">reaktor_an</span> <span class="kw">then</span>
+    <span class="fn">print</span>(<span class="str">"Reaktor: ONLINE"</span>)
+<span class="kw">else</span>
+    <span class="fn">print</span>(<span class="str">"Reaktor: OFFLINE"</span>)
+<span class="kw">end</span>
+
+<span class="cmt">-- Boolean umschalten (toggle)</span>
+<span class="var">alarm_aktiv</span> = <span class="kw">not</span> <span class="var">alarm_aktiv</span>
+<span class="fn">print</span>(<span class="str">"Alarm: "</span> <span class="op">..</span> <span class="fn">tostring</span>(<span class="var">alarm_aktiv</span>))</pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS 1.9 — Computer #1</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">schalter</span></div>
+      <div class="t-out">Reaktor: ONLINE</div>
+      <div class="t-out">Alarm: true</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">[i]</div>
+    <div>Willst du einen Boolean als Text ausgeben, brauchst du <span class="inline-code">tostring()</span> – sonst gibt Lua einen Fehler beim Versuch, ihn mit <span class="inline-code">..</span> zu verbinden.</div>
+  </div>
+
+  <!-- ═══════════════ WHILE ═══════════════ -->
+  <div class="section-divider">
+    <div class="sd-label sd-while">PART B · WHILE-SCHLEIFE</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="card" data-label="KONZEPT" data-label-i18n="label_concept">
+    <h3 data-i18n="p6_while_h">while – solange wiederholen</h3>
+    <p>Eine <strong style="color:var(--cc-cyan)">while</strong>-Schleife läuft so lange, wie ihre Bedingung <strong style="color:var(--cc-green)">true</strong> ist. Das macht sie ideal für Schleifen, bei denen du die Anzahl der Durchläufe nicht vorher kennst – z.B. "warte bis der Reaktor kühl ist".</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">Syntax</div>
+    <pre><span class="kw">while</span> <span class="var">bedingung</span> <span class="kw">do</span>
+    <span class="cmt">-- wird wiederholt solange bedingung = true</span>
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">countdown.lua</div>
+    <pre><span class="kw">local</span> <span class="var">i</span> = <span class="num">5</span>
+
+<span class="kw">while</span> <span class="var">i</span> <span class="op">></span> <span class="num">0</span> <span class="kw">do</span>
+    <span class="fn">print</span>(<span class="str">"Countdown: "</span> <span class="op">..</span> <span class="var">i</span>)
+    <span class="var">i</span> = <span class="var">i</span> <span class="op">-</span> <span class="num">1</span>
+<span class="kw">end</span>
+
+<span class="fn">print</span>(<span class="str">"Start!"</span>)</pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS 1.9 — Computer #1</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">countdown</span></div>
+      <div class="t-out">Countdown: 5</div>
+      <div class="t-out">Countdown: 4</div>
+      <div class="t-out">Countdown: 3</div>
+      <div class="t-out">Countdown: 2</div>
+      <div class="t-out">Countdown: 1</div>
+      <div class="t-out-yellow">Start!</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <!-- while true -->
+  <div class="card" data-label="ENDLOSSCHLEIFE" data-label-i18n="label_infinite">
+    <h3 data-i18n="p6_infinite_h">while true – Die Endlosschleife</h3>
+    <p>In CC: Tweaked ist <span class="inline-code">while true do</span> sehr häufig – sie lässt ein Programm dauerhaft laufen (z.B. ein Monitoring-Script). Mit <strong style="color:var(--cc-red)">break</strong> kannst du die Schleife jederzeit verlassen.</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">monitor.lua</div>
+    <pre><span class="kw">local</span> <span class="var">durchlauf</span> = <span class="num">0</span>
+
+<span class="kw">while</span> <span class="bool-t">true</span> <span class="kw">do</span>
+    <span class="var">durchlauf</span> = <span class="var">durchlauf</span> <span class="op">+</span> <span class="num">1</span>
+    <span class="fn">print</span>(<span class="str">"Check #"</span> <span class="op">..</span> <span class="var">durchlauf</span>)
+
+    <span class="kw">if</span> <span class="var">durchlauf</span> <span class="op">>=</span> <span class="num">3</span> <span class="kw">then</span>
+        <span class="fn">print</span>(<span class="str">"Fertig – Schleife beendet"</span>)
+        <span class="kw">break</span>  <span class="cmt">-- verlässt die while-Schleife</span>
+    <span class="kw">end</span>
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS 1.9 — Computer #1</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">monitor</span></div>
+      <div class="t-out">Check #1</div>
+      <div class="t-out">Check #2</div>
+      <div class="t-out">Check #3</div>
+      <div class="t-out-yellow">Fertig – Schleife beendet</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <div class="warn-icon">[!]</div>
+    <div><strong style="color:var(--cc-yellow)">while true do</strong> ohne <span class="inline-code">break</span> läuft ewig! In CraftOS kannst du mit <strong style="color:var(--cc-yellow)">Strg+T</strong> ein laufendes Programm abbrechen.</div>
+  </div>
+
+  <!-- ═══════════════ FOR ═══════════════ -->
+  <div class="section-divider">
+    <div class="sd-label sd-for">PART C · FOR-SCHLEIFE</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="card" data-label="KONZEPT" data-label-i18n="label_concept">
+    <h3 data-i18n="p6_for_h">for – genau N-mal wiederholen</h3>
+    <p>Die <strong style="color:var(--cc-green)">for</strong>-Schleife ist ideal wenn du genau weißt, wie oft etwas passieren soll. Sie zählt automatisch – du musst den Zähler nicht selbst erhöhen.</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">Syntax</div>
+    <pre><span class="kw">for</span> <span class="var">i</span> = <span class="var">start</span>, <span class="var">ende</span>, <span class="var">schritt</span> <span class="kw">do</span>
+    <span class="cmt">-- schritt ist optional, Standard = 1</span>
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">zählen.lua</div>
+    <pre><span class="cmt">-- Vorwärts zählen</span>
+<span class="kw">for</span> <span class="var">i</span> = <span class="num">1</span>, <span class="num">5</span> <span class="kw">do</span>
+    <span class="fn">print</span>(<span class="str">"Schritt "</span> <span class="op">..</span> <span class="var">i</span>)
+<span class="kw">end</span>
+
+<span class="cmt">-- Rückwärts zählen (Schritt = -1)</span>
+<span class="kw">for</span> <span class="var">i</span> = <span class="num">3</span>, <span class="num">1</span>, <span class="op">-</span><span class="num">1</span> <span class="kw">do</span>
+    <span class="fn">print</span>(<span class="str">"Countdown: "</span> <span class="op">..</span> <span class="var">i</span>)
+<span class="kw">end</span>
+
+<span class="cmt">-- Nur gerade Zahlen (Schritt = 2)</span>
+<span class="kw">for</span> <span class="var">i</span> = <span class="num">2</span>, <span class="num">10</span>, <span class="num">2</span> <span class="kw">do</span>
+    <span class="fn">print</span>(<span class="var">i</span>)
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS 1.9 — Computer #1</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">zählen</span></div>
+      <div class="t-out">Schritt 1 &nbsp;/ Schritt 2 &nbsp;/ Schritt 3 &nbsp;/ Schritt 4 &nbsp;/ Schritt 5</div>
+      <div class="t-out-cyan">Countdown: 3 &nbsp;/ Countdown: 2 &nbsp;/ Countdown: 1</div>
+      <div class="t-out-yellow">2 &nbsp;4 &nbsp;6 &nbsp;8 &nbsp;10</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <!-- Vergleich while vs for -->
+  <div class="loop-compare">
+    <div class="loop-box lb-while">
+      <div class="lb-header">while – wenn?</div>
+      <div class="lb-body">
+        Anzahl Durchläufe unbekannt.<br>
+        Läuft bis Bedingung false.<br>
+        z.B. "warte bis Reaktor kalt"
+      </div>
+    </div>
+    <div class="loop-box lb-for">
+      <div class="lb-header">for – wenn?</div>
+      <div class="lb-body">
+        Anzahl Durchläufe bekannt.<br>
+        Zähler wird automatisch erhöht.<br>
+        z.B. "5 Blöcke abbauen"
+      </div>
+    </div>
+  </div>
+
+  <!-- Abschlussprogramm -->
+  <div class="final-card">
+    <div class="final-header"><span data-i18n="tut_final_hdr">★ ABSCHLUSSPROGRAMM – </span>Reaktor-Bootsequenz</div>
+    <div class="code-block">
+      <pre><span class="cmt">-- Reaktor Bootsequenz mit Boolean + Schleifen</span>
+<span class="kw">local</span> <span class="var">bereit</span>    = <span class="bool-f">false</span>
+<span class="kw">local</span> <span class="var">temp</span>      = <span class="num">1200</span>
+<span class="kw">local</span> <span class="var">ziel_temp</span> = <span class="num">800</span>
+
+<span class="fn">print</span>(<span class="str">"=== Bootsequenz gestartet ==="</span>)
+
+<span class="cmt">-- while: warte bis Reaktor abgekühlt</span>
+<span class="fn">print</span>(<span class="str">"Kuehlphase..."</span>)
+<span class="kw">while</span> <span class="var">temp</span> <span class="op">></span> <span class="var">ziel_temp</span> <span class="kw">do</span>
+    <span class="var">temp</span> = <span class="var">temp</span> <span class="op">-</span> <span class="num">200</span>
+    <span class="fn">print</span>(<span class="str">"  Temp: "</span> <span class="op">..</span> <span class="var">temp</span> <span class="op">..</span> <span class="str">" C"</span>)
+<span class="kw">end</span>
+
+<span class="cmt">-- for: Selbsttest (3 Checks)</span>
+<span class="fn">print</span>(<span class="str">"Selbsttest..."</span>)
+<span class="kw">for</span> <span class="var">i</span> = <span class="num">1</span>, <span class="num">3</span> <span class="kw">do</span>
+    <span class="fn">print</span>(<span class="str">"  Check "</span> <span class="op">..</span> <span class="var">i</span> <span class="op">..</span> <span class="str">": OK"</span>)
+<span class="kw">end</span>
+
+<span class="cmt">-- Boolean als Ergebnis setzen</span>
+<span class="var">bereit</span> = <span class="bool-t">true</span>
+
+<span class="kw">if</span> <span class="var">bereit</span> <span class="kw">then</span>
+    <span class="fn">print</span>(<span class="str">"=== Reaktor ONLINE ==="</span>)
+<span class="kw">end</span></pre>
+    </div>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS 1.9 — Computer #1</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">boot</span></div>
+      <div class="t-out">=== Bootsequenz gestartet ===</div>
+      <div class="t-out">Kuehlphase...</div>
+      <div class="t-out">  Temp: 1000 C</div>
+      <div class="t-out">  Temp: 800 C</div>
+      <div class="t-out">Selbsttest...</div>
+      <div class="t-out">  Check 1: OK</div>
+      <div class="t-out">  Check 2: OK</div>
+      <div class="t-out">  Check 3: OK</div>
+      <div class="t-out-yellow">=== Reaktor ONLINE ===</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="learned">
+    <h3><span data-i18n="tut_learned_h">✔ Das hast du gelernt</span></h3>
+    <ul>
+      <li data-i18n-html="p6_learned_1"><strong style="color:var(--cc-purple)">Boolean</strong> – true / false direkt in Variablen speichern</li>
+      <li data-i18n-html="p6_learned_2">Boolean mit <strong style="color:var(--cc-purple)">not</strong> umschalten (toggle)</li>
+      <li data-i18n-html="p6_learned_3"><strong style="color:var(--cc-cyan)">tostring()</strong> um Boolean als Text auszugeben</li>
+      <li data-i18n-html="p6_learned_4"><strong style="color:var(--cc-cyan)">while</strong> – Schleife läuft solange Bedingung true</li>
+      <li data-i18n-html="p6_learned_5"><strong style="color:var(--cc-cyan)">while true do</strong> – Endlosschleife, stoppen mit <strong style="color:var(--cc-red)">break</strong></li>
+      <li data-i18n-html="p6_learned_6"><strong style="color:var(--cc-green)">for i = start, ende, schritt</strong> – Zählschleife</li>
+      <li data-i18n-html="p6_learned_7">Wann while vs. for die bessere Wahl ist</li>
+    </ul>
+  </div>
+
+  <div class="next-ep">
+    <div>
+      <div class="next-label" data-i18n="tut_next_label">NÄCHSTES TUTORIAL</div>
+      <div class="next-title" data-i18n="p6_next">Teil 7 → Events</div>
+    </div>
+    <div class="arrow">▶▶</div>
+  </div>
+
+</div>
+
+<footer data-i18n="footer_brand">SideQuestChris · CC: Tweaked Tutorial-Serie · Teil 6 von 10</footer>
+
+
+<script src="main.js"></script>
+<script src="i18n.js"></script>
+</body>
+</html>

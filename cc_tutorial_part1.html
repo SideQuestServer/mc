@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC: Tweaked Tutorial #1 – Hello, World! · SideQuestCommunity</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+
+<nav class="sqc-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-px">SQ</div>
+    <div class="logo-text">SideQuest<span>Community</span></div>
+  </a>
+  <ul class="nav-items">
+    <li><a href="index.html" data-i18n="nav_startseite">Startseite</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_tutorials_btn">Tutorials</span> <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <div class="dd1-item dd1-active" tabindex="0">
+          <span class="dd1-icon">▶</span>CC: Tweaked<span class="dd1-badge">10</span><span class="dd1-arrow">›</span>
+          <div class="nav-dropdown-l2">
+            <div class="dd2-header">CC: TWEAKED</div>
+            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="cc_tutorial_part1.html" class="dd2-active"><span class="dd2-num">01</span>Hello, World!</a>
+            <a href="cc_tutorial_part2.html"><span class="dd2-num">02</span>Variablen</a>
+            <a href="cc_tutorial_part3.html"><span class="dd2-num">03</span>Variablen kombinieren</a>
+            <a href="cc_tutorial_part4.html"><span class="dd2-num">04</span>if / else</a>
+            <a href="cc_tutorial_part5.html"><span class="dd2-num">05</span>elseif · and · or · not</a>
+            <a href="cc_tutorial_part6.html"><span class="dd2-num">06</span>Booleans & Schleifen</a>
+            <a href="cc_tutorial_part7.html"><span class="dd2-num">07</span>Events</a>
+            <a href="cc_tutorial_part8.html"><span class="dd2-num">08</span>rednet</a>
+            <a href="cc_tutorial_part9.html"><span class="dd2-num">09</span>Tabellen</a>
+            <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils</a>
+          </div>
+        </div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+      </div>
+    </li>
+    <li><a href="server.html" data-i18n="nav_server">Server</a></li>
+  </ul>
+  <div class="nav-right">
+    
+    <a href="cc_tutorial_part2.html">02 ▶</a>
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YT</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TT</a>
+  </div>
+  <button class="nav-hamburger">☰</button>
+</nav>
+
+<div class="nav-mobile-menu" id="sqc-mob">
+  <a href="index.html">Startseite</a>
+  <a href="server.html">Server</a>
+  <div class="mob-sec">CC: TWEAKED</div>
+  <a class="mob-sub" href="tutorials_cc.html">📋 Übersicht</a>
+  <a class="mob-sub" href="cc_tutorial_part1.html">01 · Hello, World!</a>
+  <a class="mob-sub" href="cc_tutorial_part2.html">02 · Variablen</a>
+  <a class="mob-sub" href="cc_tutorial_part3.html">03 · Variablen kombinieren</a>
+  <a class="mob-sub" href="cc_tutorial_part4.html">04 · if / else</a>
+  <a class="mob-sub" href="cc_tutorial_part5.html">05 · elseif · and · or · not</a>
+  <a class="mob-sub" href="cc_tutorial_part6.html">06 · Booleans & Schleifen</a>
+  <a class="mob-sub" href="cc_tutorial_part7.html">07 · Events</a>
+  <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
+  <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
+  <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils</a>
+  <div class="mob-sec">SOCIAL</div>
+  <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+  <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+</div>
+
+<div class="container">
+
+  <!-- Title -->
+  <div class="episode-title">
+    <div class="ep-num" data-i18n="p1_ep">▶ Episode 01</div>
+    <h2 data-i18n="p1_title">Hello, World!</h2>
+    <p class="subtitle" data-i18n="p1_sub">Dein erstes Lua-Programm im CraftOS-Terminal</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Was brauchst du -->
+  <div class="card" data-label="VORAUSSETZUNGEN" data-label-i18n="label_prereq">
+    <h3 data-i18n="p1_prereq_h">Was brauchst du?</h3>
+    <ul>
+      <li>Einen Computer oder Turtle aus dem CC: Tweaked Mod</li>
+      <li>Das Rechtsklick-Menü öffnen → CraftOS-Terminal erscheint</li>
+      <li>Keine weiteren Mods oder Tools nötig</li>
+    </ul>
+  </div>
+
+  <!-- Schritt für Schritt -->
+  <div class="card" data-label="ANLEITUNG" data-label-i18n="label_steps">
+    <h3 data-i18n="p1_steps_h">Schritt für Schritt</h3>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <p>Platziere einen <strong style="color:#f2b233">Computer</strong> in der Welt und klicke ihn mit Rechtsklick an. Das CraftOS-Terminal öffnet sich.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <p>Erstelle eine neue Datei mit dem <span class="inline-code">edit</span>-Befehl:</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terminal: edit-Befehl -->
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      CraftOS 1.9 — Computer #1
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">edit hello</span></div>
+      <div class="t-dim">-- öffnet den eingebauten Editor für "hello.lua"</div>
+    </div>
+  </div>
+
+  <!-- Code -->
+  <div class="code-block">
+    <div class="code-label">hello.lua</div>
+    <pre><span class="cmt">-- Mein erstes CC-Programm</span>
+<span class="fn">print</span>(<span class="str">"Hello, World!"</span>)</pre>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">[i]</div>
+    <div>
+      Im Editor speicherst du mit <strong style="color:#4fc3f7">Strg</strong> → dann <strong style="color:#4fc3f7">Save</strong> wählen → anschließend <strong style="color:#4fc3f7">Exit</strong>. Die Datei heißt dann automatisch <code style="color:#f2b233">hello</code> (ohne Endung, das ist normal in CraftOS).
+    </div>
+  </div>
+
+  <!-- Schritt 3 -->
+  <div class="card" data-label="AUSFÜHREN" data-label-i18n="label_run">
+    <h3 data-i18n="p1_run_h">Programm starten</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <p>Zurück im Terminal tippst du einfach den Dateinamen ein und drückst <strong style="color:#f2b233">Enter</strong>:</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terminal: Ausgabe -->
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      CraftOS 1.9 — Computer #1
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">hello</span></div>
+      <div class="t-out">Hello, World!</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <!-- Variante: direkt in die Shell -->
+  <div class="card" data-label="BONUS" data-label-i18n="label_bonus">
+    <h3 data-i18n="p1_bonus_h">Direkt in die Shell – ohne Datei</h3>
+    <p style="color:#aaa; font-size:14px; margin-bottom:12px;">Du kannst Lua-Code auch direkt im Terminal ausführen, ohne eine Datei zu erstellen:</p>
+    <div class="code-block" style="margin:0; border:none; padding: 12px 16px;">
+      <pre><span class="fn">lua</span>
+<span class="fn">print</span>(<span class="str">"Hello, World!"</span>)
+<span class="cmt">-- Mit Strg+D beendest du die Lua-Shell wieder</span></pre>
+    </div>
+  </div>
+
+  <!-- Was hast du gelernt -->
+  <div class="learned">
+    <h3><span data-i18n="tut_learned_h">✔ Das hast du gelernt</span></h3>
+    <ul>
+      <li data-i18n-html="p1_learned_1">Wie du den eingebauten <strong style="color:#f2b233">edit</strong>-Editor öffnest</li>
+      <li data-i18n-html="p1_learned_2">Die Funktion <strong style="color:#4fc3f7">print()</strong> gibt Text ins Terminal aus</li>
+      <li data-i18n-html="p1_learned_3">Strings werden in <strong style="color:#57a64e">"..."</strong> oder <strong style="color:#57a64e">'...'</strong> eingeschlossen</li>
+      <li data-i18n-html="p1_learned_4">Wie du ein Lua-Skript in CraftOS speicherst und ausführst</li>
+      <li data-i18n-html="p1_learned_5">Die interaktive Lua-Shell als schnelles Test-Werkzeug</li>
+    </ul>
+  </div>
+
+  <!-- Nächste Episode -->
+  <div class="next-ep">
+    <div>
+      <div class="next-label" data-i18n="tut_next_label">NÄCHSTES TUTORIAL</div>
+      <div class="next-title" data-i18n="p1_next">Teil 2 → Variablen</div>
+    </div>
+    <div class="arrow">▶▶</div>
+  </div>
+
+</div>
+
+<footer data-i18n="footer_brand">SideQuestChris · CC: Tweaked Tutorial-Serie · Teil 1 von 10</footer>
+
+
+<script src="main.js"></script>
+<script src="i18n.js"></script>
+</body>
+</html>

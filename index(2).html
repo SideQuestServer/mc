@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SideQuestCommunity</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap');
+:root{--bg:#0d0d0d;--yellow:#f2b233;--orange:#d87f33;--green:#57a64e;--cyan:#4fc3f7;--white:#f0f0f0;--dim:#666;--red:#cc4444;--nav-h:58px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--white);font-family:'Share Tech Mono',monospace;padding-top:var(--nav-h);}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.07) 2px,rgba(0,0,0,.07) 4px);pointer-events:none;z-index:9999;}
+.sqc-nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:rgba(8,8,8,.98);border-bottom:2px solid #1e1e1e;display:flex;align-items:center;padding:0 28px;z-index:9000;backdrop-filter:blur(10px);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:28px;flex-shrink:0;}
+.logo-px{width:34px;height:34px;background:var(--yellow);display:grid;place-items:center;font-family:'VT323',monospace;font-size:18px;color:#000;box-shadow:2px 2px 0 var(--orange);}
+.logo-text{font-family:'VT323',monospace;font-size:21px;color:#e0e0e0;letter-spacing:1px;}
+.logo-text span{color:var(--yellow);}
+.nav-items{display:flex;align-items:stretch;gap:0;list-style:none;height:100%;}
+.nav-items>li{position:relative;height:100%;display:flex;align-items:center;}
+.nav-items>li>a,.nav-items>li>.nav-btn{font-family:'VT323',monospace;font-size:18px;color:#5a5a5a;text-decoration:none;padding:0 16px;height:100%;display:flex;align-items:center;gap:5px;border:none;background:none;cursor:pointer;transition:color .15s;white-space:nowrap;border-bottom:2px solid transparent;}
+.nav-items>li>a:hover,.nav-items>li>.nav-btn:hover{color:var(--yellow);}
+.nav-items>li>a.nav-active{color:var(--yellow);border-bottom-color:var(--yellow);}
+.nav-chevron{font-size:10px;transition:transform .2s;}
+.nav-items>li:hover>.nav-btn .nav-chevron{transform:rotate(180deg);}
+.nav-dd1{position:absolute;top:100%;left:0;background:#0c0c0c;border:1px solid #242424;border-top:2px solid var(--yellow);min-width:200px;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-4px);transition:opacity .16s,transform .16s,visibility .16s;z-index:9100;}
+.nav-items>li:hover .nav-dd1,.nav-items>li:focus-within .nav-dd1{opacity:1;visibility:visible;pointer-events:all;transform:translateY(0);}
+.dd1i{position:relative;display:flex;align-items:center;padding:10px 16px;font-family:'VT323',monospace;font-size:18px;color:#777;text-decoration:none;border-bottom:1px solid #161616;transition:all .12s;cursor:pointer;gap:8px;}
+.dd1i:last-child{border-bottom:none;}
+.dd1i:hover{background:#141414;color:var(--yellow);}
+.dd1i.dis{opacity:.35;pointer-events:none;}
+.di{color:var(--orange);font-size:14px;min-width:20px;}
+.darr{font-size:12px;color:#333;margin-left:auto;}
+.dbadge{font-size:12px;color:var(--orange);background:#1a1400;padding:1px 5px;border:1px solid #2a2200;margin-left:auto;}
+.dsoon{font-size:12px;color:#333;margin-left:auto;}
+.nav-dd2{position:absolute;top:-2px;left:100%;background:#0c0c0c;border:1px solid #242424;border-top:2px solid var(--orange);min-width:220px;max-height:420px;overflow-y:auto;opacity:0;visibility:hidden;pointer-events:none;transform:translateX(-4px);transition:opacity .14s,transform .14s,visibility .14s;z-index:9200;}
+.dd1i:hover .nav-dd2,.dd1i:focus-within .nav-dd2{opacity:1;visibility:visible;pointer-events:all;transform:translateX(0);}
+.dd2h{padding:7px 14px 4px;font-family:'VT323',monospace;font-size:12px;color:#383838;letter-spacing:2px;border-bottom:1px solid #1a1a1a;}
+.nav-dd2 a{display:flex;align-items:center;gap:10px;padding:8px 14px;font-family:'VT323',monospace;font-size:17px;color:#777;text-decoration:none;border-bottom:1px solid #111;transition:all .1s;}
+.nav-dd2 a:hover{background:#141414;color:var(--yellow);padding-left:18px;}
+.d2n{font-size:13px;color:var(--orange);min-width:22px;}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:4px;}
+.nav-right a{font-family:'VT323',monospace;font-size:15px;color:#484848;text-decoration:none;padding:4px 9px;border:1px solid #222;transition:all .15s;}
+.nav-right a:hover{color:var(--yellow);border-color:var(--yellow);}
+.nav-hamburger{display:none;background:none;border:1px solid #2a2a2a;color:#555;font-family:'VT323',monospace;font-size:22px;padding:3px 10px;cursor:pointer;margin-left:auto;}
+.mob-menu{display:none;flex-direction:column;position:fixed;top:var(--nav-h);left:0;right:0;background:#090909;border-bottom:2px solid #1e1e1e;padding:0;z-index:8999;max-height:calc(100vh - var(--nav-h));overflow-y:auto;}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-family:'VT323',monospace;font-size:18px;color:#777;text-decoration:none;padding:10px 24px;border-bottom:1px solid #111;}
+.mob-menu a:hover{color:var(--yellow);background:#111;}
+.msec{font-size:11px;color:#2a2a2a;letter-spacing:2px;padding:12px 24px 4px;background:#080808;border-bottom:1px solid #111;font-family:'Share Tech Mono',monospace;}
+.msub{padding-left:36px!important;font-size:16px!important;color:#555!important;}
+@media(max-width:768px){.sqc-nav .nav-items,.nav-right{display:none;}.nav-hamburger{display:block;}}
+/* HERO */
+.hero{min-height:calc(100vh - var(--nav-h));display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:60px 24px;text-align:center;}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(242,178,51,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(242,178,51,.05) 1px,transparent 1px);background-size:40px 40px;animation:gs 24s linear infinite;}
+@keyframes gs{to{background-position:40px 40px}}
+.hc{position:relative;z-index:1;max-width:760px;}
+.heye{font-family:'VT323',monospace;font-size:14px;color:var(--orange);letter-spacing:4px;margin-bottom:16px;opacity:0;animation:fu .5s .1s ease forwards;}
+.htitle{font-family:'VT323',monospace;font-size:clamp(52px,9vw,100px);line-height:.92;color:var(--white);margin-bottom:10px;opacity:0;animation:fu .5s .2s ease forwards;}
+.htitle .hl{color:var(--yellow);text-shadow:0 0 40px rgba(242,178,51,.25);}
+.hsub{font-size:14px;color:var(--dim);line-height:1.9;margin-bottom:36px;max-width:500px;margin-left:auto;margin-right:auto;opacity:0;animation:fu .5s .3s ease forwards;}
+.hbtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fu .5s .4s ease forwards;}
+.bp{font-family:'VT323',monospace;font-size:20px;background:var(--yellow);color:#000;padding:10px 28px;text-decoration:none;box-shadow:3px 3px 0 var(--orange);transition:all .15s;}
+.bp:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--orange);}
+.bs{font-family:'VT323',monospace;font-size:20px;background:transparent;color:var(--dim);padding:10px 28px;text-decoration:none;border:1px solid #333;transition:all .15s;}
+.bs:hover{border-color:var(--yellow);color:var(--yellow);}
+.bg{font-family:'VT323',monospace;font-size:20px;background:transparent;color:var(--green);padding:10px 28px;text-decoration:none;border:1px solid var(--green);transition:all .15s;}
+.bg:hover{background:var(--green);color:#000;}
+/* SECTIONS */
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px;}
+.sec{padding:72px 0;}
+.seye{font-family:'VT323',monospace;font-size:13px;color:var(--orange);letter-spacing:3px;margin-bottom:6px;}
+.stit{font-family:'VT323',monospace;font-size:40px;color:var(--white);line-height:1;margin-bottom:10px;}
+.stit span{color:var(--yellow);}
+.sdesc{font-size:13px;color:var(--dim);line-height:1.9;max-width:540px;margin-bottom:32px;}
+/* Server preview */
+.srv-prev{background:#0f0f0f;border:1px solid #1e1e1e;border-left:4px solid var(--green);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;text-decoration:none;transition:all .2s;}
+.srv-prev:hover{border-left-color:var(--yellow);transform:translateY(-2px);}
+.sp-ip{font-family:'VT323',monospace;font-size:32px;color:var(--green);}
+.sp-mod{font-size:12px;color:#444;margin-top:4px;}
+.sp-stat{display:flex;align-items:center;gap:8px;font-family:'VT323',monospace;font-size:18px;color:var(--green);}
+.spdot{width:10px;height:10px;border-radius:50%;background:var(--green);animation:pd 2s ease-in-out infinite;}
+@keyframes pd{0%,100%{box-shadow:0 0 5px var(--green)}50%{box-shadow:0 0 12px var(--green)}}
+.sparr{font-family:'VT323',monospace;font-size:28px;color:#333;}
+.srv-prev:hover .sparr{color:var(--yellow);}
+/* Mod cards */
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;}
+.mcard{background:#0f0f0f;border:1px solid #1e1e1e;border-top:3px solid var(--mc,#333);padding:22px 18px;text-decoration:none;display:flex;flex-direction:column;gap:8px;transition:all .2s;}
+.mcard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.4);}
+.mcn{font-family:'VT323',monospace;font-size:21px;color:var(--white);}
+.mcd{font-size:12px;color:#555;line-height:1.6;}
+.mcb{margin-top:auto;font-family:'VT323',monospace;font-size:14px;color:var(--mc,#444);letter-spacing:1px;}
+.mcard.coming{opacity:.4;pointer-events:none;}
+/* About */
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+@media(max-width:640px){.agrid{grid-template-columns:1fr;}}
+.atag{font-family:'VT323',monospace;font-size:13px;color:var(--orange);letter-spacing:3px;margin-bottom:8px;}
+.aname{font-family:'VT323',monospace;font-size:52px;color:var(--yellow);line-height:1;margin-bottom:12px;}
+.atxt{font-size:13px;color:#666;line-height:1.9;margin-bottom:12px;}
+.asocial{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+.asocial a{font-family:'VT323',monospace;font-size:17px;text-decoration:none;padding:7px 18px;border:1px solid #222;transition:all .15s;}
+.ayt{color:#cc0000;border-color:#2a0000;}.ayt:hover{background:#cc0000;color:#fff;border-color:#cc0000;}
+.att{color:#fff;border-color:#222;}.att:hover{background:#111;border-color:#555;}
+.adc{color:#5865f2;border-color:#1a1d4a;}.adc:hover{background:#5865f2;color:#fff;border-color:#5865f2;}
+.schips{display:flex;flex-direction:column;gap:12px;}
+.schip{background:#0f0f0f;border:1px solid #1e1e1e;border-left:3px solid var(--sc,#333);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;}
+.scv{font-family:'VT323',monospace;font-size:28px;color:var(--sc,#666);}
+.scl{font-size:12px;color:#444;letter-spacing:1px;}
+/* YouTube */
+.ytgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.ytcard{background:#0f0f0f;border:1px solid #1e1e1e;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:all .2s;}
+.ytcard:hover{transform:translateY(-3px);border-color:#333;}
+.ytthumb{aspect-ratio:16/9;background:#111;display:flex;align-items:center;justify-content:center;font-family:'VT323',monospace;font-size:18px;color:#333;position:relative;}
+.ytplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4);font-size:36px;opacity:0;transition:opacity .2s;}
+.ytcard:hover .ytplay{opacity:1;}
+.ytinfo{padding:14px 16px;}
+.yttit{font-family:'VT323',monospace;font-size:19px;color:var(--white);line-height:1.3;margin-bottom:4px;}
+.ytmeta{font-size:11px;color:#444;letter-spacing:1px;}
+.ytmore{display:flex;align-items:center;justify-content:center;padding:14px;font-family:'VT323',monospace;font-size:18px;color:#cc0000;text-decoration:none;border:1px solid #2a0000;margin-top:4px;grid-column:1/-1;transition:all .15s;}
+.ytmore:hover{background:#1a0000;border-color:#cc0000;}
+/* FAQ */
+.faqlist{display:flex;flex-direction:column;gap:1px;}
+.faqitem{background:#0f0f0f;border:1px solid #1e1e1e;overflow:hidden;}
+.faqq{font-family:'VT323',monospace;font-size:20px;color:var(--white);padding:16px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .15s;user-select:none;}
+.faqq:hover{color:var(--yellow);}
+.fqa-arr{font-size:13px;transition:transform .2s;color:#444;}
+.faqitem.open .fqa-arr{transform:rotate(180deg);color:var(--yellow);}
+.faqa{font-size:13px;color:#666;line-height:1.9;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;}
+.faqitem.open .faqa{max-height:200px;padding:0 20px 16px;}
+.faqa a{color:var(--yellow);text-decoration:none;}
+/* Changelog */
+.clog{display:flex;flex-direction:column;gap:0;border-left:2px solid #1e1e1e;margin-left:12px;}
+.cle{position:relative;padding:0 0 28px 28px;}
+.cle::before{content:'';position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--clc,#333);border:2px solid var(--bg);}
+.cle:last-child{padding-bottom:0;}
+.cld{font-family:'VT323',monospace;font-size:14px;color:var(--dim);letter-spacing:2px;margin-bottom:4px;}
+.clti{font-family:'VT323',monospace;font-size:22px;color:var(--white);margin-bottom:6px;}
+.clb{font-size:13px;color:#555;line-height:1.8;}
+.cltags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.cltag{font-family:'VT323',monospace;font-size:13px;padding:1px 8px;border:1px solid;}
+/* Footer */
+footer{border-top:1px solid #1a1a1a;padding:40px 24px;text-align:center;font-family:'VT323',monospace;font-size:16px;color:#333;letter-spacing:1px;}
+.fsocial{display:flex;gap:10px;justify-content:center;margin-bottom:14px;}
+.fsocial a{color:#444;text-decoration:none;padding:5px 14px;border:1px solid #1e1e1e;transition:all .15s;}
+.fsocial a:hover{color:var(--yellow);border-color:var(--yellow);}
+@keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+  /* TikTok grid */
+  .ttgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:20px}
+  .ttcard{background:#0f0f0f;border:1px solid #1a1a1a;border-top:2px solid #000;padding:0;overflow:hidden;display:flex;flex-direction:column}
+  .ttthumb{height:80px;background:#111;display:grid;place-items:center;font-size:36px;color:#444}
+  .ttinfo{padding:12px 14px}
+  .tttit{font-family:'VT323',monospace;font-size:17px;color:var(--white);margin-bottom:3px}
+  .ttmeta{font-size:11px;color:#444}
+  /* YouTube placeholder */
+  .ytthumb-placeholder{background:linear-gradient(135deg,#111 0%,#1a1a1a 100%);display:flex;align-items:center;justify-content:center;font-size:32px;color:#333}
+
+</style>
+</head>
+<body>
+<nav class="sqc-nav">
+  <a href="index.html" class="nav-logo"><div class="logo-px">SQ</div><div class="logo-text">SideQuest<span>Community</span></div></a>
+  <ul class="nav-items">
+    <li><a href="index.html" class="nav-active">Startseite</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0">Tutorials <span class="nav-chevron">▾</span></button>
+      <div class="nav-dd1">
+        <div class="dd1i" tabindex="0"><span class="di">▶</span>CC: Tweaked<span class="dbadge">10</span><span class="darr">›</span>
+          <div class="nav-dd2">
+            <div class="dd2h">CC: TWEAKED</div>
+            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="cc_tutorial_part1.html"><span class="d2n">01</span>Hello World</a>
+            <a href="cc_tutorial_part2.html"><span class="d2n">02</span>Variablen</a>
+            <a href="cc_tutorial_part3.html"><span class="d2n">03</span>Kombinieren</a>
+            <a href="cc_tutorial_part4.html"><span class="d2n">04</span>if / else</a>
+            <a href="cc_tutorial_part5.html"><span class="d2n">05</span>elseif · and · or</a>
+            <a href="cc_tutorial_part6.html"><span class="d2n">06</span>Booleans & Schleifen</a>
+            <a href="cc_tutorial_part7.html"><span class="d2n">07</span>Events</a>
+            <a href="cc_tutorial_part8.html"><span class="d2n">08</span>rednet</a>
+            <a href="cc_tutorial_part9.html"><span class="d2n">09</span>Tabellen</a>
+            <a href="cc_tutorial_part10.html"><span class="d2n">10</span>paintutils ★</a>
+          </div>
+        </div>
+        <div class="dd1i dis"><span class="di">▷</span>Create Mod<span class="dsoon">bald</span></div>
+        <div class="dd1i dis"><span class="di">▷</span>Mekanism<span class="dsoon">bald</span></div>
+        <div class="dd1i dis"><span class="di">▷</span>Extreme Reactors<span class="dsoon">bald</span></div>
+        <div class="dd1i dis"><span class="di">▷</span>AE2<span class="dsoon">bald</span></div>
+      </div>
+    </li>
+    <li><a href="server.html">Server</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YT</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TT</a>
+  </div>
+  <button class="nav-hamburger" onclick="document.getElementById('mob').classList.toggle('open')">☰</button>
+</nav>
+<div class="mob-menu" id="mob">
+  <a href="index.html" style="color:var(--yellow)">Startseite</a>
+  <a href="server.html">Server</a>
+  <div class="msec">TUTORIALS › CC: TWEAKED</div>
+  <a href="tutorials_cc.html" class="msub">📋 Übersicht</a>
+  <a href="cc_tutorial_part1.html" class="msub">01 · Hello World</a>
+  <a href="cc_tutorial_part2.html" class="msub">02 · Variablen</a>
+  <a href="cc_tutorial_part3.html" class="msub">03 · Kombinieren</a>
+  <a href="cc_tutorial_part4.html" class="msub">04 · if / else</a>
+  <a href="cc_tutorial_part5.html" class="msub">05 · elseif</a>
+  <a href="cc_tutorial_part6.html" class="msub">06 · Schleifen</a>
+  <a href="cc_tutorial_part7.html" class="msub">07 · Events</a>
+  <a href="cc_tutorial_part8.html" class="msub">08 · rednet</a>
+  <a href="cc_tutorial_part9.html" class="msub">09 · Tabellen</a>
+  <a href="cc_tutorial_part10.html" class="msub">10 · paintutils ★</a>
+  <div class="msec">SOCIAL</div>
+  <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+  <a href="https://youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+</div>
+
+<div class="hero">
+  <div class="hc">
+    <div class="heye">▶ MINECRAFT MODDED COMMUNITY</div>
+    <h1 class="htitle">SideQuest<br><span class="hl">Community</span></h1>
+    <p class="hsub">Tutorials, Server & Community rund um Minecraft Mods. CC: Tweaked, Create, AE2 und mehr – auf Deutsch, Schritt für Schritt.</p>
+    <div class="hbtns">
+      <a href="tutorials_cc.html" class="bp">▶ Tutorials</a>
+      <a href="server.html" class="bg">⬡ Server joinen</a>
+      <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="bs">Discord</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<div class="sec" id="server" style="border-top:1px solid #141414;">
+  <div class="seye">▶ UNSER SERVER</div>
+  <div class="stit">ATM10 <span>Server</span></div>
+  <p class="sdesc">Spiel mit der Community auf unserem All the Mods 10 Server. Einfach joinen!</p>
+  <a href="server.html" class="srv-prev">
+    <div><div class="sp-ip">SideQuest.serv.cx</div><div class="sp-mod">All the Mods 10 · NeoForge 1.21.1</div></div>
+    <div class="sp-stat"><div class="spdot"></div><span id="hs">Verbinde...</span></div>
+    <div class="sparr">▶</div>
+  </a>
+</div>
+
+<div class="sec" id="tutorials" style="border-top:1px solid #141414;">
+  <div class="seye">▶ TUTORIALS</div>
+  <div class="stit">Lerne <span>Mods</span></div>
+  <p class="sdesc">Jede Reihe baut aufeinander auf – von den Grundlagen bis zur Automatisierung.</p>
+  <div class="mgrid">
+    <a href="tutorials_cc.html" class="mcard" style="--mc:var(--yellow)"><div style="font-family:'VT323',monospace;font-size:26px;color:var(--yellow)">CC</div><div class="mcn">CC: Tweaked</div><div class="mcd">Lua-Programmierung, Turtles, rednet – von Hello World bis GUI.</div><div class="mcb">10 TEILE ▶</div></a>
+    <div class="mcard coming" style="--mc:#e8693a"><div style="font-family:'VT323',monospace;font-size:26px;color:#e8693a">CR</div><div class="mcn">Create</div><div class="mcd">Mechanische Automatisierung, Züge, Schiffsgetriebe.</div><div class="mcb">COMING SOON</div></div>
+    <div class="mcard coming" style="--mc:#00c8ff"><div style="font-family:'VT323',monospace;font-size:26px;color:#00c8ff">ME</div><div class="mcn">Mekanism</div><div class="mcd">Fortgeschrittene Energiesysteme und Ore-Processing.</div><div class="mcb">COMING SOON</div></div>
+    <div class="mcard coming" style="--mc:#ff6b35"><div style="font-family:'VT323',monospace;font-size:26px;color:#ff6b35">ER</div><div class="mcn">Extreme Reactors</div><div class="mcd">Multiblock-Reaktoren bauen und automatisieren.</div><div class="mcb">COMING SOON</div></div>
+    <div class="mcard coming" style="--mc:#7fc97f"><div style="font-family:'VT323',monospace;font-size:26px;color:#7fc97f">AE</div><div class="mcn">AE2</div><div class="mcd">Applied Energistics 2 – ME-Netzwerke & Crafting.</div><div class="mcb">COMING SOON</div></div>
+  </div>
+</div>
+
+<div class="sec" id="about" style="border-top:1px solid #141414;">
+  <div class="agrid">
+    <div>
+      <div class="atag">▶ DER KERL DAHINTER</div>
+      <div class="aname">SideQuestChris</div>
+      <p class="atxt">Hey! Ich bin Chris – Minecraft-Enthusiast, Modpack-Nerd und Content Creator. Ich betreibe einen ATM10-Server für ~25 Spieler und erstelle Tutorials für alles rund um Minecraft Mods.</p>
+      <p class="atxt">Mein Fokus liegt auf CC: Tweaked, Automatisierung und technischen Mods. Auf YouTube und TikTok teile ich Guides, Showcases und Server-Content.</p>
+      <div class="asocial">
+        <a href="https://youtube.com/@SideQuestChrisYT" target="_blank" class="ayt">▶ YouTube</a>
+        <a href="https://www.tiktok.com/@sidequestchris4" target="_blank" class="att">♪ TikTok</a>
+        <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="adc">💬 Discord</a>
+      </div>
+    </div>
+    <div class="schips">
+      <div class="schip" style="--sc:var(--yellow)"><div class="scl">TUTORIALS</div><div class="scv">10</div></div>
+      <div class="schip" style="--sc:var(--green)"><div class="scl">SERVER SPIELER</div><div class="scv">~25</div></div>
+      <div class="schip" style="--sc:var(--cyan)"><div class="scl">MODPACK</div><div class="scv" style="font-size:22px">ATM10</div></div>
+      <div class="schip" style="--sc:#5865f2"><div class="scl">DISCORD</div><div class="scv" style="font-size:22px">JOIN ▶</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="youtube" style="border-top:1px solid #141414;">
+  <div class="seye">▶ YOUTUBE</div>
+  <div class="stit">Neueste <span>Videos</span></div>
+  <p class="sdesc">Tutorials, Showcases & Server-Content – abonniere für neue Guides.</p>
+  <div class="ytgrid" id="yt-grid">
+    <!-- Placeholder cards shown until JS loads -->
+    <a href="https://youtube.com/@SideQuestChrisYT" target="_blank" class="ytcard">
+      <div class="ytthumb ytthumb-placeholder"><div class="ytplay">▶</div></div>
+      <div class="ytinfo"><div class="yttit">CC: Tweaked #1 – Hello World</div><div class="ytmeta">SideQuestChris · Tutorial</div></div>
+    </a>
+    <a href="https://youtube.com/@SideQuestChrisYT" target="_blank" class="ytcard">
+      <div class="ytthumb ytthumb-placeholder"><div class="ytplay">▶</div></div>
+      <div class="ytinfo"><div class="yttit">ATM10 Server Showcase</div><div class="ytmeta">SideQuestChris · Showcase</div></div>
+    </a>
+    <a href="https://youtube.com/@SideQuestChrisYT" target="_blank" class="ytcard">
+      <div class="ytthumb ytthumb-placeholder"><div class="ytplay">▶</div></div>
+      <div class="ytinfo"><div class="yttit">CC: Tweaked Tutorial Serie</div><div class="ytmeta">SideQuestChris · Guides</div></div>
+    </a>
+  </div>
+  <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+    <a href="https://youtube.com/@SideQuestChrisYT" target="_blank" class="ytmore">Alle Videos auf YouTube ▶</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT?sub_confirmation=1" target="_blank" class="ytmore" style="background:#cc0000;border-color:#cc0000">▶ Abonnieren</a>
+  </div>
+  <p style="margin-top:10px;font-size:11px;color:#2a2a2a">
+    Für echte Live-Daten: YouTube Data API v3 Key in yt-config.js eintragen → Videos werden automatisch geladen.
+  </p>
+</div>
+<div class="sec" id="tiktok" style="border-top:1px solid #141414;">
+  <div class="seye">▶ TIKTOK</div>
+  <div class="stit">Kurze <span>Clips</span></div>
+  <p class="sdesc">Schnelle Minecraft-Tipps, Mod-Shortcuts und Server-Content in kurz.</p>
+  <div class="ttgrid">
+    <div class="ttcard">
+      <div class="ttthumb">♪</div>
+      <div class="ttinfo">
+        <div class="tttit">Minecraft Mod-Tipps</div>
+        <div class="ttmeta">@sidequestchris4 · Shorts</div>
+      </div>
+    </div>
+    <div class="ttcard">
+      <div class="ttthumb">♪</div>
+      <div class="ttinfo">
+        <div class="tttit">CC: Tweaked Quickstart</div>
+        <div class="ttmeta">@sidequestchris4 · Tutorial</div>
+      </div>
+    </div>
+    <div class="ttcard">
+      <div class="ttthumb">♪</div>
+      <div class="ttinfo">
+        <div class="tttit">ATM10 Server Moments</div>
+        <div class="ttmeta">@sidequestchris4 · Community</div>
+      </div>
+    </div>
+  </div>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank" class="ytmore" style="margin-top:16px;display:inline-block;background:#000;border-color:#333;color:#fff">♪ TikTok folgen ↗</a>
+</div>
+
+
+
+<div class="sec" id="faq" style="border-top:1px solid #141414;">
+  <div class="seye">▶ FAQ</div>
+  <div class="stit">Häufige <span>Fragen</span></div>
+  <div class="faqlist">
+    <div class="faqitem">
+      <div class="faqq" onclick="this.parentElement.classList.toggle('open')">Wie kann ich auf dem Server mitspielen? <span class="fqa-arr">▾</span></div>
+      <div class="faqa">Installiere <strong>All the Mods 10</strong> über CurseForge oder ATLauncher, öffne Multiplayer und gib <strong>SideQuest.serv.cx</strong> ein. Details auf der <a href="server.html">Server-Seite</a>.</div>
+    </div>
+    <div class="faqitem">
+      <div class="faqq" onclick="this.parentElement.classList.toggle('open')">Gibt es eine Whitelist? <span class="fqa-arr">▾</span></div>
+      <div class="faqa">Der Server ist aktuell offen – einfach joinen! Bei Fragen tritt unserem <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a> bei.</div>
+    </div>
+    <div class="faqitem">
+      <div class="faqq" onclick="this.parentElement.classList.toggle('open')">Welche Modpack-Version? <span class="fqa-arr">▾</span></div>
+      <div class="faqa"><strong>All the Mods 10</strong> auf NeoForge für Minecraft 1.21.1. Die genaue Version siehst du immer auf der Server-Seite.</div>
+    </div>
+    <div class="faqitem">
+      <div class="faqq" onclick="this.parentElement.classList.toggle('open')">Für wen sind die Tutorials? <span class="fqa-arr">▾</span></div>
+      <div class="faqa">Für Einsteiger – keine Vorkenntnisse nötig! Jede Serie baut schrittweise auf. Perfekt als Einstieg und als Nachschlagewerk.</div>
+    </div>
+    <div class="faqitem">
+      <div class="faqq" onclick="this.parentElement.classList.toggle('open')">Kann ich Themen vorschlagen? <span class="fqa-arr">▾</span></div>
+      <div class="faqa">Sehr gerne! Schreib uns auf <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a> oder kommentiere auf <a href="https://youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>.</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="news" style="border-top:1px solid #141414;">
+  <div class="seye">▶ CHANGELOG</div>
+  <div class="stit">Was ist <span>neu?</span></div>
+  <div class="clog">
+    <div class="cle" style="--clc:var(--yellow)">
+      <div class="cld">MRZ 2026</div><div class="clti">Website Launch 🎉</div>
+      <div class="clb">SideQuestCommunity Website ist online! Landing Page, Server-Status, CC: Tweaked Tutorial-Serie mit 10 Teilen.</div>
+      <div class="cltags"><span class="cltag" style="color:var(--yellow);border-color:#2a2200;background:#111100">NEU</span><span class="cltag" style="color:var(--green);border-color:#1a2a1a;background:#0a110a">WEBSITE</span></div>
+    </div>
+    <div class="cle" style="--clc:var(--cyan)">
+      <div class="cld">MRZ 2026</div><div class="clti">CC: Tweaked Serie komplett</div>
+      <div class="clb">Alle 10 Teile der CC: Tweaked Tutorial-Serie sind fertig – von Hello World bis paintutils GUI.</div>
+      <div class="cltags"><span class="cltag" style="color:var(--cyan);border-color:#1a2a3a;background:#0a1118">TUTORIAL</span></div>
+    </div>
+    <div class="cle" style="--clc:var(--green)">
+      <div class="cld">MRZ 2026</div><div class="clti">ATM10 Server läuft stabil</div>
+      <div class="clb">Server auf NeoForge 1.21.1, regelmäßige Modpack-Updates.</div>
+      <div class="cltags"><span class="cltag" style="color:var(--green);border-color:#1a2a1a;background:#0a110a">SERVER</span></div>
+    </div>
+    <div class="cle" style="--clc:#5865f2">
+      <div class="cld">DEMNÄCHST</div><div class="clti">Create Mod Tutorial-Serie</div>
+      <div class="clb">Nächste Tutorial-Reihe in Planung: Create Mod – Mechanische Automatisierung von Grund auf.</div>
+      <div class="cltags"><span class="cltag" style="color:#5865f2;border-color:#1a1d4a;background:#0a0c1a">GEPLANT</span></div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  <div class="fsocial">
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+    <a href="https://youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+  </div>
+  SideQuestCommunity · SideQuest.serv.cx · ATM10 · Auf Deutsch
+</footer>
+
+<script>
+async function heroStatus(){
+  try{
+    const r=await fetch('https://api.mcsrvstat.us/3/SideQuest.serv.cx');
+    const d=await r.json();
+    const el=document.getElementById('hs');
+    if(d.online){el.textContent=`Online · ${d.players?.online??0}/${d.players?.max??'?'} Spieler`;el.style.color='var(--green)';}
+    else{el.textContent='Offline';el.style.color='var(--red)';document.querySelector('.spdot').style.animation='none';document.querySelector('.spdot').style.background='var(--red)';}
+  }catch(e){document.getElementById('hs').textContent='Status unbekannt';}
+}
+heroStatus();
+</script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC: Tweaked Tutorial #8 – rednet · SideQuestCommunity</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+
+<nav class="sqc-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-px">SQ</div>
+    <div class="logo-text">SideQuest<span>Community</span></div>
+  </a>
+  <ul class="nav-items">
+    <li><a href="index.html" data-i18n="nav_startseite">Startseite</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_tutorials_btn">Tutorials</span> <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <div class="dd1-item dd1-active" tabindex="0">
+          <span class="dd1-icon">▶</span>CC: Tweaked<span class="dd1-badge">10</span><span class="dd1-arrow">›</span>
+          <div class="nav-dropdown-l2">
+            <div class="dd2-header">CC: TWEAKED</div>
+            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="cc_tutorial_part1.html"><span class="dd2-num">01</span>Hello, World!</a>
+            <a href="cc_tutorial_part2.html"><span class="dd2-num">02</span>Variablen</a>
+            <a href="cc_tutorial_part3.html"><span class="dd2-num">03</span>Variablen kombinieren</a>
+            <a href="cc_tutorial_part4.html"><span class="dd2-num">04</span>if / else</a>
+            <a href="cc_tutorial_part5.html"><span class="dd2-num">05</span>elseif · and · or · not</a>
+            <a href="cc_tutorial_part6.html"><span class="dd2-num">06</span>Booleans & Schleifen</a>
+            <a href="cc_tutorial_part7.html"><span class="dd2-num">07</span>Events</a>
+            <a href="cc_tutorial_part8.html" class="dd2-active"><span class="dd2-num">08</span>rednet</a>
+            <a href="cc_tutorial_part9.html"><span class="dd2-num">09</span>Tabellen</a>
+            <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils</a>
+          </div>
+        </div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+      </div>
+    </li>
+    <li><a href="server.html" data-i18n="nav_server">Server</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cc_tutorial_part7.html">◀ 07</a>
+    <a href="cc_tutorial_part9.html">09 ▶</a>
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YT</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TT</a>
+  </div>
+  <button class="nav-hamburger">☰</button>
+</nav>
+
+<div class="nav-mobile-menu" id="sqc-mob">
+  <a href="index.html">Startseite</a>
+  <a href="server.html">Server</a>
+  <div class="mob-sec">CC: TWEAKED</div>
+  <a class="mob-sub" href="tutorials_cc.html">📋 Übersicht</a>
+  <a class="mob-sub" href="cc_tutorial_part1.html">01 · Hello, World!</a>
+  <a class="mob-sub" href="cc_tutorial_part2.html">02 · Variablen</a>
+  <a class="mob-sub" href="cc_tutorial_part3.html">03 · Variablen kombinieren</a>
+  <a class="mob-sub" href="cc_tutorial_part4.html">04 · if / else</a>
+  <a class="mob-sub" href="cc_tutorial_part5.html">05 · elseif · and · or · not</a>
+  <a class="mob-sub" href="cc_tutorial_part6.html">06 · Booleans & Schleifen</a>
+  <a class="mob-sub" href="cc_tutorial_part7.html">07 · Events</a>
+  <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
+  <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
+  <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils</a>
+  <div class="mob-sec">SOCIAL</div>
+  <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+  <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+</div>
+
+<div class="container">
+
+  <div class="episode-title">
+    <div class="ep-num" data-i18n="p8_ep">▶ Episode 08</div>
+    <h2 data-i18n="p8_title">rednet</h2>
+    <p class="subtitle" data-i18n="p8_sub">Computer vernetzen · senden · empfangen · broadcast</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="card" data-label="KONZEPT" data-label-i18n="label_concept">
+    <h3 data-i18n="p8_concept_h">Was ist rednet?</h3>
+    <p>Mit <strong style="color:var(--cc-cyan)">rednet</strong> können CC-Computer über ein <strong style="color:var(--cc-yellow)">Wireless Modem</strong> miteinander kommunizieren – Nachrichten senden, empfangen, und an alle gleichzeitig broadcasten. Perfekt für ein verteiltes Reaktor-Netzwerk auf deinem Server.</p>
+  </div>
+
+  <div class="network-diagram">
+    <div class="nd-computer">
+      <div class="nd-box sender">Computer A</div>
+      <div class="nd-id">ID: 1</div>
+      <div class="nd-label">SENDER</div>
+    </div>
+    <div class="nd-arrow">
+      <span>──▶</span>
+      <span class="arrow-label">rednet.send(2, msg)</span>
+    </div>
+    <div class="nd-computer">
+      <div class="nd-box receiver">Computer B</div>
+      <div class="nd-id">ID: 2</div>
+      <div class="nd-label">EMPFÄNGER</div>
+    </div>
+    <div class="nd-arrow">
+      <span style="color:#333">┄┄▶</span>
+      <span class="arrow-label">broadcast</span>
+    </div>
+    <div class="nd-computer">
+      <div class="nd-box broadcast">Computer C</div>
+      <div class="nd-id">ID: 3</div>
+      <div class="nd-label">ALLE</div>
+    </div>
+  </div>
+
+  <div class="card" data-label="VORAUSSETZUNGEN" data-label-i18n="label_prereq">
+    <h3 data-i18n="p8_prereq_h">Was brauchst du?</h3>
+    <ul>
+      <li>Mindestens <strong style="color:var(--cc-yellow)">2 Computer</strong> (oder Turtles)</li>
+      <li>Je ein <strong style="color:var(--cc-yellow)">Wireless Modem</strong> – an einer Seite des Computers platzieren</li>
+      <li>Beide Computer in Modem-Reichweite (Standard: 64 Blöcke, Ender Modem: unbegrenzt)</li>
+      <li>Eigene ID abfragen mit <span class="inline-code">os.getComputerID()</span></li>
+    </ul>
+  </div>
+
+  <div class="card" data-label="REDNET API" data-label-i18n="label_rednet">
+    <h3 data-i18n="p8_api_h">Die wichtigsten Funktionen</h3>
+    <table class="api-table">
+      <tr><th>Funktion</th><th>Parameter</th><th>Was sie tut</th></tr>
+      <tr><td class="api-name">rednet.open</td><td class="api-args">"side"</td><td class="api-desc">Modem öffnen ("right", "top" ...)</td></tr>
+      <tr><td class="api-name">rednet.close</td><td class="api-args">"side"</td><td class="api-desc">Modem schließen</td></tr>
+      <tr><td class="api-name">rednet.send</td><td class="api-args">id, msg, proto?</td><td class="api-desc">Nachricht an bestimmte ID senden</td></tr>
+      <tr><td class="api-name">rednet.broadcast</td><td class="api-args">msg, proto?</td><td class="api-desc">An ALLE Computer senden</td></tr>
+      <tr><td class="api-name">rednet.receive</td><td class="api-args">proto?, timeout?</td><td class="api-desc">Auf Nachricht warten → id, msg, proto</td></tr>
+      <tr><td class="api-name">os.getComputerID</td><td class="api-args">–</td><td class="api-desc">Eigene Computer-ID abfragen</td></tr>
+    </table>
+  </div>
+
+  <div class="section-divider">
+    <div class="sd-label sd-a">PART A · SENDEN &amp; EMPFANGEN</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-card col-sender">
+      <div class="col-header">▶ sender.lua (Computer A)</div>
+      <div class="code-block"><pre><span class="fn">rednet.open</span>(<span class="str">"right"</span>)
+
+<span class="kw">local</span> <span class="var">ziel</span> = <span class="num">2</span>
+<span class="fn">rednet.send</span>(<span class="var">ziel</span>, <span class="str">"Hallo B!"</span>)
+<span class="fn">print</span>(<span class="str">"Gesendet!"</span>)
+
+<span class="fn">rednet.close</span>(<span class="str">"right"</span>)</pre></div>
+    </div>
+    <div class="col-card col-receiver">
+      <div class="col-header">▶ empfaenger.lua (Computer B)</div>
+      <div class="code-block"><pre><span class="fn">rednet.open</span>(<span class="str">"right"</span>)
+
+<span class="kw">local</span> <span class="var">id</span>, <span class="var">msg</span> = <span class="fn">rednet.receive</span>()
+<span class="fn">print</span>(<span class="str">"Von: "</span> <span class="op">..</span> <span class="var">id</span>)
+<span class="fn">print</span>(<span class="str">"Msg: "</span> <span class="op">..</span> <span class="var">msg</span>)
+
+<span class="fn">rednet.close</span>(<span class="str">"right"</span>)</pre></div>
+    </div>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS — Computer B (ID: 2)</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">empfaenger</span></div>
+      <div class="t-dim">-- wartet auf Nachricht...</div>
+      <div class="t-out">Von: 1</div>
+      <div class="t-out">Msg: Hallo B!</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">[i]</div>
+    <div><span class="inline-code">rednet.receive()</span> blockiert das Programm bis eine Nachricht ankommt. Mit Timeout: <span class="inline-code">rednet.receive(nil, 5)</span> wartet maximal 5 Sekunden – danach gibt es <span class="inline-code">nil</span> zurück.</div>
+  </div>
+
+  <div class="section-divider">
+    <div class="sd-label sd-b">PART B · BROADCAST</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-card col-sender">
+      <div class="col-header">▶ alarm_sender.lua</div>
+      <div class="code-block"><pre><span class="fn">rednet.open</span>(<span class="str">"right"</span>)
+
+<span class="fn">rednet.broadcast</span>(
+    <span class="str">"ALARM: Überhitzung!"</span>
+)
+<span class="fn">print</span>(<span class="str">"Alarm gesendet!"</span>)
+
+<span class="fn">rednet.close</span>(<span class="str">"right"</span>)</pre></div>
+    </div>
+    <div class="col-card col-receiver">
+      <div class="col-header">▶ alarm_empfaenger.lua</div>
+      <div class="code-block"><pre><span class="fn">rednet.open</span>(<span class="str">"right"</span>)
+<span class="fn">print</span>(<span class="str">"Warte auf Alarme..."</span>)
+
+<span class="kw">while</span> <span class="kw">true</span> <span class="kw">do</span>
+    <span class="kw">local</span> <span class="var">id</span>, <span class="var">msg</span> =
+        <span class="fn">rednet.receive</span>()
+    <span class="fn">print</span>(<span class="str">"["</span><span class="op">..</span><span class="var">id</span><span class="op">..</span><span class="str">"] "</span><span class="op">..</span><span class="var">msg</span>)
+<span class="kw">end</span></pre></div>
+    </div>
+  </div>
+
+  <div class="section-divider">
+    <div class="sd-label sd-c">PART C · PROTOKOLLE</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="card" data-label="KONZEPT" data-label-i18n="label_concept">
+    <h3 data-i18n="p8_proto_h">Nachrichten filtern mit Protokollen</h3>
+    <p>Mit einem optionalen dritten Parameter versiehst du Nachrichten mit einem <strong style="color:var(--cc-orange)">Protokoll-Label</strong>. Der Empfänger hört dann nur auf ein bestimmtes Protokoll – sinnvoll wenn mehrere Programme gleichzeitig funken.</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">protokoll.lua</div>
+    <pre><span class="fn">rednet.open</span>(<span class="str">"right"</span>)
+
+<span class="cmt">-- Mit Protokoll senden</span>
+<span class="fn">rednet.broadcast</span>(<span class="str">"temp:950"</span>, <span class="str">"reaktor_status"</span>)
+<span class="fn">rednet.broadcast</span>(<span class="str">"ALARM!"</span>,   <span class="str">"reaktor_alarm"</span>)
+
+<span class="cmt">-- Nur "reaktor_alarm" empfangen, max 5 Sek</span>
+<span class="kw">local</span> <span class="var">id</span>, <span class="var">msg</span> = <span class="fn">rednet.receive</span>(<span class="str">"reaktor_alarm"</span>, <span class="num">5</span>)
+
+<span class="kw">if</span> <span class="var">msg</span> <span class="kw">then</span>
+    <span class="fn">print</span>(<span class="str">"Alarm von #"</span> <span class="op">..</span> <span class="var">id</span> <span class="op">..</span> <span class="str">": "</span> <span class="op">..</span> <span class="var">msg</span>)
+<span class="kw">else</span>
+    <span class="fn">print</span>(<span class="str">"Kein Alarm empfangen."</span>)
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="section-divider">
+    <div class="sd-label sd-d">PART D · MODEM AUTO-ERKENNUNG</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="warn">
+    <div class="warn-icon">[!]</div>
+    <div>Das Modem muss auf der <strong style="color:var(--cc-yellow)">richtigen Seite</strong> sein! Mit <span class="inline-code">peripheral.find("modem")</span> findest du es automatisch – das ist robuster als eine feste Seite hardcoden.</div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">auto_modem.lua</div>
+    <pre><span class="kw">local</span> <span class="var">modem</span> = <span class="fn">peripheral.find</span>(<span class="str">"modem"</span>)
+
+<span class="kw">if</span> <span class="kw">not</span> <span class="var">modem</span> <span class="kw">then</span>
+    <span class="fn">print</span>(<span class="str">"Kein Modem gefunden!"</span>)
+<span class="kw">else</span>
+    <span class="fn">rednet.open</span>(<span class="fn">peripheral.getName</span>(<span class="var">modem</span>))
+    <span class="fn">print</span>(<span class="str">"Online! Meine ID: "</span> <span class="op">..</span> <span class="fn">os.getComputerID</span>())
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="final-card">
+    <div class="final-header"><span data-i18n="tut_final_hdr">★ ABSCHLUSSPROGRAMM – </span>Reaktor Netzwerk-Monitor</div>
+    <div class="code-block"><pre><span class="cmt">-- Monitor-Computer: empfängt alle Reaktor-Daten</span>
+<span class="kw">local</span> <span class="var">modem</span> = <span class="fn">peripheral.find</span>(<span class="str">"modem"</span>)
+<span class="fn">rednet.open</span>(<span class="fn">peripheral.getName</span>(<span class="var">modem</span>))
+
+<span class="fn">print</span>(<span class="str">"=== Netzwerk-Monitor ==="</span>)
+<span class="fn">print</span>(<span class="str">"ID: "</span> <span class="op">..</span> <span class="fn">os.getComputerID</span>())
+<span class="fn">print</span>(<span class="str">"Warte auf Reaktor-Daten..."</span>)
+
+<span class="kw">while</span> <span class="kw">true</span> <span class="kw">do</span>
+    <span class="kw">local</span> <span class="var">id</span>, <span class="var">msg</span> = <span class="fn">rednet.receive</span>(<span class="str">"reaktor"</span>)
+    <span class="fn">print</span>(<span class="str">"Reaktor #"</span> <span class="op">..</span> <span class="var">id</span> <span class="op">..</span> <span class="str">": "</span> <span class="op">..</span> <span class="var">msg</span>)
+<span class="kw">end</span></pre></div>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS — Monitor (ID: 10)</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">netzmonitor</span></div>
+      <div class="t-out">=== Netzwerk-Monitor ===</div>
+      <div class="t-out">ID: 10</div>
+      <div class="t-out">Warte auf Reaktor-Daten...</div>
+      <div class="t-out">Reaktor #1: Temp 750C [OK]</div>
+      <div class="t-out-yellow">Reaktor #2: Temp 890C [WARNUNG]</div>
+      <div class="t-out-red">Reaktor #3: ALARM Überhitzung!</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="learned">
+    <h3><span data-i18n="tut_learned_h">✔ Das hast du gelernt</span></h3>
+    <ul>
+      <li data-i18n-html="p8_learned_1"><strong style="color:var(--cc-cyan)">rednet.open()</strong> – Wireless Modem aktivieren</li>
+      <li data-i18n-html="p8_learned_2"><strong style="color:var(--cc-cyan)">rednet.send(id, msg)</strong> – gezielt an eine ID senden</li>
+      <li data-i18n-html="p8_learned_3"><strong style="color:var(--cc-purple)">rednet.broadcast(msg)</strong> – an alle gleichzeitig</li>
+      <li data-i18n-html="p8_learned_4"><strong style="color:var(--cc-cyan)">rednet.receive(proto, timeout)</strong> – empfangen & filtern</li>
+      <li data-i18n-html="p8_learned_5">Protokoll-Labels für getrennte Kommunikationskanäle</li>
+      <li data-i18n-html="p8_learned_6"><strong style="color:var(--cc-green)">peripheral.find("modem")</strong> – Modem automatisch erkennen</li>
+      <li data-i18n-html="p8_learned_7"><strong style="color:var(--cc-orange)">os.getComputerID()</strong> – eigene ID abfragen</li>
+    </ul>
+  </div>
+
+  <div class="next-ep">
+    <div>
+      <div class="next-label" data-i18n="tut_next_label">NÄCHSTES TUTORIAL</div>
+      <div class="next-title" data-i18n="p8_next">Teil 9 → Tabellen</div>
+    </div>
+    <div class="arrow">▶▶</div>
+  </div>
+
+</div>
+<footer data-i18n="footer_brand">SideQuestChris · CC: Tweaked Tutorial-Serie · Teil 8 von 10</footer>
+
+
+<script src="main.js"></script>
+<script src="i18n.js"></script>
+</body>
+</html>

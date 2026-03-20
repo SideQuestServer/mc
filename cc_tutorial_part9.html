@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC: Tweaked Tutorial #9 – Tabellen · SideQuestCommunity</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+
+<nav class="sqc-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-px">SQ</div>
+    <div class="logo-text">SideQuest<span>Community</span></div>
+  </a>
+  <ul class="nav-items">
+    <li><a href="index.html" data-i18n="nav_startseite">Startseite</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_tutorials_btn">Tutorials</span> <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <div class="dd1-item dd1-active" tabindex="0">
+          <span class="dd1-icon">▶</span>CC: Tweaked<span class="dd1-badge">10</span><span class="dd1-arrow">›</span>
+          <div class="nav-dropdown-l2">
+            <div class="dd2-header">CC: TWEAKED</div>
+            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="cc_tutorial_part1.html"><span class="dd2-num">01</span>Hello, World!</a>
+            <a href="cc_tutorial_part2.html"><span class="dd2-num">02</span>Variablen</a>
+            <a href="cc_tutorial_part3.html"><span class="dd2-num">03</span>Variablen kombinieren</a>
+            <a href="cc_tutorial_part4.html"><span class="dd2-num">04</span>if / else</a>
+            <a href="cc_tutorial_part5.html"><span class="dd2-num">05</span>elseif · and · or · not</a>
+            <a href="cc_tutorial_part6.html"><span class="dd2-num">06</span>Booleans & Schleifen</a>
+            <a href="cc_tutorial_part7.html"><span class="dd2-num">07</span>Events</a>
+            <a href="cc_tutorial_part8.html"><span class="dd2-num">08</span>rednet</a>
+            <a href="cc_tutorial_part9.html" class="dd2-active"><span class="dd2-num">09</span>Tabellen</a>
+            <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils</a>
+          </div>
+        </div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+      </div>
+    </li>
+    <li><a href="server.html" data-i18n="nav_server">Server</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cc_tutorial_part8.html">◀ 08</a>
+    <a href="cc_tutorial_part10.html">10 ▶</a>
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YT</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TT</a>
+  </div>
+  <button class="nav-hamburger">☰</button>
+</nav>
+
+<div class="nav-mobile-menu" id="sqc-mob">
+  <a href="index.html">Startseite</a>
+  <a href="server.html">Server</a>
+  <div class="mob-sec">CC: TWEAKED</div>
+  <a class="mob-sub" href="tutorials_cc.html">📋 Übersicht</a>
+  <a class="mob-sub" href="cc_tutorial_part1.html">01 · Hello, World!</a>
+  <a class="mob-sub" href="cc_tutorial_part2.html">02 · Variablen</a>
+  <a class="mob-sub" href="cc_tutorial_part3.html">03 · Variablen kombinieren</a>
+  <a class="mob-sub" href="cc_tutorial_part4.html">04 · if / else</a>
+  <a class="mob-sub" href="cc_tutorial_part5.html">05 · elseif · and · or · not</a>
+  <a class="mob-sub" href="cc_tutorial_part6.html">06 · Booleans & Schleifen</a>
+  <a class="mob-sub" href="cc_tutorial_part7.html">07 · Events</a>
+  <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
+  <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
+  <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils</a>
+  <div class="mob-sec">SOCIAL</div>
+  <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+  <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+</div>
+
+<div class="container">
+
+  <div class="episode-title">
+    <div class="ep-num" data-i18n="p9_ep">▶ Episode 09</div>
+    <h2 data-i18n="p9_title">Tabellen</h2>
+    <p class="subtitle" data-i18n="p9_sub">Arrays · Key-Value · ipairs · pairs</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="card" data-label="KONZEPT" data-label-i18n="label_concept">
+    <h3 data-i18n="p9_concept_h">Was ist eine Tabelle?</h3>
+    <p>Eine Tabelle ist Lua's universeller Container – sie kann als <strong style="color:var(--cc-orange)">Array</strong> (nummerierte Liste) oder als <strong style="color:var(--cc-cyan)">Dictionary</strong> (Schlüssel-Wert-Paare) verwendet werden. Alles in einem Typ.</p>
+  </div>
+
+  <!-- Part A: Array -->
+  <div class="section-divider">
+    <div class="sd-label sd-a">PART A · ARRAY (LISTE)</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="tbl-viz">
+    <div class="tbl-viz-col">
+      <div class="tvc-header">INDEX</div>
+      <div class="tvc-cell tvc-idx">1</div>
+      <div class="tvc-cell tvc-idx">2</div>
+      <div class="tvc-cell tvc-idx">3</div>
+      <div class="tvc-cell tvc-idx">4</div>
+    </div>
+    <div class="tbl-viz-col">
+      <div class="tvc-header">WERT</div>
+      <div class="tvc-cell tvc-val">"Reaktor A"</div>
+      <div class="tvc-cell tvc-val">"Reaktor B"</div>
+      <div class="tvc-cell tvc-val">"Reaktor C"</div>
+      <div class="tvc-cell tvc-val">"Reaktor D"</div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">[i]</div>
+    <div>In Lua beginnen Arrays bei Index <strong style="color:var(--cc-yellow)">1</strong>, nicht bei 0 wie in den meisten anderen Sprachen!</div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">array.lua</div>
+    <pre><span class="kw">local</span> <span class="var">reaktoren</span> = {<span class="str">"Reaktor A"</span>, <span class="str">"Reaktor B"</span>, <span class="str">"Reaktor C"</span>}
+
+<span class="cmt">-- Einzeln zugreifen</span>
+<span class="fn">print</span>(<span class="var">reaktoren</span>[<span class="num">1</span>])  <span class="cmt">-- Reaktor A</span>
+<span class="fn">print</span>(<span class="var">reaktoren</span>[<span class="num">2</span>])  <span class="cmt">-- Reaktor B</span>
+
+<span class="cmt">-- Länge mit #</span>
+<span class="fn">print</span>(<span class="str">"Anzahl: "</span> <span class="op">..</span> <span class="op">#</span><span class="var">reaktoren</span>)
+
+<span class="cmt">-- Eintrag hinzufügen</span>
+<span class="var">reaktoren</span>[<span class="num">4</span>] = <span class="str">"Reaktor D"</span>
+<span class="fn">print</span>(<span class="str">"Jetzt: "</span> <span class="op">..</span> <span class="op">#</span><span class="var">reaktoren</span>)
+
+<span class="cmt">-- Mit ipairs durchlaufen</span>
+<span class="kw">for</span> <span class="var">i</span>, <span class="var">name</span> <span class="kw">in</span> <span class="fn">ipairs</span>(<span class="var">reaktoren</span>) <span class="kw">do</span>
+    <span class="fn">print</span>(<span class="var">i</span> <span class="op">..</span> <span class="str">": "</span> <span class="op">..</span> <span class="var">name</span>)
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS 1.9 — Computer #1</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">array</span></div>
+      <div class="t-out">Reaktor A</div>
+      <div class="t-out">Reaktor B</div>
+      <div class="t-out">Anzahl: 3</div>
+      <div class="t-out">Jetzt: 4</div>
+      <div class="t-out">1: Reaktor A</div>
+      <div class="t-out">2: Reaktor B</div>
+      <div class="t-out">3: Reaktor C</div>
+      <div class="t-out">4: Reaktor D</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <!-- Part B: Key-Value -->
+  <div class="section-divider">
+    <div class="sd-label sd-b">PART B · KEY-VALUE (DICTIONARY)</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="tbl-viz">
+    <div class="tbl-viz-col">
+      <div class="tvc-header">SCHLÜSSEL</div>
+      <div class="tvc-cell tvc-key">name</div>
+      <div class="tvc-cell tvc-key">temp</div>
+      <div class="tvc-cell tvc-key">online</div>
+      <div class="tvc-cell tvc-key">energie</div>
+    </div>
+    <div class="tbl-viz-col">
+      <div class="tvc-header">WERT</div>
+      <div class="tvc-cell tvc-val">"Reaktor A"</div>
+      <div class="tvc-cell tvc-val">750</div>
+      <div class="tvc-cell tvc-val">true</div>
+      <div class="tvc-cell tvc-val">92</div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">keyvalue.lua</div>
+    <pre><span class="kw">local</span> <span class="var">reaktor</span> = {
+    <span class="var">name</span>    = <span class="str">"Reaktor A"</span>,
+    <span class="var">temp</span>    = <span class="num">750</span>,
+    <span class="var">online</span>  = <span class="kw">true</span>,
+    <span class="var">energie</span> = <span class="num">92</span>
+}
+
+<span class="cmt">-- Zugriff mit Punkt oder eckiger Klammer</span>
+<span class="fn">print</span>(<span class="var">reaktor</span>.<span class="var">name</span>)
+<span class="fn">print</span>(<span class="var">reaktor</span>[<span class="str">"temp"</span>])
+
+<span class="cmt">-- Wert ändern</span>
+<span class="var">reaktor</span>.<span class="var">temp</span> = <span class="num">820</span>
+
+<span class="cmt">-- Mit pairs alle Einträge ausgeben</span>
+<span class="kw">for</span> <span class="var">key</span>, <span class="var">val</span> <span class="kw">in</span> <span class="fn">pairs</span>(<span class="var">reaktor</span>) <span class="kw">do</span>
+    <span class="fn">print</span>(<span class="var">key</span> <span class="op">..</span> <span class="str">" = "</span> <span class="op">..</span> <span class="fn">tostring</span>(<span class="var">val</span>))
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS 1.9 — Computer #1</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">keyvalue</span></div>
+      <div class="t-out">Reaktor A</div>
+      <div class="t-out">750</div>
+      <div class="t-out">name = Reaktor A</div>
+      <div class="t-out">temp = 820</div>
+      <div class="t-out">online = true</div>
+      <div class="t-out">energie = 92</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <!-- Part C: Tabelle in Tabelle -->
+  <div class="section-divider">
+    <div class="sd-label sd-c">PART C · TABELLEN VERSCHACHTELN</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">nested.lua</div>
+    <pre><span class="cmt">-- Tabelle aus Tabellen (Liste von Reaktoren)</span>
+<span class="kw">local</span> <span class="var">reaktoren</span> = {
+    { <span class="var">name</span>=<span class="str">"Reaktor A"</span>, <span class="var">temp</span>=<span class="num">650</span> },
+    { <span class="var">name</span>=<span class="str">"Reaktor B"</span>, <span class="var">temp</span>=<span class="num">920</span> },
+    { <span class="var">name</span>=<span class="str">"Reaktor C"</span>, <span class="var">temp</span>=<span class="num">1050</span> },
+}
+
+<span class="kw">for</span> <span class="var">i</span>, <span class="var">r</span> <span class="kw">in</span> <span class="fn">ipairs</span>(<span class="var">reaktoren</span>) <span class="kw">do</span>
+    <span class="kw">local</span> <span class="var">status</span> = <span class="str">"OK"</span>
+    <span class="kw">if</span> <span class="var">r</span>.<span class="var">temp</span> <span class="op">>=</span> <span class="num">1000</span> <span class="kw">then</span> <span class="var">status</span> = <span class="str">"KRITISCH"</span>
+    <span class="kw">elseif</span> <span class="var">r</span>.<span class="var">temp</span> <span class="op">>=</span> <span class="num">800</span> <span class="kw">then</span> <span class="var">status</span> = <span class="str">"WARNUNG"</span>
+    <span class="kw">end</span>
+    <span class="fn">print</span>(<span class="var">r</span>.<span class="var">name</span> <span class="op">..</span> <span class="str">": "</span> <span class="op">..</span> <span class="var">r</span>.<span class="var">temp</span> <span class="op">..</span> <span class="str">"C ["</span> <span class="op">..</span> <span class="var">status</span> <span class="op">..</span> <span class="str">"]"</span>)
+<span class="kw">end</span></pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS 1.9 — Computer #1</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">nested</span></div>
+      <div class="t-out">Reaktor A: 650C [OK]</div>
+      <div class="t-out-yellow">Reaktor B: 920C [WARNUNG]</div>
+      <div class="t-out-red">Reaktor C: 1050C [KRITISCH]</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <div class="warn-icon">[!]</div>
+    <div><strong style="color:var(--cc-yellow)">ipairs</strong> → für nummerierte Arrays (stoppt beim ersten nil).<br>
+    <strong style="color:var(--cc-yellow)">pairs</strong> → für Key-Value Tabellen (geht alle Einträge durch, Reihenfolge nicht garantiert).</div>
+  </div>
+
+  <!-- Abschlussprogramm -->
+  <div class="final-card">
+    <div class="final-header"><span data-i18n="tut_final_hdr">★ ABSCHLUSSPROGRAMM – </span>Reaktor-Datenbank</div>
+    <div class="code-block">
+      <pre><span class="kw">local</span> <span class="var">db</span> = {
+    { <span class="var">name</span>=<span class="str">"Reaktor A"</span>, <span class="var">temp</span>=<span class="num">700</span>, <span class="var">energie</span>=<span class="num">95</span>, <span class="var">online</span>=<span class="kw">true</span>  },
+    { <span class="var">name</span>=<span class="str">"Reaktor B"</span>, <span class="var">temp</span>=<span class="num">850</span>, <span class="var">energie</span>=<span class="num">78</span>, <span class="var">online</span>=<span class="kw">true</span>  },
+    { <span class="var">name</span>=<span class="str">"Reaktor C"</span>, <span class="var">temp</span>=<span class="num">200</span>, <span class="var">energie</span>=<span class="num">0</span>,  <span class="var">online</span>=<span class="kw">false</span> },
+}
+
+<span class="fn">print</span>(<span class="str">"=== Reaktor-Datenbank ==="</span>)
+<span class="kw">for</span> <span class="var">_</span>, <span class="var">r</span> <span class="kw">in</span> <span class="fn">ipairs</span>(<span class="var">db</span>) <span class="kw">do</span>
+    <span class="kw">if</span> <span class="var">r</span>.<span class="var">online</span> <span class="kw">then</span>
+        <span class="fn">print</span>(<span class="var">r</span>.<span class="var">name</span> <span class="op">..</span> <span class="str">" | "</span> <span class="op">..</span> <span class="var">r</span>.<span class="var">temp</span> <span class="op">..</span> <span class="str">"C | "</span> <span class="op">..</span> <span class="var">r</span>.<span class="var">energie</span> <span class="op">..</span> <span class="str">"%"</span>)
+    <span class="kw">else</span>
+        <span class="fn">print</span>(<span class="var">r</span>.<span class="var">name</span> <span class="op">..</span> <span class="str">" | OFFLINE"</span>)
+    <span class="kw">end</span>
+<span class="kw">end</span></pre>
+    </div>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> CraftOS 1.9 — Computer #1</div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">datenbank</span></div>
+      <div class="t-out">=== Reaktor-Datenbank ===</div>
+      <div class="t-out">Reaktor A | 700C | 95%</div>
+      <div class="t-out-yellow">Reaktor B | 850C | 78%</div>
+      <div class="t-out-red">Reaktor C | OFFLINE</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="learned">
+    <h3><span data-i18n="tut_learned_h">✔ Das hast du gelernt</span></h3>
+    <ul>
+      <li data-i18n-html="p9_learned_1">Tabelle als <strong style="color:var(--cc-orange)">Array</strong> – nummerierte Liste ab Index 1</li>
+      <li data-i18n-html="p9_learned_2"><strong style="color:var(--cc-orange)">#tabelle</strong> – Länge eines Arrays</li>
+      <li data-i18n-html="p9_learned_3">Tabelle als <strong style="color:var(--cc-cyan)">Key-Value</strong> – Zugriff mit <span class="inline-code">tabelle.key</span> oder <span class="inline-code">tabelle["key"]</span></li>
+      <li data-i18n-html="p9_learned_4"><strong style="color:var(--cc-cyan)">ipairs()</strong> – Array der Reihe nach durchlaufen</li>
+      <li data-i18n-html="p9_learned_5"><strong style="color:var(--cc-cyan)">pairs()</strong> – alle Key-Value Einträge durchlaufen</li>
+      <li data-i18n-html="p9_learned_6">Tabellen verschachteln – Tabelle aus Tabellen</li>
+      <li data-i18n-html="p9_learned_7"><strong style="color:var(--cc-purple)">_</strong> als Platzhalter wenn ein Rückgabewert nicht gebraucht wird</li>
+    </ul>
+  </div>
+
+  <div class="next-ep">
+    <div>
+      <div class="next-label" data-i18n="tut_next_label">NÄCHSTES TUTORIAL</div>
+      <div class="next-title" data-i18n="p9_next">Teil 10 → paintutils ★</div>
+    </div>
+    <div class="arrow">▶▶</div>
+  </div>
+
+</div>
+<footer data-i18n="footer_brand">SideQuestChris · CC: Tweaked Tutorial-Serie · Teil 9 von 10</footer>
+
+
+<script src="main.js"></script>
+<script src="i18n.js"></script>
+</body>
+</html>

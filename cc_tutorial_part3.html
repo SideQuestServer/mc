@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC: Tweaked Tutorial #3 – Variablen kombinieren · SideQuestCommunity</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+
+<nav class="sqc-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-px">SQ</div>
+    <div class="logo-text">SideQuest<span>Community</span></div>
+  </a>
+  <ul class="nav-items">
+    <li><a href="index.html" data-i18n="nav_startseite">Startseite</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_tutorials_btn">Tutorials</span> <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <div class="dd1-item dd1-active" tabindex="0">
+          <span class="dd1-icon">▶</span>CC: Tweaked<span class="dd1-badge">10</span><span class="dd1-arrow">›</span>
+          <div class="nav-dropdown-l2">
+            <div class="dd2-header">CC: TWEAKED</div>
+            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="cc_tutorial_part1.html"><span class="dd2-num">01</span>Hello, World!</a>
+            <a href="cc_tutorial_part2.html"><span class="dd2-num">02</span>Variablen</a>
+            <a href="cc_tutorial_part3.html" class="dd2-active"><span class="dd2-num">03</span>Variablen kombinieren</a>
+            <a href="cc_tutorial_part4.html"><span class="dd2-num">04</span>if / else</a>
+            <a href="cc_tutorial_part5.html"><span class="dd2-num">05</span>elseif · and · or · not</a>
+            <a href="cc_tutorial_part6.html"><span class="dd2-num">06</span>Booleans & Schleifen</a>
+            <a href="cc_tutorial_part7.html"><span class="dd2-num">07</span>Events</a>
+            <a href="cc_tutorial_part8.html"><span class="dd2-num">08</span>rednet</a>
+            <a href="cc_tutorial_part9.html"><span class="dd2-num">09</span>Tabellen</a>
+            <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils</a>
+          </div>
+        </div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+      </div>
+    </li>
+    <li><a href="server.html" data-i18n="nav_server">Server</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cc_tutorial_part2.html">◀ 02</a>
+    <a href="cc_tutorial_part4.html">04 ▶</a>
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YT</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TT</a>
+  </div>
+  <button class="nav-hamburger">☰</button>
+</nav>
+
+<div class="nav-mobile-menu" id="sqc-mob">
+  <a href="index.html">Startseite</a>
+  <a href="server.html">Server</a>
+  <div class="mob-sec">CC: TWEAKED</div>
+  <a class="mob-sub" href="tutorials_cc.html">📋 Übersicht</a>
+  <a class="mob-sub" href="cc_tutorial_part1.html">01 · Hello, World!</a>
+  <a class="mob-sub" href="cc_tutorial_part2.html">02 · Variablen</a>
+  <a class="mob-sub" href="cc_tutorial_part3.html">03 · Variablen kombinieren</a>
+  <a class="mob-sub" href="cc_tutorial_part4.html">04 · if / else</a>
+  <a class="mob-sub" href="cc_tutorial_part5.html">05 · elseif · and · or · not</a>
+  <a class="mob-sub" href="cc_tutorial_part6.html">06 · Booleans & Schleifen</a>
+  <a class="mob-sub" href="cc_tutorial_part7.html">07 · Events</a>
+  <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
+  <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
+  <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils</a>
+  <div class="mob-sec">SOCIAL</div>
+  <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+  <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+</div>
+
+<div class="container">
+
+  <div class="episode-title">
+    <div class="ep-num" data-i18n="p3_ep">▶ Episode 03</div>
+    <h2 data-i18n="p3_title">Variablen kombinieren</h2>
+    <p class="subtitle" data-i18n="p3_sub">Strings zusammenführen · Rechnen · Fertige Ausgaben bauen</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Recap -->
+  <div class="card" data-label="RECAP" data-label-i18n="label_recap">
+    <h3 data-i18n="p3_recap_h">Wo wir stehen</h3>
+    <p>In Teil 2 hast du gelernt, wie man Text und Zahlen in Variablen speichert. Jetzt gehen wir einen Schritt weiter: Wir <strong style="color:#f2b233">verbinden</strong> mehrere Variablen zu einer einzigen Ausgabe.</p>
+  </div>
+
+  <!-- String-Verkettung -->
+  <div class="card" data-label="STRING-VERKETTUNG" data-label-i18n="label_concat">
+    <h3 data-i18n="p3_concat_h">Strings verbinden mit <span style="color:#ff6b6b">..</span></h3>
+    <p>In Lua verbindest du zwei Strings mit dem <strong style="color:#ff6b6b">..</strong> Operator (zwei Punkte). Das nennt sich <em>Konkatenation</em>.</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">verketten.lua</div>
+    <pre><span class="kw">local</span> <span class="var">vorname</span> = <span class="str">"Steve"</span>
+<span class="kw">local</span> <span class="var">nachname</span> = <span class="str">"Minecraft"</span>
+
+<span class="fn">print</span>(<span class="var">vorname</span> <span class="op">..</span> <span class="str">" "</span> <span class="op">..</span> <span class="var">nachname</span>)</pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      CraftOS 1.9 — Computer #1
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">verketten</span></div>
+      <div class="t-out">Steve Minecraft</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-icon">[i]</div>
+    <div>Das Leerzeichen <span class="inline-code">" "</span> ist selbst ein String – ohne ihn würde <strong style="color:#f2b233">SteveMinecraft</strong> ausgegeben. Denk immer daran, Leerzeichen explizit hinzuzufügen!</div>
+  </div>
+
+  <!-- Zahl in String umwandeln -->
+  <div class="card" data-label="ZAHLEN + TEXT" data-label-i18n="label_numtext">
+    <h3 data-i18n="p3_numtext_h">Zahlen mit Text kombinieren</h3>
+    <p>Wenn du eine Zahl mit einem String verbindest, wandelt Lua die Zahl automatisch in Text um – du musst nichts extra tun:</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">spieler.lua</div>
+    <pre><span class="kw">local</span> <span class="var">name</span>   = <span class="str">"Alex"</span>
+<span class="kw">local</span> <span class="var">level</span>  = <span class="num">42</span>
+<span class="kw">local</span> <span class="var">punkte</span> = <span class="num">1337</span>
+
+<span class="fn">print</span>(<span class="str">"Spieler: "</span> <span class="op">..</span> <span class="var">name</span>)
+<span class="fn">print</span>(<span class="str">"Level:   "</span> <span class="op">..</span> <span class="var">level</span>)
+<span class="fn">print</span>(<span class="str">"Punkte:  "</span> <span class="op">..</span> <span class="var">punkte</span>)</pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      CraftOS 1.9 — Computer #1
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">spieler</span></div>
+      <div class="t-out">Spieler: Alex</div>
+      <div class="t-out">Level:   42</div>
+      <div class="t-out">Punkte:  1337</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <!-- Rechnen mit Variablen -->
+  <div class="card" data-label="RECHNEN" data-label-i18n="label_math">
+    <h3 data-i18n="p3_math_h">Mit Zahlen rechnen</h3>
+    <p>Zahlen-Variablen lassen sich direkt verrechnen. Das Ergebnis kannst du in einer neuen Variable speichern oder direkt ausgeben:</p>
+  </div>
+
+  <!-- Operator-Tabelle -->
+  <div class="op-box">
+    <div class="op-box-row header">
+      <div class="op-cell hdr" style="text-align:center">OP</div>
+      <div class="op-cell hdr">Bedeutung</div>
+      <div class="op-cell hdr">Beispiel</div>
+    </div>
+    <div class="op-box-row">
+      <div class="op-cell op-sym">+</div>
+      <div class="op-cell op-desc">Addition</div>
+      <div class="op-cell op-ex">a + b</div>
+    </div>
+    <div class="op-box-row">
+      <div class="op-cell op-sym">-</div>
+      <div class="op-cell op-desc">Subtraktion</div>
+      <div class="op-cell op-ex">a - b</div>
+    </div>
+    <div class="op-box-row">
+      <div class="op-cell op-sym">*</div>
+      <div class="op-cell op-desc">Multiplikation</div>
+      <div class="op-cell op-ex">a * b</div>
+    </div>
+    <div class="op-box-row">
+      <div class="op-cell op-sym">/</div>
+      <div class="op-cell op-desc">Division</div>
+      <div class="op-cell op-ex">a / b</div>
+    </div>
+    <div class="op-box-row">
+      <div class="op-cell op-sym">%</div>
+      <div class="op-cell op-desc">Modulo (Rest)</div>
+      <div class="op-cell op-ex">10 % 3 → 1</div>
+    </div>
+    <div class="op-box-row">
+      <div class="op-cell op-sym">^</div>
+      <div class="op-cell op-desc">Potenz</div>
+      <div class="op-cell op-ex">2 ^ 8 → 256</div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-label">rechner.lua</div>
+    <pre><span class="kw">local</span> <span class="var">a</span> = <span class="num">10</span>
+<span class="kw">local</span> <span class="var">b</span> = <span class="num">3</span>
+
+<span class="fn">print</span>(<span class="str">"Summe:   "</span> <span class="op">..</span> (<span class="var">a</span> <span class="op">+</span> <span class="var">b</span>))
+<span class="fn">print</span>(<span class="str">"Produkt: "</span> <span class="op">..</span> (<span class="var">a</span> <span class="op">*</span> <span class="var">b</span>))
+<span class="fn">print</span>(<span class="str">"Rest:    "</span> <span class="op">..</span> (<span class="var">a</span> <span class="op">%</span>  <span class="var">b</span>))</pre>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      CraftOS 1.9 — Computer #1
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">rechner</span></div>
+      <div class="t-out">Summe:   13</div>
+      <div class="t-out">Produkt: 30</div>
+      <div class="t-out">Rest:    1</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <div class="warn-icon">[!]</div>
+    <div>Beim Verbinden von Rechenergebnis und Text brauchst du <strong style="color:#f2b233">Klammern</strong> um die Rechnung: <span class="inline-code">print("X: " .. (a + b))</span> — ohne Klammern kann Lua den <span class="inline-code">..</span> falsch interpretieren.</div>
+  </div>
+
+  <!-- Abschlussprogramm -->
+  <div class="final-card">
+    <div class="final-header"><span data-i18n="tut_final_hdr">★ ABSCHLUSSPROGRAMM – </span>Alles kombiniert</div>
+    <div class="code-block">
+      <pre><span class="cmt">-- Spieler-Statusanzeige</span>
+<span class="kw">local</span> <span class="var">name</span>         = <span class="str">"Alex"</span>
+<span class="kw">local</span> <span class="var">level</span>        = <span class="num">7</span>
+<span class="kw">local</span> <span class="var">xp</span>           = <span class="num">850</span>
+<span class="kw">local</span> <span class="var">xp_pro_level</span> = <span class="num">1000</span>
+<span class="kw">local</span> <span class="var">xp_rest</span>      = <span class="var">xp_pro_level</span> <span class="op">-</span> <span class="var">xp</span>
+
+<span class="fn">print</span>(<span class="str">"=== Spieler-Status ==="</span>)
+<span class="fn">print</span>(<span class="str">"Name:      "</span> <span class="op">..</span> <span class="var">name</span>)
+<span class="fn">print</span>(<span class="str">"Level:     "</span> <span class="op">..</span> <span class="var">level</span>)
+<span class="fn">print</span>(<span class="str">"XP:        "</span> <span class="op">..</span> <span class="var">xp</span> <span class="op">..</span> <span class="str">" / "</span> <span class="op">..</span> <span class="var">xp_pro_level</span>)
+<span class="fn">print</span>(<span class="str">"Bis Level "</span> <span class="op">..</span> (<span class="var">level</span> <span class="op">+</span> <span class="num">1</span>) <span class="op">..</span> <span class="str">": noch "</span> <span class="op">..</span> <span class="var">xp_rest</span> <span class="op">..</span> <span class="str">" XP"</span>)
+<span class="fn">print</span>(<span class="str">"====================="</span>)</pre>
+    </div>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-titlebar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      CraftOS 1.9 — Computer #1
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">CraftOS&gt; </span><span class="t-cmd">status</span></div>
+      <div class="t-out">=== Spieler-Status ===</div>
+      <div class="t-out">Name:      Alex</div>
+      <div class="t-out">Level:     7</div>
+      <div class="t-out">XP:        850 / 1000</div>
+      <div class="t-out">Bis Level 8: noch 150 XP</div>
+      <div class="t-out">=====================</div>
+      <div style="margin-top:8px"><span class="t-prompt">CraftOS&gt; </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="learned">
+    <h3><span data-i18n="tut_learned_h">✔ Das hast du gelernt</span></h3>
+    <ul>
+      <li data-i18n-html="p3_learned_1">Strings mit <strong style="color:#ff6b6b">..</strong> verbinden (Konkatenation)</li>
+      <li data-i18n-html="p3_learned_2">Leerzeichen als eigenen String <strong style="color:#57a64e">" "</strong> einfügen</li>
+      <li data-i18n-html="p3_learned_3">Zahlen und Text direkt kombinieren</li>
+      <li data-i18n-html="p3_learned_4">Rechenoperatoren: <strong style="color:#ff6b6b">+ - * / % ^</strong></li>
+      <li data-i18n-html="p3_learned_5">Zwischenergebnisse in Variablen speichern und weiterverwenden</li>
+      <li data-i18n-html="p3_learned_6">Klammern bei Rechenoperationen im <strong style="color:#ff6b6b">..</strong> Ausdruck</li>
+    </ul>
+  </div>
+
+  <div class="next-ep">
+    <div>
+      <div class="next-label" data-i18n="tut_next_label">NÄCHSTES TUTORIAL</div>
+      <div class="next-title" data-i18n="p3_next">Teil 4 → if / else</div>
+    </div>
+    <div class="arrow">▶▶</div>
+  </div>
+
+</div>
+
+<footer data-i18n="footer_brand">SideQuestChris · CC: Tweaked Tutorial-Serie · Teil 3 von 10</footer>
+
+
+<script src="main.js"></script>
+<script src="i18n.js"></script>
+</body>
+</html>

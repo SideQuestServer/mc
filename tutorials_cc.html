@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC: Tweaked Tutorials – SideQuestCommunity</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero { background:linear-gradient(180deg,#0f0f0f 0%,var(--cc-bg) 100%); border-bottom:1px solid #1a1a1a; padding:60px 24px 48px; text-align:center; position:relative; overflow:hidden; }
+.page-hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(242,178,51,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(242,178,51,.04) 1px,transparent 1px); background-size:32px 32px; }
+.ph-inner { position:relative; z-index:1; }
+.ph-breadcrumb { font-family:'VT323',monospace; font-size:15px; color:#444; margin-bottom:16px; }
+.ph-breadcrumb a { color:#555; text-decoration:none; }
+.ph-breadcrumb a:hover { color:var(--cc-yellow); }
+.ph-title { font-family:'VT323',monospace; font-size:56px; color:var(--cc-yellow); line-height:1; text-shadow:3px 3px 0 var(--cc-orange); margin-bottom:12px; }
+.ph-desc { font-size:13px; color:var(--cc-dim); max-width:520px; margin:0 auto; line-height:1.8; }
+.page-container { max-width:960px; margin:0 auto; padding:60px 24px 100px; }
+.part-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; margin-top:40px; }
+.part-card { background:#0f0f0f; border:1px solid #1e1e1e; border-top:3px solid #2a2a2a; text-decoration:none; display:flex; flex-direction:column; transition:all .2s; overflow:hidden; opacity:0; animation:fadeUp .4s ease forwards; }
+.part-card:hover { transform:translateY(-3px); border-top-color:var(--cc-yellow); box-shadow:0 8px 32px rgba(0,0,0,.5); }
+.part-card:hover .pc-num { color:var(--cc-yellow); }
+.part-card:nth-child(1){animation-delay:.05s} .part-card:nth-child(2){animation-delay:.09s}
+.part-card:nth-child(3){animation-delay:.13s} .part-card:nth-child(4){animation-delay:.17s}
+.part-card:nth-child(5){animation-delay:.21s} .part-card:nth-child(6){animation-delay:.25s}
+.part-card:nth-child(7){animation-delay:.29s} .part-card:nth-child(8){animation-delay:.33s}
+.part-card:nth-child(9){animation-delay:.37s} .part-card:nth-child(10){animation-delay:.41s}
+.pc-header { padding:20px 20px 0; display:flex; align-items:flex-start; gap:14px; }
+.pc-num { font-family:'VT323',monospace; font-size:40px; color:#2a2a2a; line-height:1; transition:color .2s; flex-shrink:0; }
+.pc-meta { padding-top:4px; }
+.pc-title { font-family:'VT323',monospace; font-size:22px; color:var(--cc-white); line-height:1.1; }
+.pc-sub { font-size:11px; color:#444; margin-top:4px; letter-spacing:1px; }
+.pc-body { padding:14px 20px; font-size:12px; color:#555; line-height:1.7; flex:1; }
+.pc-tags { padding:0 20px 16px; display:flex; flex-wrap:wrap; gap:4px; }
+.pc-tag { font-family:'VT323',monospace; font-size:14px; background:#111; color:#555; padding:1px 7px; border:1px solid #222; }
+.pc-footer { padding:12px 20px; border-top:1px solid #141414; display:flex; align-items:center; justify-content:space-between; }
+.pc-arrow { font-family:'VT323',monospace; font-size:20px; color:#333; transition:color .2s; }
+.part-card:hover .pc-arrow { color:var(--cc-yellow); }
+.pc-done { font-family:'VT323',monospace; font-size:13px; color:var(--cc-green); }
+.sh-eyebrow { font-family:'VT323',monospace; font-size:13px; color:var(--cc-orange); letter-spacing:3px; }
+.sh-title { font-family:'VT323',monospace; font-size:38px; color:var(--cc-white); line-height:1; }
+.sh-title span { color:var(--cc-yellow); }
+</style>
+</head>
+<body>
+
+<nav class="sqc-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-px">SQ</div>
+    <div class="logo-text">SideQuest<span>Community</span></div>
+  </a>
+  <ul class="nav-items">
+    <li><a href="index.html" data-i18n="nav_startseite">Startseite</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_tutorials_btn">Tutorials</span> <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <div class="dd1-item dd1-active" tabindex="0">
+          <span class="dd1-icon">▶</span>CC: Tweaked<span class="dd1-badge">10</span><span class="dd1-arrow">›</span>
+          <div class="nav-dropdown-l2">
+            <div class="dd2-header">CC: TWEAKED</div>
+            <a href="tutorials_cc.html">📋 Übersicht</a>
+            <a href="cc_tutorial_part1.html"><span class="dd2-num">01</span>Hello, World!</a>
+            <a href="cc_tutorial_part2.html"><span class="dd2-num">02</span>Variablen</a>
+            <a href="cc_tutorial_part3.html"><span class="dd2-num">03</span>Kombinieren</a>
+            <a href="cc_tutorial_part4.html"><span class="dd2-num">04</span>if / else</a>
+            <a href="cc_tutorial_part5.html"><span class="dd2-num">05</span>elseif · and · or</a>
+            <a href="cc_tutorial_part6.html"><span class="dd2-num">06</span>Booleans & Schleifen</a>
+            <a href="cc_tutorial_part7.html"><span class="dd2-num">07</span>Events</a>
+            <a href="cc_tutorial_part8.html"><span class="dd2-num">08</span>rednet</a>
+            <a href="cc_tutorial_part9.html"><span class="dd2-num">09</span>Tabellen</a>
+            <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils ★</a>
+          </div>
+        </div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon" data-i18n="dd_soon">bald</span></div>
+      </div>
+    </li>
+    <li><a href="server.html" data-i18n="nav_server">Server</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YT</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TT</a>
+  </div>
+  <button class="nav-hamburger">☰</button>
+</nav>
+
+<div class="nav-mobile-menu" id="sqc-mob">
+  <a href="index.html" data-i18n="nav_startseite">Startseite</a>
+  <a href="server.html" data-i18n="nav_server">Server</a>
+  <div class="mob-sec">CC: TWEAKED</div>
+  <a class="mob-sub" href="tutorials_cc.html">📋 Übersicht</a>
+  <a class="mob-sub" href="cc_tutorial_part1.html">01 · Hello, World!</a>
+  <a class="mob-sub" href="cc_tutorial_part2.html">02 · Variablen</a>
+  <a class="mob-sub" href="cc_tutorial_part3.html">03 · Kombinieren</a>
+  <a class="mob-sub" href="cc_tutorial_part4.html">04 · if / else</a>
+  <a class="mob-sub" href="cc_tutorial_part5.html">05 · elseif · and · or · not</a>
+  <a class="mob-sub" href="cc_tutorial_part6.html">06 · Booleans & Schleifen</a>
+  <a class="mob-sub" href="cc_tutorial_part7.html">07 · Events</a>
+  <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
+  <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
+  <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils ★</a>
+  <div class="mob-sec">SOCIAL</div>
+  <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+  <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+</div>
+
+<div class="page-hero">
+  <div class="ph-inner">
+    <div class="ph-breadcrumb"><a href="index.html">Home</a> › Tutorials › CC: Tweaked</div>
+    <div class="ph-title">CC: Tweaked</div>
+    <p class="ph-desc">10-teilige Lua-Tutorial-Serie für ComputerCraft. Von Hello World bis zu vollständigen GUIs – keine Vorkenntnisse nötig.</p>
+  </div>
+</div>
+
+<div class="page-container">
+  <div class="sh-eyebrow">▶ 10 TEILE</div>
+  <div class="sh-title">Alle <span>Tutorials</span></div>
+
+  <div class="part-grid">
+
+    <a href="cc_tutorial_part1.html" class="part-card">
+      <div class="pc-header"><div class="pc-num">01</div><div class="pc-meta"><div class="pc-title">Hello World</div><div class="pc-sub">EINSTIEG</div></div></div>
+      <div class="pc-body">Dein erstes Lua-Programm. Der edit-Editor, print() und die CraftOS-Shell.</div>
+      <div class="pc-tags"><span class="pc-tag">print()</span><span class="pc-tag">edit</span><span class="pc-tag">lua shell</span></div>
+      <div class="pc-footer"><span class="pc-done">✔ verfügbar</span><span class="pc-arrow">▶</span></div>
+    </a>
+
+    <a href="cc_tutorial_part2.html" class="part-card">
+      <div class="pc-header"><div class="pc-num">02</div><div class="pc-meta"><div class="pc-title">Variablen</div><div class="pc-sub">GRUNDLAGEN</div></div></div>
+      <div class="pc-body">local, string, number, boolean – Daten speichern und ausgeben.</div>
+      <div class="pc-tags"><span class="pc-tag">local</span><span class="pc-tag">string</span><span class="pc-tag">number</span></div>
+      <div class="pc-footer"><span class="pc-done">✔ verfügbar</span><span class="pc-arrow">▶</span></div>
+    </a>
+
+    <a href="cc_tutorial_part3.html" class="part-card">
+      <div class="pc-header"><div class="pc-num">03</div><div class="pc-meta"><div class="pc-title">Kombinieren</div><div class="pc-sub">GRUNDLAGEN</div></div></div>
+      <div class="pc-body">Strings verketten mit .., Rechenoperatoren, Variablen kombinieren.</div>
+      <div class="pc-tags"><span class="pc-tag">..</span><span class="pc-tag">+ - * /</span><span class="pc-tag">tostring</span></div>
+      <div class="pc-footer"><span class="pc-done">✔ verfügbar</span><span class="pc-arrow">▶</span></div>
+    </a>
+
+    <a href="cc_tutorial_part4.html" class="part-card">
+      <div class="pc-header"><div class="pc-num">04</div><div class="pc-meta"><div class="pc-title">if / else</div><div class="pc-sub">LOGIK</div></div></div>
+      <div class="pc-body">Entscheidungen treffen – Bedingungen, Vergleichsoperatoren, end.</div>
+      <div class="pc-tags"><span class="pc-tag">if</span><span class="pc-tag">else</span><span class="pc-tag">== ~= &lt; &gt;</span></div>
+      <div class="pc-footer"><span class="pc-done">✔ verfügbar</span><span class="pc-arrow">▶</span></div>
+    </a>
+
+    <a href="cc_tutorial_part5.html" class="part-card">
+      <div class="pc-header"><div class="pc-num">05</div><div class="pc-meta"><div class="pc-title">elseif · and · or</div><div class="pc-sub">LOGIK</div></div></div>
+      <div class="pc-body">Mehrere Fälle, logische Operatoren, Wahrheitstabellen.</div>
+      <div class="pc-tags"><span class="pc-tag">elseif</span><span class="pc-tag">and</span><span class="pc-tag">or</span><span class="pc-tag">not</span></div>
+      <div class="pc-footer"><span class="pc-done">✔ verfügbar</span><span class="pc-arrow">▶</span></div>
+    </a>
+
+    <a href="cc_tutorial_part6.html" class="part-card">
+      <div class="pc-header"><div class="pc-num">06</div><div class="pc-meta"><div class="pc-title">Booleans & Schleifen</div><div class="pc-sub">KONTROLLFLUSS</div></div></div>
+      <div class="pc-body">true/false als Schalter, while-Schleife, for-Schleife, break.</div>
+      <div class="pc-tags"><span class="pc-tag">while</span><span class="pc-tag">for</span><span class="pc-tag">break</span><span class="pc-tag">bool</span></div>
+      <div class="pc-footer"><span class="pc-done">✔ verfügbar</span><span class="pc-arrow">▶</span></div>
+    </a>
+
+    <a href="cc_tutorial_part7.html" class="part-card">
+      <div class="pc-header"><div class="pc-num">07</div><div class="pc-meta"><div class="pc-title">Events</div><div class="pc-sub">CC: TWEAKED API</div></div></div>
+      <div class="pc-body">os.pullEvent, Tastatur- und Mausevents, Timer – auf alles reagieren.</div>
+      <div class="pc-tags"><span class="pc-tag">pullEvent</span><span class="pc-tag">keys</span><span class="pc-tag">timer</span></div>
+      <div class="pc-footer"><span class="pc-done">✔ verfügbar</span><span class="pc-arrow">▶</span></div>
+    </a>
+
+    <a href="cc_tutorial_part8.html" class="part-card">
+      <div class="pc-header"><div class="pc-num">08</div><div class="pc-meta"><div class="pc-title">rednet</div><div class="pc-sub">NETZWERK</div></div></div>
+      <div class="pc-body">Computer vernetzen – senden, empfangen, broadcast, Protokolle.</div>
+      <div class="pc-tags"><span class="pc-tag">rednet</span><span class="pc-tag">modem</span><span class="pc-tag">broadcast</span></div>
+      <div class="pc-footer"><span class="pc-done">✔ verfügbar</span><span class="pc-arrow">▶</span></div>
+    </a>
+
+    <a href="cc_tutorial_part9.html" class="part-card">
+      <div class="pc-header"><div class="pc-num">09</div><div class="pc-meta"><div class="pc-title">Tabellen</div><div class="pc-sub">DATENSTRUKTUREN</div></div></div>
+      <div class="pc-body">Arrays, Key-Value, ipairs, pairs – Daten strukturieren.</div>
+      <div class="pc-tags"><span class="pc-tag">table</span><span class="pc-tag">ipairs</span><span class="pc-tag">pairs</span></div>
+      <div class="pc-footer"><span class="pc-done">✔ verfügbar</span><span class="pc-arrow">▶</span></div>
+    </a>
+
+    <a href="cc_tutorial_part10.html" class="part-card" style="border-top-color:var(--cc-green)">
+      <div class="pc-header"><div class="pc-num" style="color:var(--cc-green)">10</div><div class="pc-meta"><div class="pc-title">paintutils ★</div><div class="pc-sub">FINALE · GUI</div></div></div>
+      <div class="pc-body">Farben, Formen zeichnen, term API, vollständiges GUI-Dashboard bauen.</div>
+      <div class="pc-tags"><span class="pc-tag">paintutils</span><span class="pc-tag">term</span><span class="pc-tag">colors</span><span class="pc-tag">GUI</span></div>
+      <div class="pc-footer"><span class="pc-done">✔ Finale</span><span class="pc-arrow" style="color:var(--cc-green)">▶</span></div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-social">
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+  </div>
+  SideQuestCommunity · CC: Tweaked Tutorial-Serie · 10 Teile
+</footer>
+
+<script src="main.js"></script>
+<script src="i18n.js"></script>
+</body>
+</html>
