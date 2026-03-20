@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressum & About – SideQuestCommunity</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.container { max-width:860px; margin:0 auto; padding:40px 24px 100px; display:flex; flex-direction:column; gap:28px; }
+.container > * { opacity:0; animation:fadeUp .4s ease forwards; }
+.container > *:nth-child(1){animation-delay:.04s} .container > *:nth-child(2){animation-delay:.08s}
+.container > *:nth-child(3){animation-delay:.12s} .container > *:nth-child(4){animation-delay:.16s}
+
+.imp-section { margin-bottom:20px; }
+.imp-h { font-family:'VT323',monospace; font-size:16px; color:#555; letter-spacing:2px; margin-bottom:8px; border-bottom:1px solid #1e1e1e; padding-bottom:4px; }
+.imp-val { font-size:13px; color:#aaa; line-height:1.9; }
+.imp-val a { color:var(--cc-yellow); text-decoration:none; }
+.imp-val a:hover { text-decoration:underline; }
+.imp-placeholder { color:#444; font-style:italic; }
+
+.about-grid { display:grid; grid-template-columns:1fr 2fr; gap:28px; }
+@media(max-width:600px){ .about-grid { grid-template-columns:1fr; } }
+.about-avatar { aspect-ratio:1; background:linear-gradient(135deg,#1a1a1a,#111); border:2px solid #2a2a2a; display:flex; align-items:center; justify-content:center; font-family:'VT323',monospace; font-size:64px; color:#333; }
+.about-name { font-family:'VT323',monospace; font-size:36px; color:var(--cc-white); margin-bottom:4px; }
+.about-tag { font-size:12px; color:var(--cc-orange); letter-spacing:2px; margin-bottom:14px; }
+.about-bio { font-size:13px; color:#888; line-height:1.8; margin-bottom:16px; }
+.about-links { display:flex; gap:10px; flex-wrap:wrap; }
+
+.stat-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:1px; background:#1e1e1e; margin-top:20px; }
+.stat-box { background:#0a0a0a; padding:16px; text-align:center; }
+.stat-val { font-family:'VT323',monospace; font-size:32px; color:var(--cc-yellow); line-height:1; }
+.stat-lbl { font-size:10px; color:#333; letter-spacing:2px; margin-top:4px; }
+</style>
+</head>
+<body>
+
+<nav class="sqc-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-px">SQ</div>
+    <div class="logo-text">SideQuest<span>Community</span></div>
+  </a>
+  <ul class="nav-items">
+    <li><a href="index.html" data-i18n="nav_startseite">Startseite</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0"><span data-i18n="nav_tutorials_btn">Tutorials</span> <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <div class="dd1-item" tabindex="0">
+          <span class="dd1-icon">▶</span>CC: Tweaked<span class="dd1-badge">10</span><span class="dd1-arrow">›</span>
+          <div class="nav-dropdown-l2">
+            <div class="dd2-header">CC: TWEAKED</div>
+            <a href="tutorials_cc.html" data-i18n="nav_overview">📋 Übersicht</a>
+            <a href="cc_tutorial_part1.html"><span class="dd2-num">01</span>Hello World</a>
+            <a href="cc_tutorial_part2.html"><span class="dd2-num">02</span>Variablen</a>
+            <a href="cc_tutorial_part3.html"><span class="dd2-num">03</span>Kombinieren</a>
+            <a href="cc_tutorial_part4.html"><span class="dd2-num">04</span>if / else</a>
+            <a href="cc_tutorial_part5.html"><span class="dd2-num">05</span>elseif · and · or</a>
+            <a href="cc_tutorial_part6.html"><span class="dd2-num">06</span>Booleans & Schleifen</a>
+            <a href="cc_tutorial_part7.html"><span class="dd2-num">07</span>Events</a>
+            <a href="cc_tutorial_part8.html"><span class="dd2-num">08</span>rednet</a>
+            <a href="cc_tutorial_part9.html"><span class="dd2-num">09</span>Tabellen</a>
+            <a href="cc_tutorial_part10.html"><span class="dd2-num">10</span>paintutils ★</a>
+          </div>
+        </div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Create Mod<span class="dd1-soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Mekanism<span class="dd1-soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>Extreme Reactors<span class="dd1-soon">bald</span></div>
+        <div class="dd1-item dd1-disabled"><span class="dd1-icon">▷</span>AE2<span class="dd1-soon">bald</span></div>
+      </div>
+    </li>
+    <li><a href="server.html" data-i18n="nav_server">Server</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0">Mitmachen <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <a href="recruit.html" class="dd1-item"><span class="dd1-icon">🔨</span>Server bauen</a>
+        <a href="community.html" class="dd1-item"><span class="dd1-icon">💬</span>Community & Kontakt</a>
+        <a href="impressum.html" class="dd1-item dd1-active"><span class="dd1-icon">ℹ</span>Impressum & About</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YT</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TT</a>
+  </div>
+  <button class="nav-hamburger">☰</button>
+</nav>
+
+<div class="nav-mobile-menu" id="sqc-mob">
+  <a href="index.html" data-i18n="nav_startseite">Startseite</a>
+  <a href="server.html" data-i18n="nav_server">Server</a>
+  <div class="mob-sec">TUTORIALS › CC: TWEAKED</div>
+  <a class="mob-sub" href="tutorials_cc.html">📋 Übersicht</a>
+  <a class="mob-sub" href="cc_tutorial_part1.html">01 · Hello World</a>
+  <a class="mob-sub" href="cc_tutorial_part2.html">02 · Variablen</a>
+  <a class="mob-sub" href="cc_tutorial_part3.html">03 · Kombinieren</a>
+  <a class="mob-sub" href="cc_tutorial_part4.html">04 · if / else</a>
+  <a class="mob-sub" href="cc_tutorial_part5.html">05 · elseif · and · or</a>
+  <a class="mob-sub" href="cc_tutorial_part6.html">06 · Booleans & Schleifen</a>
+  <a class="mob-sub" href="cc_tutorial_part7.html">07 · Events</a>
+  <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
+  <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
+  <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils ★</a>
+  <div class="mob-sec">MITMACHEN</div>
+  <a href="recruit.html">🔨 Server bauen</a>
+  <a href="community.html">💬 Community & Kontakt</a>
+  <a href="impressum.html" style="color:var(--cc-yellow)">ℹ Impressum & About</a>
+  <div class="mob-sec">SOCIAL</div>
+  <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+  <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+  <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+</div>
+
+<div class="page-hero" style="background:linear-gradient(180deg,#0a0a0a 0%,var(--cc-bg) 100%)">
+  <div class="ph-inner">
+    <div class="ph-bread"><a href="index.html">Home</a> › Impressum & About</div>
+    <div class="ph-title yellow">Impressum & About</div>
+    <p class="ph-desc">Rechtliche Angaben und ein bisschen mehr über den Menschen hinter SideQuestCommunity.</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- About Me -->
+  <div class="sq-card border-yellow">
+    <div class="card-head"><h2>About – SideQuestChris</h2></div>
+    <div class="card-body">
+      <div class="about-grid">
+        <div class="about-avatar">SQ</div>
+        <div>
+          <div class="about-name">SideQuestChris</div>
+          <div class="about-tag">▶ CONTENT CREATOR · MINECRAFT MODDED</div>
+          <p class="about-bio">
+            Hey! Ich bin Chris – Minecraft-Enthusiast, Modpack-Nerd und Content Creator aus Deutschland.
+            Ich betreibe diese Community-Seite, einen ATM10-Server und erstelle Tutorials rund um Minecraft Mods.
+          </p>
+          <p class="about-bio">
+            Mein Schwerpunkt liegt auf technischen Mods wie CC: Tweaked, Create und AE2. Ich liebe es,
+            komplexe Systeme zu erklären und Einsteigern den Einstieg zu erleichtern.
+            Auf YouTube und TikTok teile ich Guides, Showcases und Server-Content.
+          </p>
+          <div class="about-links">
+            <a href="https://youtube.com/@SideQuestChrisYT" target="_blank" class="sqc-btn" style="font-size:15px;padding:5px 16px">▶ YouTube</a>
+            <a href="https://www.tiktok.com/@sidequestchris4" target="_blank" class="sqc-btn" style="font-size:15px;padding:5px 16px;background:#000;box-shadow:3px 3px 0 #333">♪ TikTok</a>
+            <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn discord" style="font-size:15px;padding:5px 16px">💬 Discord</a>
+            <a href="community.html" class="sqc-btn" style="font-size:15px;padding:5px 16px;background:#0c0c0c;border-color:#2a2a2a;box-shadow:3px 3px 0 #1e1e1e">📨 Kontakt</a>
+          </div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-box"><div class="stat-val">10</div><div class="stat-lbl">TUTORIALS</div></div>
+        <div class="stat-box"><div class="stat-val">~25</div><div class="stat-lbl">SERVER SPIELER</div></div>
+        <div class="stat-box"><div class="stat-val" style="font-size:22px">ATM10</div><div class="stat-lbl">MODPACK</div></div>
+        <div class="stat-box"><div class="stat-val" style="font-size:22px;color:#5865f2">DC</div><div class="stat-lbl">COMMUNITY</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Impressum -->
+  <div class="sq-card" style="border-top:3px solid #333">
+    <div class="card-head"><h2>Impressum</h2><span class="ch-sub" style="margin-left:auto">§ 5 TMG</span></div>
+    <div class="card-body">
+
+      <div class="imp-section">
+        <div class="imp-h">ANGABEN GEMÄß § 5 TMG</div>
+        <div class="imp-val">
+          <span class="imp-placeholder">[Vorname Nachname]</span><br>
+          <span class="imp-placeholder">[Straße Hausnummer]</span><br>
+          <span class="imp-placeholder">[PLZ Ort]</span><br>
+          <span class="imp-placeholder">[Land]</span>
+        </div>
+      </div>
+
+      <div class="imp-section">
+        <div class="imp-h">KONTAKT</div>
+        <div class="imp-val">
+          E-Mail: <a href="mailto:SideQuestServer@gmail.com">SideQuestServer@gmail.com</a><br>
+          Discord: <a href="https://discord.gg/j46UA5ESwN" target="_blank">discord.gg/j46UA5ESwN</a>
+        </div>
+      </div>
+
+      <div class="imp-section">
+        <div class="imp-h">VERANTWORTLICH FÜR DEN INHALT (§ 18 ABS. 2 MSTV)</div>
+        <div class="imp-val">
+          <span class="imp-placeholder">[Vorname Nachname]</span><br>
+          <span class="imp-placeholder">[Adresse wie oben]</span>
+        </div>
+      </div>
+
+      <div class="imp-section">
+        <div class="imp-h">HAFTUNGSAUSSCHLUSS</div>
+        <div class="imp-val">
+          Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit,
+          Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden.
+          Diese Website enthält Links zu externen Websites (YouTube, TikTok, Discord, CurseForge).
+          Auf die Inhalte dieser externen Seiten haben wir keinen Einfluss.
+        </div>
+      </div>
+
+      <div class="imp-section">
+        <div class="imp-h">URHEBERRECHT</div>
+        <div class="imp-val">
+          Die auf dieser Website erstellten Inhalte und Werke unterliegen dem deutschen Urheberrecht.
+          Minecraft ist ein eingetragenes Markenzeichen von Mojang AB. Diese Website steht in keiner
+          offiziellen Verbindung mit Mojang AB oder Microsoft.
+        </div>
+      </div>
+
+      <div style="padding:12px 0;border-top:1px solid #1e1e1e;margin-top:8px">
+        <div style="font-size:11px;color:#2a2a2a;line-height:1.7">
+          ⚠ Die mit <span style="font-style:italic;color:#333">[Platzhalter]</span> markierten Felder müssen
+          vor Veröffentlichung mit echten Angaben ausgefüllt werden. Ein Impressum ohne vollständige Pflichtangaben
+          kann gegen § 5 TMG verstoßen.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Datenschutz-Hinweis -->
+  <div class="sq-card" style="border-top:3px solid #2a2a2a">
+    <div class="card-head"><h2>Datenschutz-Hinweis</h2></div>
+    <div class="card-body">
+      <div class="imp-val">
+        <p style="margin-bottom:12px">
+          Diese Website verwendet keine Tracking-Cookies und keine Analytics-Dienste.
+          Es werden keine personenbezogenen Daten automatisch erhoben.
+        </p>
+        <p style="margin-bottom:12px">
+          <strong style="color:var(--cc-white)">Kontaktformular:</strong>
+          Wenn du das Kontaktformular verwendest, werden deine Angaben ausschließlich zur Bearbeitung
+          deiner Anfrage genutzt und nicht an Dritte weitergegeben. Die Übertragung erfolgt über dein
+          lokales E-Mail-Programm direkt an uns.
+        </p>
+        <p>
+          <strong style="color:var(--cc-white)">Externe Dienste:</strong>
+          Wir verlinken auf Discord, YouTube und TikTok. Beim Aufrufen dieser Seiten gelten deren jeweilige
+          Datenschutzrichtlinien.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-social">
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
+    <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
+    <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
+  </div>
+  SideQuestCommunity · <a href="impressum.html" style="color:var(--cc-yellow);text-decoration:none">Impressum</a>
+</footer>
+
+<script src="main.js"></script>
+<script src="i18n.js"></script>
+</body>
+</html>

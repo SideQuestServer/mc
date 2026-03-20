@@ -99,6 +99,14 @@
       </div>
     </li>
     <li><a href="server.html" class="nav-active" data-i18n="nav_server">Server</a></li>
+    <li>
+      <button class="nav-btn" tabindex="0">Mitmachen <span class="nav-chevron">▾</span></button>
+      <div class="nav-dropdown-l1">
+        <a href="recruit.html" class="dd1-item"><span class="dd1-icon">🔨</span>Server bauen</a>
+        <a href="community.html" class="dd1-item"><span class="dd1-icon">💬</span>Community & Kontakt</a>
+        <a href="impressum.html" class="dd1-item"><span class="dd1-icon">ℹ</span>Impressum & About</a>
+      </div>
+    </li>
   </ul>
   <div class="nav-right">
     <a href="https://discord.gg/j46UA5ESwN" target="_blank">DC</a>
@@ -123,6 +131,10 @@
   <a class="mob-sub" href="cc_tutorial_part8.html">08 · rednet</a>
   <a class="mob-sub" href="cc_tutorial_part9.html">09 · Tabellen</a>
   <a class="mob-sub" href="cc_tutorial_part10.html">10 · paintutils ★</a>
+  <div class="mob-sec">MITMACHEN</div>
+  <a href="recruit.html">🔨 Server bauen</a>
+  <a href="community.html">💬 Community & Kontakt</a>
+  <a href="impressum.html">ℹ Impressum & About</a>
   <div class="mob-sec">SOCIAL</div>
   <a href="https://discord.gg/j46UA5ESwN" target="_blank">Discord</a>
   <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
@@ -133,11 +145,19 @@
   <div class="ph-inner">
     <div class="ph-bread"><a href="index.html">Home</a> › Server</div>
     <div class="ph-title green">SideQuest Server</div>
-    <p class="ph-desc">All the Mods 10 · NeoForge · Whitelisted Community Server</p>
+    <p class="ph-desc">All the Mods 10 · NeoForge · Community Server – kommt bald!</p>
   </div>
 </div>
 
 <div class="container">
+
+  <!-- Coming Soon Banner -->
+  <div style="border:2px solid var(--cc-green);background:#060f06;padding:32px;text-align:center;">
+    <div style="font-family:'VT323',monospace;font-size:14px;color:var(--cc-green);letter-spacing:3px;margin-bottom:10px">▶ SERVER STATUS</div>
+    <div style="font-family:'VT323',monospace;font-size:42px;color:var(--cc-green);text-shadow:0 0 20px rgba(87,166,78,.4);margin-bottom:10px">SERVER ÖFFNET BALD</div>
+    <p style="font-size:13px;color:#555;max-width:480px;margin:0 auto 20px;line-height:1.7">Wir bauen noch – der Server ist fast fertig! Tritt unserem Discord bei um als Erstes informiert zu werden wenn wir öffnen.</p>
+    <a href="https://discord.gg/j46UA5ESwN" target="_blank" class="sqc-btn green" style="font-size:17px;padding:8px 28px">💬 Discord – Als Erstes dabei sein</a>
+  </div>
 
   <div class="refresh-row">
     <span class="last-upd" id="last-upd" data-i18n="srv_last_upd_init">Lädt...</span>
@@ -154,10 +174,10 @@
     </div>
     <div class="ip-row">
       <span class="ip-lbl">IP:</span>
-      <span class="ip-val">SideQuest.serv.cx</span>
-      <button class="ip-btn" id="ip-btn" onclick="copyIP()" data-i18n="srv_ip_copy">📋 IP kopieren</button>
+      <span class="ip-val" style="filter:blur(6px);user-select:none;pointer-events:none">SideQuest.serv.cx</span>
+      <span style="font-family:'VT323',monospace;font-size:14px;color:#2a2a2a;padding:4px 12px;border:1px solid #1e1e1e">Wird bekannt gegeben</span>
     </div>
-    <div class="motd-row" id="motd-row" data-i18n="srv_motd_init">▶ Verbinde mit Server...</div>
+    <div class="motd-row" id="motd-row">▶ Server startet bald – stay tuned!</div>
     <div class="stat-grid">
       <div class="stat-cell"><div class="sc-val dim" id="s-players">–</div><div class="sc-lbl" data-i18n="srv_stat_players">SPIELER ONLINE</div></div>
       <div class="stat-cell"><div class="sc-val dim" id="s-max">–</div><div class="sc-lbl">MAX SLOTS</div></div>
@@ -289,7 +309,7 @@
     <a href="https://www.youtube.com/@SideQuestChrisYT" target="_blank">YouTube</a>
     <a href="https://www.tiktok.com/@sidequestchris4" target="_blank">TikTok</a>
   </div>
-  <span data-i18n="srv_footer_txt">SideQuestCommunity · SideQuest.serv.cx · ATM10</span>
+  SideQuestCommunity · ATM10 · <a href="impressum.html" style="color:#333;text-decoration:none">Impressum</a>
 </footer>
 
 <script src="main.js"></script>
