@@ -281,9 +281,7 @@ function getLang() {
 
 function setLang(lang) {
   localStorage.setItem(LANG_KEY, lang);
-  document.documentElement.lang = lang;
-  applyLang(lang);
-  updateLangButtons(lang);
+  location.reload();
 }
 
 function t(key, lang) {
