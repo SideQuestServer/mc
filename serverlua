@@ -1,0 +1,192 @@
+-- Bank Server
+-- ================================================================
+-- Run this on ONE dedicated computer with a modem attached (an Ender
+-- Modem is recommended so it can be reached from anywhere on the map).
+-- This computer is the single source of truth for every account's
+-- balance and debt. Bank Terminals never store money locally -- they
+-- always ask this server, so a terminal can be built anywhere and
+-- still show the correct, shared balance.
+-- ================================================================
+
+local PROTOCOL = "cc_bank"
+local HOSTNAME = "bankserver"
+local DATA_FILE = "bank_data.txt"
+local INTEREST_RATE = 0.05 -- 5% flat interest per loan (placeholder, tweak freely)
+
+-- ---------------- persistence ----------------
+
+local data = {
+    balances = {},    -- [uuid] = number
+    debts = {},       -- [uuid] = number
+    names = {},        -- [uuid] = last known player name
+    nameToUUID = {},   -- [lowercase name] = uuid
+    requests = {},     -- [id] = { id, fromUUID, fromName, toUUID, toName, amount, status }
+    nextRequestId = 1,
+}
+
+local function save()
+    local f = fs.open(DATA_FILE, "w")
+    f.write(textutils.serialize(data))
+    f.close()
+end
+
+local function load()
+    if fs.exists(DATA_FILE) then
+        local f = fs.open(DATA_FILE, "r")
+        local content = f.readAll()
+        f.close()
+        local ok, loaded = pcall(textutils.unserialize, content)
+        if ok and type(loaded) == "table" then
+            data = loaded
+        end
+    end
+end
+
+local function getBalance(uuid) return data.balances[uuid] or 0 end
+local function getDebt(uuid) return data.debts[uuid] or 0 end
+
+local function ensureAccount(uuid, name)
+    if data.balances[uuid] == nil then data.balances[uuid] = 0 end
+    if data.debts[uuid] == nil then data.debts[uuid] = 0 end
+    if name then
+        data.names[uuid] = name
+        data.nameToUUID[name:lower()] = uuid
+    end
+end
+
+-- ---------------- networking ----------------
+
+local modem = peripheral.find("modem")
+if not modem then
+    error("No modem attached. Attach a Wireless or Ender Modem to this computer.")
+end
+rednet.open(peripheral.getName(modem))
+rednet.host(PROTOCOL, HOSTNAME)
+
+load()
+save()
+
+print("Bank Server online as '" .. HOSTNAME .. "'")
+local count = 0
+for _ in pairs(data.balances) do count = count + 1 end
+print(count .. " account(s) on file. Interest rate: " .. (INTEREST_RATE * 100) .. "%")
+
+local function reply(sender, msg)
+    rednet.send(sender, msg, PROTOCOL)
+end
+
+local function handleMessage(sender, msg)
+    if type(msg) ~= "table" or type(msg.type) ~= "string" then return end
+
+    if msg.type == "register" then
+        ensureAccount(msg.uuid, msg.name)
+        save()
+        reply(sender, { ok = true, balance = getBalance(msg.uuid), debt = getDebt(msg.uuid), rate = INTEREST_RATE })
+
+    elseif msg.type == "balance" then
+        ensureAccount(msg.uuid, msg.name)
+        reply(sender, { ok = true, balance = getBalance(msg.uuid), debt = getDebt(msg.uuid), rate = INTEREST_RATE })
+
+    elseif msg.type == "list_players" then
+        local list = {}
+        for uuid, name in pairs(data.names) do
+            if uuid ~= msg.uuid then table.insert(list, name) end
+        end
+        table.sort(list)
+        reply(sender, { ok = true, players = list })
+
+    elseif msg.type == "transfer" then
+        ensureAccount(msg.uuid, msg.name)
+        local amount = tonumber(msg.amount)
+        local toUUID = data.nameToUUID[(msg.toName or ""):lower()]
+
+        if not amount or amount <= 0 then
+            reply(sender, { ok = false, message = "Invalid amount." })
+        elseif not toUUID then
+            reply(sender, { ok = false, message = "Unknown player '" .. tostring(msg.toName) .. "'." })
+        elseif toUUID == msg.uuid then
+            reply(sender, { ok = false, message = "You can't transfer money to yourself." })
+        elseif getBalance(msg.uuid) < amount then
+            reply(sender, { ok = false, message = "Insufficient balance." })
+        else
+            data.balances[msg.uuid] = getBalance(msg.uuid) - amount
+            data.balances[toUUID] = getBalance(toUUID) + amount
+            save()
+            reply(sender, { ok = true, message = "Sent $" .. amount .. " to " .. msg.toName .. ".", balance = getBalance(msg.uuid) })
+        end
+
+    elseif msg.type == "request" then
+        ensureAccount(msg.uuid, msg.name)
+        local amount = tonumber(msg.amount)
+        local toUUID = data.nameToUUID[(msg.toName or ""):lower()]
+
+        if not amount or amount <= 0 then
+            reply(sender, { ok = false, message = "Invalid amount." })
+        elseif not toUUID then
+            reply(sender, { ok = false, message = "Unknown player '" .. tostring(msg.toName) .. "'." })
+        elseif toUUID == msg.uuid then
+            reply(sender, { ok = false, message = "You can't request money from yourself." })
+        else
+            local id = data.nextRequestId
+            data.nextRequestId = id + 1
+            data.requests[id] = {
+                id = id, fromUUID = msg.uuid, fromName = msg.name,
+                toUUID = toUUID, toName = data.names[toUUID],
+                amount = amount, status = "pending",
+            }
+            save()
+            reply(sender, { ok = true, message = "Request for $" .. amount .. " sent to " .. msg.toName .. "." })
+        end
+
+    elseif msg.type == "pending" then
+        local list = {}
+        for _, r in pairs(data.requests) do
+            if r.toUUID == msg.uuid and r.status == "pending" then table.insert(list, r) end
+        end
+        reply(sender, { ok = true, requests = list })
+
+    elseif msg.type == "respond" then
+        local r = data.requests[msg.requestId]
+        if not r or r.status ~= "pending" or r.toUUID ~= msg.uuid then
+            reply(sender, { ok = false, message = "Request no longer available." })
+        elseif msg.accept then
+            if getBalance(msg.uuid) < r.amount then
+                reply(sender, { ok = false, message = "Insufficient balance to accept." })
+            else
+                data.balances[msg.uuid] = getBalance(msg.uuid) - r.amount
+                data.balances[r.fromUUID] = getBalance(r.fromUUID) + r.amount
+                r.status = "accepted"
+                save()
+                reply(sender, { ok = true, message = "Accepted. Sent $" .. r.amount .. " to " .. r.fromName .. ".", balance = getBalance(msg.uuid) })
+            end
+        else
+            r.status = "declined"
+            save()
+            reply(sender, { ok = true, message = "Request declined." })
+        end
+
+    elseif msg.type == "borrow" then
+        ensureAccount(msg.uuid, msg.name)
+        local amount = tonumber(msg.amount)
+        if not amount or amount <= 0 then
+            reply(sender, { ok = false, message = "Invalid amount." })
+        else
+            local owed = amount * (1 + INTEREST_RATE)
+            data.balances[msg.uuid] = getBalance(msg.uuid) + amount
+            data.debts[msg.uuid] = getDebt(msg.uuid) + owed
+            save()
+            reply(sender, {
+                ok = true,
+                message = "Borrowed $" .. amount .. " at " .. (INTEREST_RATE * 100) .. "% interest.",
+                balance = getBalance(msg.uuid),
+                debt = getDebt(msg.uuid),
+            })
+        end
+    end
+end
+
+while true do
+    local sender, msg = rednet.receive(PROTOCOL)
+    local ok, err = pcall(handleMessage, sender, msg)
+    if not ok then print("Error handling message: " .. tostring(err)) end
+end
