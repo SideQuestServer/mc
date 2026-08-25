@@ -1,0 +1,453 @@
+-- Bank Terminal (client)
+-- ================================================================
+-- Build this anywhere: 1x Advanced Computer, 1x Monitor (touch-enabled,
+-- 3x2 blocks or bigger recommended), 1x Player Detector, and 1x Modem
+-- (Ender Modem recommended so it reaches the Bank Server from anywhere
+-- on the map). All connect directly to the computer or via networking
+-- cable + wired modems.
+--
+-- This terminal stores NOTHING locally -- every balance, transfer,
+-- request and loan is handled by the central bank_server.lua computer.
+-- ================================================================
+
+local PROTOCOL = "cc_bank"
+local HOSTNAME = "bankserver"
+local LOGIN_RANGE = 4 -- blocks a player must be within to log in here
+
+-- ---------------- peripherals ----------------
+
+local mon = peripheral.find("monitor")
+local detector = peripheral.find("playerDetector")
+local modem = peripheral.find("modem")
+
+if not mon then error("No monitor attached.") end
+if not detector then error("No Player Detector attached.") end
+if not modem then error("No modem attached. Use a Wireless or Ender Modem.") end
+
+mon.setTextScale(0.5)
+local w, h = mon.getSize()
+
+rednet.open(peripheral.getName(modem))
+
+print("Looking for bank server...")
+local serverId = rednet.lookup(PROTOCOL, HOSTNAME)
+while not serverId do
+    print("Bank server not found, retrying in 3s...")
+    sleep(3)
+    serverId = rednet.lookup(PROTOCOL, HOSTNAME)
+end
+print("Connected to bank server (id " .. serverId .. ").")
+
+-- ---------------- networking helper ----------------
+
+local function sendRequest(msg, timeout)
+    rednet.send(serverId, msg, PROTOCOL)
+    local id, reply = rednet.receive(PROTOCOL, timeout or 5)
+    if not reply then
+        return { ok = false, message = "Server did not respond. Try again." }
+    end
+    return reply
+end
+
+-- ---------------- state ----------------
+
+local session = { uuid = nil, name = nil, balance = 0, debt = 0, rate = 0 }
+local pageStack = {}
+local currentPage = "login"
+
+local pendingLoginName, pendingLoginUUID
+local pickPurpose
+local selectedPlayerName
+local amountBuffer = ""
+local amountTitle = ""
+local amountConfirmLabel = ""
+local playerList = {}
+local playerListPage = 1
+local PLAYERS_PER_PAGE = 8
+local resultMessage = ""
+local resultReturnPage = "main"
+local inboxRequests = {}
+local buttons = {}
+
+-- forward declarations
+local render, goTo, goBack, goToReset, showResult
+local refreshBalance, updateLoginDetection, doLogin
+local renderLogin, renderMain, renderBanking, renderAuction
+local renderPickPlayer, renderAmountEntry, renderInbox, renderResult
+local startTransfer, startRequest, startBorrow, openInbox
+local loadPlayerList, pickPlayer, appendDigit, clearAmount, confirmAmount, respondRequest
+
+-- ---------------- drawing helpers ----------------
+
+local function clearButtons() buttons = {} end
+
+local function fillRect(x1, y1, x2, y2, bg)
+    mon.setBackgroundColor(bg)
+    for y = y1, y2 do
+        mon.setCursorPos(x1, y)
+        mon.write(string.rep(" ", x2 - x1 + 1))
+    end
+end
+
+local function centerText(x1, x2, y, text, fg)
+    mon.setTextColor(fg)
+    local x = x1 + math.floor(((x2 - x1 + 1) - #text) / 2)
+    mon.setCursorPos(x, y)
+    mon.write(text)
+end
+
+local function addButton(x1, y1, x2, y2, label, action, bg, fg)
+    bg = bg or colors.gray
+    fg = fg or colors.white
+    fillRect(x1, y1, x2, y2, bg)
+    centerText(x1, x2, math.floor((y1 + y2) / 2), label, fg)
+    table.insert(buttons, { x1 = x1, y1 = y1, x2 = x2, y2 = y2, action = action })
+end
+
+local function handleTouch(x, y)
+    for _, b in ipairs(buttons) do
+        if x >= b.x1 and x <= b.x2 and y >= b.y1 and y <= b.y2 then
+            b.action()
+            return
+        end
+    end
+end
+
+local function drawHeader(title)
+    fillRect(1, 1, w, 1, colors.blue)
+    mon.setTextColor(colors.white)
+    mon.setCursorPos(2, 1)
+    mon.write(title)
+    if session.uuid then
+        local bal = "Balance: $" .. session.balance
+        mon.setCursorPos(w - #bal, 1)
+        mon.write(bal)
+    end
+end
+
+-- Back button always lives in the footer (bottom row) of every page
+-- that has somewhere to go back to.
+local function drawFooter()
+    fillRect(1, h, w, h, colors.black)
+    if #pageStack > 0 then
+        addButton(2, h, 11, h, "< Back", goBack, colors.red, colors.white)
+    end
+end
+
+-- ---------------- navigation ----------------
+
+goTo = function(page)
+    table.insert(pageStack, currentPage)
+    currentPage = page
+    render()
+end
+
+goBack = function()
+    if #pageStack > 0 then currentPage = table.remove(pageStack) end
+    render()
+end
+
+goToReset = function(page)
+    pageStack = {}
+    currentPage = page
+    render()
+end
+
+showResult = function(message, returnPage)
+    resultMessage = message
+    resultReturnPage = returnPage
+    goToReset("result")
+end
+
+-- ---------------- data helpers ----------------
+
+refreshBalance = function()
+    local r = sendRequest({ type = "balance", uuid = session.uuid, name = session.name })
+    if r.ok then
+        session.balance = r.balance
+        session.debt = r.debt or 0
+        session.rate = r.rate or session.rate
+    end
+end
+
+loadPlayerList = function()
+    local r = sendRequest({ type = "list_players", uuid = session.uuid })
+    playerList = (r.ok and r.players) or {}
+end
+
+-- ---------------- login ----------------
+
+updateLoginDetection = function()
+    local nearby = detector.getPlayersInRange(LOGIN_RANGE)
+    if nearby and #nearby > 0 then
+        pendingLoginName = nearby[1].name
+        pendingLoginUUID = nearby[1].uuid
+    else
+        pendingLoginName = nil
+        pendingLoginUUID = nil
+    end
+    if currentPage == "login" then render() end
+end
+
+doLogin = function()
+    if not pendingLoginUUID then return end
+    session.uuid = pendingLoginUUID
+    session.name = pendingLoginName
+    local r = sendRequest({ type = "register", uuid = session.uuid, name = session.name })
+    if r.ok then
+        session.balance = r.balance
+        session.debt = r.debt or 0
+        session.rate = r.rate or 0
+    end
+    goToReset("main")
+end
+
+renderLogin = function()
+    drawHeader("Bank Terminal")
+    if pendingLoginName then
+        centerText(1, w, math.floor(h / 2) - 1, "Hello, " .. pendingLoginName .. ", please log in.", colors.white)
+        addButton(math.floor(w / 2) - 6, math.floor(h / 2) + 1, math.floor(w / 2) + 6, math.floor(h / 2) + 3, "Log In", doLogin, colors.green, colors.black)
+    else
+        centerText(1, w, math.floor(h / 2), "Step closer to the terminal to log in.", colors.lightGray)
+    end
+end
+
+-- ---------------- main / banking / auction ----------------
+
+renderMain = function()
+    drawHeader("Main Menu")
+    addButton(math.floor(w / 2) - 10, 6, math.floor(w / 2) + 10, 9, "Banking", function() goTo("banking") end, colors.green, colors.black)
+    addButton(math.floor(w / 2) - 10, 11, math.floor(w / 2) + 10, 14, "Auction House", function() goTo("auction") end, colors.orange, colors.black)
+    drawFooter()
+end
+
+startTransfer = function()
+    pickPurpose = "transfer"
+    playerListPage = 1
+    loadPlayerList()
+    goTo("pickPlayer")
+end
+
+startRequest = function()
+    pickPurpose = "request"
+    playerListPage = 1
+    loadPlayerList()
+    goTo("pickPlayer")
+end
+
+startBorrow = function()
+    amountBuffer = ""
+    amountTitle = "Borrow (interest " .. (session.rate * 100) .. "%)"
+    amountConfirmLabel = "Borrow"
+    pickPurpose = "borrow"
+    goTo("amountEntry")
+end
+
+openInbox = function()
+    local r = sendRequest({ type = "pending", uuid = session.uuid })
+    inboxRequests = (r.ok and r.requests) or {}
+    goTo("inbox")
+end
+
+renderBanking = function()
+    drawHeader("Banking")
+    addButton(3, 4, w - 2, 6, "Transfer", startTransfer, colors.green, colors.black)
+    addButton(3, 8, w - 2, 10, "Request", startRequest, colors.cyan, colors.black)
+    addButton(3, 12, w - 2, 14, "Borrow (interest)", startBorrow, colors.yellow, colors.black)
+    addButton(3, 16, w - 2, 18, "Incoming Requests", openInbox, colors.lightBlue, colors.black)
+    drawFooter()
+end
+
+renderAuction = function()
+    drawHeader("Auction House")
+    centerText(1, w, math.floor(h / 2), "Coming soon!", colors.lightGray)
+    drawFooter()
+end
+
+-- ---------------- pick player ----------------
+
+pickPlayer = function(name)
+    selectedPlayerName = name
+    amountBuffer = ""
+    if pickPurpose == "transfer" then
+        amountTitle = "Transfer to " .. name
+        amountConfirmLabel = "Send"
+    else
+        amountTitle = "Request from " .. name
+        amountConfirmLabel = "Send Request"
+    end
+    goTo("amountEntry")
+end
+
+renderPickPlayer = function()
+    drawHeader(pickPurpose == "transfer" and "Select Recipient" or "Select Player")
+
+    if #playerList == 0 then
+        centerText(1, w, 6, "No other players registered yet.", colors.lightGray)
+    else
+        local startIdx = (playerListPage - 1) * PLAYERS_PER_PAGE + 1
+        local endIdx = math.min(startIdx + PLAYERS_PER_PAGE - 1, #playerList)
+        local y = 3
+        for i = startIdx, endIdx do
+            local name = playerList[i]
+            addButton(3, y, w - 2, y + 1, name, function() pickPlayer(name) end, colors.gray, colors.white)
+            y = y + 3
+        end
+        if playerListPage > 1 then
+            addButton(3, h - 2, 12, h - 2, "< Prev", function() playerListPage = playerListPage - 1; render() end, colors.gray, colors.white)
+        end
+        if endIdx < #playerList then
+            addButton(w - 11, h - 2, w - 2, h - 2, "Next >", function() playerListPage = playerListPage + 1; render() end, colors.gray, colors.white)
+        end
+    end
+    drawFooter()
+end
+
+-- ---------------- amount entry (shared keypad) ----------------
+
+appendDigit = function(d)
+    if #amountBuffer < 8 then
+        amountBuffer = amountBuffer .. d
+        render()
+    end
+end
+
+clearAmount = function()
+    amountBuffer = ""
+    render()
+end
+
+confirmAmount = function()
+    local amt = tonumber(amountBuffer)
+    if not amt or amt <= 0 then
+        showResult("Please enter a valid amount.", pickPurpose == "borrow" and "banking" or "pickPlayer")
+        return
+    end
+
+    if pickPurpose == "transfer" then
+        local r = sendRequest({ type = "transfer", uuid = session.uuid, name = session.name, toName = selectedPlayerName, amount = amt })
+        if r.ok then session.balance = r.balance end
+        showResult(r.message or "Something went wrong.", "banking")
+
+    elseif pickPurpose == "request" then
+        local r = sendRequest({ type = "request", uuid = session.uuid, name = session.name, toName = selectedPlayerName, amount = amt })
+        showResult(r.message or "Something went wrong.", "banking")
+
+    elseif pickPurpose == "borrow" then
+        local r = sendRequest({ type = "borrow", uuid = session.uuid, name = session.name, amount = amt })
+        if r.ok then
+            session.balance = r.balance
+            session.debt = r.debt
+        end
+        showResult(r.message or "Something went wrong.", "banking")
+    end
+end
+
+renderAmountEntry = function()
+    drawHeader(amountTitle)
+    centerText(1, w, 3, "$" .. (amountBuffer == "" and "0" or amountBuffer), colors.white)
+    if pickPurpose == "borrow" then
+        centerText(1, w, 4, "Current debt: $" .. session.debt, colors.lightGray)
+    end
+
+    local keys = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "C", "0", "" }
+    local bw = math.floor((w - 4) / 3)
+    local startX = 3
+    local y = 6
+    local i = 1
+    for row = 1, 4 do
+        for col = 1, 3 do
+            local key = keys[i]
+            local x1 = startX + (col - 1) * (bw + 1)
+            local x2 = x1 + bw - 1
+            if key ~= "" then
+                local action, bg
+                if key == "C" then
+                    action = clearAmount
+                    bg = colors.red
+                else
+                    action = function() appendDigit(key) end
+                    bg = colors.gray
+                end
+                addButton(x1, y, x2, y + 1, key, action, bg, colors.white)
+            end
+            i = i + 1
+        end
+        y = y + 3
+    end
+
+    addButton(startX, y, w - 2, y + 1, amountConfirmLabel, confirmAmount, colors.green, colors.black)
+    drawFooter()
+end
+
+-- ---------------- inbox ----------------
+
+respondRequest = function(reqId, accept)
+    local r = sendRequest({ type = "respond", uuid = session.uuid, name = session.name, requestId = reqId, accept = accept })
+    if r.ok and r.balance then session.balance = r.balance end
+    showResult(r.message or "Done.", "banking")
+end
+
+renderInbox = function()
+    drawHeader("Incoming Requests")
+    if #inboxRequests == 0 then
+        centerText(1, w, 6, "No pending requests.", colors.lightGray)
+    else
+        local y = 3
+        for _, r in ipairs(inboxRequests) do
+            centerText(1, w, y, r.fromName .. " wants $" .. r.amount, colors.white)
+            addButton(math.floor(w / 2) - 14, y + 1, math.floor(w / 2) - 1, y + 2, "Accept", function() respondRequest(r.id, true) end, colors.green, colors.black)
+            addButton(math.floor(w / 2) + 1, y + 1, math.floor(w / 2) + 14, y + 2, "Decline", function() respondRequest(r.id, false) end, colors.red, colors.white)
+            y = y + 4
+        end
+    end
+    drawFooter()
+end
+
+-- ---------------- result ----------------
+
+renderResult = function()
+    drawHeader("Result")
+    centerText(1, w, math.floor(h / 2) - 1, resultMessage, colors.white)
+    addButton(math.floor(w / 2) - 6, math.floor(h / 2) + 1, math.floor(w / 2) + 6, math.floor(h / 2) + 3, "OK", function()
+        currentPage = resultReturnPage
+        refreshBalance()
+        render()
+    end, colors.green, colors.black)
+end
+
+-- ---------------- render dispatcher ----------------
+
+render = function()
+    clearButtons()
+    mon.setBackgroundColor(colors.black)
+    mon.clear()
+    if currentPage == "login" then renderLogin()
+    elseif currentPage == "main" then renderMain()
+    elseif currentPage == "banking" then renderBanking()
+    elseif currentPage == "auction" then renderAuction()
+    elseif currentPage == "pickPlayer" then renderPickPlayer()
+    elseif currentPage == "amountEntry" then renderAmountEntry()
+    elseif currentPage == "inbox" then renderInbox()
+    elseif currentPage == "result" then renderResult()
+    end
+    mon.setBackgroundColor(colors.black)
+end
+
+-- ---------------- main loop ----------------
+
+updateLoginDetection()
+render()
+
+local timerId = os.startTimer(1)
+while true do
+    local event, p1, p2, p3 = os.pullEvent()
+    if event == "monitor_touch" then
+        handleTouch(p2, p3)
+    elseif event == "timer" and p1 == timerId then
+        if currentPage == "login" then
+            updateLoginDetection()
+        end
+        timerId = os.startTimer(1)
+    end
+end
